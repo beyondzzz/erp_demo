@@ -1,0 +1,23 @@
+
+2018-11-26 09:37:46,575 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/writeoff.py", line 118, in singleWriteoffSelect
+    if len(writeoffs) > 0:
+NameError: global name 'writeoffs' is not defined
+
+2018-11-26 09:39:10,166 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/writeoff.py", line 147, in multiWriteoffSelect
+    multiWriteoffSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
+  File "/home/work/erp/erp_sites/views/writeoff.py", line 187, in paging
+    basicObjs = Bills.objects.all()[0:ONE_PAGE_OF_DATA]
+NameError: global name 'Bills' is not defined
+
+2018-11-26 09:47:08,087 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/breakage.py", line 22, in breakageInsert
+    identifier = 'BO-' + take_stock_date[0:10] + '-'
+NameError: global name 'take_stock_date' is not defined
+
+2018-11-26 09:47:35,011 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/breakage.py", line 57, in breakageInsert
+    breakageCommodities = json2Dict['breakageCommodities']
+KeyError: 'breakageCommodities'
+

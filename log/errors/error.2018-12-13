@@ -1,0 +1,1034 @@
+2018-12-13 10:24:43,940 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:30:33,042 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:32:14,618 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:35:28,793 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:36:10,120 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:36:38,104 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:38:41,353 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:38:51,010 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:44:26,810 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 10:49:02,745 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 11:51:04,170 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 11:52:52,696 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 21, in thirdPartyInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-13 12:04:44,866 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 367, in thirdPartyDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-13 12:06:31,222 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 367, in thirdPartyDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-13 15:43:14,234 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:55:30,436 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:55:36,372 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:55:42,054 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:55:42,777 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:57:13,634 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:57:44,579 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 15:57:55,958 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:01:04,632 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:01:41,471 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:01:51,320 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:03:45,782 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:08:45,739 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:09:34,153 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:09:35,949 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:09:36,872 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:10:06,457 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:10:16,332 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:10:52,392 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:10:57,390 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:10:58,080 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:11:00,800 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:11:02,115 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+
+2018-12-13 16:11:02,567 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 658, in thirdPartySelect
+    thirdPartySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+  File "/home/work/erp/erp_sites/views/supplierCustomer.py", line 709, in paging
+    basicsCount = Supcto.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1332, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1313, in get_prep_lookup
+    return super(DateField, self).get_prep_lookup(lookup_type, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1461, in get_prep_value
+    value = super(DateTimeField, self).get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1317, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1444, in to_python
+    params={'value': value},
+ValidationError: [u"' 00:00:00' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."]
+

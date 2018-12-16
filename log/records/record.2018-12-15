@@ -1,0 +1,16 @@
+
+2018-12-15 11:53:05,798 - record - INFO - basic_log : 19 - condition: {'name': u'hello'}
+2018-12-15 11:57:24,350 - record - INFO - basic_log : 19 - len : 0
+2018-12-15 12:03:36,072 - record - INFO - basic_log : 19 - len : 0
+2018-12-15 12:03:52,188 - record - INFO - basic_log : 19 - len : 0
+2018-12-15 12:03:57,722 - record - INFO - basic_log : 19 - len : 13
+2018-12-15 12:16:23,889 - record - INFO - basic_log : 19 - len : 13
+2018-12-15 12:16:32,345 - record - INFO - basic_log : 19 - len : 13
+2018-12-15 12:16:36,427 - record - INFO - basic_log : 19 - len : 13
+2018-12-15 12:16:45,236 - record - INFO - basic_log : 19 - len : 0
+2018-12-15 12:17:02,540 - record - INFO - basic_log : 19 - len : 13
+2018-12-15 12:17:25,838 - record - INFO - basic_log : 19 - len : 0
+2018-12-15 12:23:09,259 - record - INFO - basic_log : 19 - basicObjs len : 10
+2018-12-15 12:24:17,399 - record - INFO - basic_log : 19 - basicObjs len2 : 10
+2018-12-15 12:25:44,705 - record - INFO - basic_log : 19 - condition len1 : 0
+2018-12-15 12:25:44,708 - record - INFO - basic_log : 19 - basicObjs len2 : 10

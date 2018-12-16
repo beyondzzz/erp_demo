@@ -1,0 +1,13 @@
+销售计划       SP
+销售           SO
+客户           C
+供货商         S
+部门           DEPT
+仓库           WARE
+员工           PERSON
+采购           PO
+采购退货       PK
+其他收货单     OO
+预收款         AC
+预付款         AP
+应/预收/付冲   AT

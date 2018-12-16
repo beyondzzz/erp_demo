@@ -1,0 +1,73 @@
+
+2018-12-10 07:31:24,352 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:31:24,353 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:31:24,354 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:31:24,355 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:31:24,356 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:31:24,357 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,316 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,317 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,319 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,320 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,321 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 07:32:39,322 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/public.py", line 97, in touchFile
+    with open(doc, 'wb+') as destination:
+IOError: [Errno 2] No such file or directory: u'/home/work/erp/static/procure/paymentEvidence/2018-12-10_code.txt'
+
+2018-12-10 08:54:01,362 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 226, in multiCommoditySelect
+    condition['classificationID'] = int(request.GET['classificationID'])
+ValueError: invalid literal for int() with base 10: ''
+
+2018-12-10 09:30:56,181 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 251, in singleCommoditySelect
+    commoditySpecicicationID = request.GET['commoditySpecicicationID']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'commoditySpecicicationID'"
+

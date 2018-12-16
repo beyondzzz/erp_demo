@@ -1,0 +1,222 @@
+2018-12-11 01:54:00,972 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 167, in firstClassificationSelect
+    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, condition, True)
+  File "/home/work/erp/erp_sites/views/classification.py", line 366, in paging
+    classificationCount = Classification.objects.filter(**condition).count()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1150, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1036, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1397, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'operator' into field. Choices are: id, identifier, is_delete, key_word, name, operator_identifier, operator_time, parent_id, type
+
+2018-12-11 02:04:43,501 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 104, in firstClassificationUpdate
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 02:06:10,888 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 104, in firstClassificationUpdate
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 02:12:37,156 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 22, in firstClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 02:13:37,798 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 22, in firstClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 02:20:09,949 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 76, in firstClassificationDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-11 02:21:16,943 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 76, in firstClassificationDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-11 02:22:36,804 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 76, in firstClassificationDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-11 02:22:40,518 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 76, in firstClassificationDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-11 02:23:48,368 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 76, in firstClassificationDelete
+    identifier = request.GET['identifier']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'identifier'"
+
+2018-12-11 05:10:25,660 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 185, in secondClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 05:21:28,627 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 185, in secondClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 05:25:01,718 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 185, in secondClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 05:25:08,714 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 185, in secondClassificationInsert
+    json2Dict = json.loads(request.body)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-12-11 09:26:52,693 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 169, in firstClassificationSelect
+    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None, True)
+  File "/home/work/erp/erp_sites/views/classification.py", line 382, in paging
+    children = Classification.objects.filter(parent_id=classification.id,is_delete=0)
+NameError: global name 'classification' is not defined
+
+2018-12-11 09:27:02,508 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 169, in firstClassificationSelect
+    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None, True)
+  File "/home/work/erp/erp_sites/views/classification.py", line 382, in paging
+    children = Classification.objects.filter(parent_id=classification.id,is_delete=0)
+NameError: global name 'classification' is not defined
+
+2018-12-11 09:29:31,151 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 169, in firstClassificationSelect
+    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None, True)
+  File "/home/work/erp/erp_sites/views/classification.py", line 382, in paging
+    children = Classification.objects.filter(parent_id=classification.id,is_delete=0)
+NameError: global name 'classification' is not defined
+
+2018-12-11 09:30:26,379 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/classification.py", line 169, in firstClassificationSelect
+    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None, True)
+  File "/home/work/erp/erp_sites/views/classification.py", line 382, in paging
+    children = Classification.objects.filter(parent_id=classification.id,is_delete=0)
+NameError: global name 'classification' is not defined
+
+2018-12-11 16:53:08,073 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/department.py", line 134, in departmentSelect
+    departmentSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
+  File "/home/work/erp/erp_sites/views/department.py", line 184, in paging
+    basicJSON = getProcure(basicObj)
+NameError: global name 'getProcure' is not defined
+
+2018-12-11 17:32:34,685 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 251, in singleCommoditySelect
+    commoditySpecicicationID = request.GET['commoditySpecicicationID']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'commoditySpecicicationID'"
+
+2018-12-11 17:34:12,840 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 252, in singleCommoditySelect
+    specifications = CommoditySpecification.objects.filter(id=commoditySpecicicationID)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 985, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+2018-12-11 17:34:59,927 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 251, in singleCommoditySelect
+    commoditySpecicicationID = request.GET['commoditySpecicicationID']
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/utils/datastructures.py", line 322, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+MultiValueDictKeyError: "'commoditySpecicicationID'"
+

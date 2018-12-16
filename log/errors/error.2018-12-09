@@ -1,0 +1,55 @@
+2018-12-09 07:04:05,135 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 89, in loginPost
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:62448"
+AttributeError: 'HttpResponse' object has no attribute 'headers'
+
+2018-12-09 07:08:10,204 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 89, in loginPost
+    response.header["Access-Control-Allow-Origin"] = "http://127.0.0.1:62448"
+AttributeError: 'HttpResponse' object has no attribute 'header'
+
+2018-12-09 08:32:02,688 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 96, in loginPost
+    response.set_header("Access-Control-Allow-Origin", "http://127.0.0.1:62448")
+AttributeError: 'HttpResponse' object has no attribute 'set_header'
+
+2018-12-09 08:34:11,237 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 96, in loginPost
+    response.set_header("Access-Control-Allow-Origin", "http://127.0.0.1:62448")
+AttributeError: 'HttpResponse' object has no attribute 'set_header'
+
+2018-12-09 08:35:09,820 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 96, in loginPost
+    response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:62448")
+AttributeError: 'HttpResponse' object has no attribute 'setHeader'
+
+2018-12-09 08:40:50,215 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 94, in loginPost
+    response["Access-Control-Allow-Credentials"] = true
+NameError: global name 'true' is not defined
+
+2018-12-09 08:43:20,907 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 97, in loginPost
+    response.setitem("Access-Control-Allow-Origin", "http://127.0.0.1:62448")
+AttributeError: 'HttpResponse' object has no attribute 'setitem'
+
+2018-12-09 08:46:16,190 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 97, in loginPost
+    response.set_item("Access-Control-Allow-Origin", "http://127.0.0.1:62448")
+AttributeError: 'HttpResponse' object has no attribute 'set_item'
+
+2018-12-09 08:46:35,640 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/auth.py", line 98, in loginPost
+    response.setitem("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+AttributeError: 'HttpResponse' object has no attribute 'setitem'
+
+2018-12-09 13:26:22,252 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/bills.py", line 137, in billInsert
+    if isValid(json2Dict['procureSalesID']):
+KeyError: 'procureSalesID'
+
+2018-12-09 13:27:55,784 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/bills.py", line 137, in billInsert
+    if isValid(json2Dict['procureSalesID']):
+KeyError: 'procureSalesID'
+

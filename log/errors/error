@@ -1,0 +1,60 @@
+2018-12-16 03:50:10,369 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 137, in commodityUpdate
+    identifier = json2Dict['identifier']
+KeyError: 'identifier'
+
+2018-12-16 04:41:26,359 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 199, in commodityUpdate
+    if updateSpecification(commoditySpecifictions):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 611, in updateSpecification
+    specificationIdentifier = commoditySpecifiction['specificationIdentifier']
+TypeError: string indices must be integers
+
+2018-12-16 04:44:55,270 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 199, in commodityUpdate
+    logRecord.log("commodity specification:" + str(commoditySpecifictions))
+NameError: global name 'logRecord' is not defined
+
+2018-12-16 04:46:21,754 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 201, in commodityUpdate
+    if updateSpecification(commoditySpecifictions):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 613, in updateSpecification
+    specificationIdentifier = commoditySpecifiction['specificationIdentifier']
+TypeError: string indices must be integers
+
+2018-12-16 05:02:31,451 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 241, in multiCommoditySelect
+    multiCommoditySelect = paging(request, ONE_PAGE_OF_DATA, None, None, None)
+  File "/home/work/erp/erp_sites/views/commodity.py", line 923, in paging
+    basicJSON = getCommodity(basicObj)
+  File "/home/work/erp/erp_sites/public.py", line 501, in getCommodity
+    commodityJSON['classificationID'] = commodity.classification_id
+AttributeError: 'CommoditySpecification' object has no attribute 'classification_id'
+
+2018-12-16 05:24:18,488 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 138, in commodityUpdate
+    commoditys = Commodity.objects.filter(id=identifier)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 985, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'COM-2018-11-21-11'
+

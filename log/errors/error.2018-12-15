@@ -1,0 +1,30 @@
+2018-12-15 10:56:14,139 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 243, in multiCommoditySelect
+    multiCommoditySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic)
+  File "/home/work/erp/erp_sites/views/commodity.py", line 879, in paging
+    commoditys = Commodity.objects.filter(**condition)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1150, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1036, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1397, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'state' into field. Choices are: attribute, basics_information, brand, classification_id, id, identifier, is_assemble, is_presell, mnemonic_code, name, shout_name, supcto_id, taxes, temp_taxes, zero_stock
+
+2018-12-15 12:00:55,779 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 239, in multiCommoditySelect
+    multiCommoditySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic)
+  File "/home/work/erp/erp_sites/views/commodity.py", line 896, in paging
+    for basicObj in basicObjs:
+UnboundLocalError: local variable 'basicObjs' referenced before assignment
+

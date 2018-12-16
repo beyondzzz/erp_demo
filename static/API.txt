@@ -1,0 +1,1122 @@
+以下参数*为必选，其余均支持可选
+查询API支持分页查找，其中返回参数中total为数据总数,curPage为当前页,allPage为总页数。
+
+一.auth相关API
+1.URL:   POST请求form-data格式
+http://47.93.8.191:8041/api/basic/login
+input:
+{
+    loginName:XXX
+    password:XXX(未加密)
+}
+2.URL:   GET请求   获取验证码图片
+http://47.93.8.191:8041/api/basic/getCaptcha
+
+二、log相关API
+1.URL:   GET请求
+http://47.93.8.191:8041/api/basic/log/select?[operateType=XXX][&operatorIdentifier=XXX][&departmentID=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+
+三、commodity相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/commodity/insert
+input:
+{
+    "classificationID":1,
+    "name":"test",
+    "brand":"123",
+    "zeroStock":"123",
+    "shoutName":"123",
+    "mnemonicCode":"123",
+    "basicsInformation":"123",
+    "attribute":"123",
+    "supctoID":"123",
+    "taxes":"123",
+    "isAssemble":"123",
+    "isPresell":"123",
+    "tempTaxes":"123",
+    "commoditySpecifictions":[
+    {
+        "specificationName":"321",
+        "commodityID":"321",
+        "qualityPeriod":"321",
+        "qualityPeriodUnit":"321",
+        "miniOrderQuantity":"321",
+        "addOrderQuantity":"321",
+        "packagingSize":"321",
+        "isDelete":"321",
+        "warningNumber":"321",
+        "weight":"321",
+        "operatorIdentifier":"321",
+        "state":"321",
+        "tempMiniOrderQuantity":"321",
+        "tempAddOrderQuantity":"321",
+        "tempWarningNumber":"321",
+        "tempWarehouseID":"321",
+        "tempMaxInventory":"321",
+        "tempMiniInventory":"321",
+        "tempInventory":"321",
+        "tempState":"321",
+        "units": [
+         {
+         "basicUnit": 1,
+         "barCode": "123",
+         "salesUnit": "箱",
+         "purchasingUnit": "袋、箱",
+         "warehouseUnit": "袋、箱",
+         "name": "袋",
+         "ratioDenominator": 0,
+         "ratioMolecular": 0,
+         "miniPrice": "123"
+         },
+         {
+         "basicUnit": 0,
+         "barCode": "123",
+         "salesUnit": "箱",
+         "purchasingUnit": "袋、箱",
+         "warehouseUnit": "袋、箱",
+         "name": "箱",
+         "ratioDenominator": 1,
+         "ratioMolecular": "111",
+         "miniPrice": "1"
+         }
+      ],
+         "inventories": [
+           {
+           "warehouseID": "1",
+           "maxInventory": "2",
+           "miniInventory": "1",
+           "inventory": "0",
+           "commodityNum": "0"
+           }]
+    }
+    ]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/commodity/update
+input:
+{
+    "identifier": (*必选),
+    "classificationID":1,
+    "name":"test",
+    "brand":"123",
+    "zeroStock":"123",
+    "shoutName":"123",
+    "mnemonicCode":"123",
+    "basicsInformation":"123",
+    "attribute":"123",
+    "supctoID":"123",
+    "taxes":"123",
+    "isAssemble":"123",
+    "isPresell":"123",
+    "tempTaxes":"123",
+    "commoditySpecifictions":[
+    {
+        "specificationIdentifier": (*必选),
+        "specificationName":"321",
+        "commodityID":"321",
+        "qualityPeriod":"321",
+        "qualityPeriodUnit":"321",
+        "miniOrderQuantity":"321",
+        "addOrderQuantity":"321",
+        "packagingSize":"321",
+        "isDelete":"321",
+        "warningNumber":"321",
+        "weight":"321",
+        "operatorIdentifier":"321",
+        "state":"321",
+        "tempMiniOrderQuantity":"321",
+        "tempAddOrderQuantity":"321",
+        "tempWarningNumber":"321",
+        "tempWarehouseID":"321",
+        "tempMaxInventory":"321",
+        "tempMiniInventory":"321",
+        "tempInventory":"321",
+        "tempState":"321",
+        "units": [
+         {
+         "unitID":(*必选),
+         "basic_unit": 1,
+         "bar_code": "123",
+         "sales_unit": "箱",
+         "purchasing_unit": "袋、箱",
+         "warehouse_unit": "袋、箱",
+         "name": "袋",
+         "ratio_denominator": 0,
+         "ratio_molecular": 0,
+         "mini_price": "123"
+         },
+         {
+         "unitID":(*必选),
+         "basicUnit": 0,
+         "barCode": "123",
+         "salesUnit": "箱",
+         "purchasingUnit": "袋、箱",
+         "warehouseUnit": "袋、箱",
+         "name": "箱",
+         "ratioDenominator": 1,
+         "ratioMolecular": "111",
+         "miniPrice": "1"
+         }
+      ],
+         "inventories": [
+           {
+           "inventoryID":(*必选),
+           "warehouseID": "1",
+           "maxInventory": "2",
+           "miniInventory": "1",
+           "inventory": "0",
+           "commodityNum": "0"
+           }]
+    }
+    ]
+}
+3.GET请求
+URL:http://47.93.8.191:8041/api/basic/commodity/singleSelect?commoditySpecicicationID
+4.GET请求
+URL:http://47.93.8.191:8041/api/basic/commodity/multiSelect?[operatorIdentifier=XXX][&classificationID=XXX][&supctoID=XXX][&name=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+
+四、supplierCustomer相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/thirdParty/insert
+input:
+{
+  "classificationID":11,
+  "name":"test",
+  "full":"test",
+  "frade":1,
+  "fromType":1,
+  "settlementTypeID":0,
+  "phone":"123",
+  "contactPeople":"123",
+  "postcode":"123",
+  "fax":"123",
+  "bankAccount":"123",
+  "bank":"test",
+  "ratepaying":"test",
+  "mailbox":"test@test.com",
+  "invoiceType":1,
+  "deliveryAddress":"test",
+  "creditDays":1,
+  "creditMoney":1,
+  "information":"test",
+  "otherInformation":"test",
+  "departmentID":1,
+  "personID":1,
+  "currency":1,
+  "communicationAddress":"test",
+  "taxes":1,
+  "member":"test",
+  "shippingModeID":1,
+  "remark":"test",
+  "commonPhone":"123",
+  "reservePhone":"123",
+  "state":1,
+  "province":"北京",
+  "city":"北京",
+  "area":"海淀",
+  "customerOrSupplier":1,
+  "operatorIdentifier":"bob",
+  "provinceCode":"010",
+  "cityCode":"010",
+  "areaCode":"010",
+  "website":"www.test.com",
+  "memoryCode":"test",
+  "useable":1,
+  "advance_money":100,
+  "isshow":1,
+  "parentID":0,
+  "commodityList":[
+    {
+      "commodityID" : 2,
+      "price":2.2
+    }
+    ]
+}
+2 URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/thirdParty/update
+input:
+{
+  "identifier":(*必选),
+  "classificationID":11,
+  "name":"test",
+  "full":"test",
+  "frade":1,
+  "fromType":1,
+  "settlementTypeID":0,
+  "phone":"123",
+  "contactPeople":"123",
+  "postcode":"123",
+  "fax":"123",
+  "bankAccount":"123",
+  "bank":"test",
+  "ratepaying":"test",
+  "mailbox":"test@test.com",
+  "invoiceType":1,
+  "deliveryAddress":"test",
+  "creditDays":1,
+  "creditMoney":1,
+  "information":"test",
+  "otherInformation":"test",
+  "departmentID":1,
+  "personID":1,
+  "currency":1,
+  "communicationAddress":"test",
+  "taxes":1,
+  "member":"test",
+  "shippingModeID":1,
+  "remark":"test",
+  "commonPhone":"123",
+  "reservePhone":"123",
+  "state":1,
+  "province":"北京",
+  "city":"北京",
+  "area":"海淀",
+  "customerOrSupplier":1,
+  "operatorIdentifier":"bob",
+  "provinceCode":"010",
+  "cityCode":"010",
+  "areaCode":"010",
+  "website":"www.test.com",
+  "memoryCode":"test",
+  "useable":1,
+  "advance_money":100,
+  "isshow":1,
+  "parentID":0,
+  "commodityList":[
+    {
+      "supctoCommodityID":(*必选),
+      "commodityID" : 2,
+      "price":2.2
+    }
+    ]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/thirdParty/select?[name=XXX][&fromType=XXX][&state=XXX][&province=XXX][&city=XXX][&area=XXX][&classificationID=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:  GET请求
+http://47.93.8.191:8041/api/basic/thirdParty/delete?identifier=XXX
+
+五、person相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/person/insert
+input:
+{
+ "name":"test",
+ "place":"上海",
+ "type":"1",
+ "departmentID": 26,
+ "entryTime": "2018-10-10",
+ "duties" : "经理",
+ "education": "本科",
+ "birthTime":"1990-10-10",
+ "quite": 0,
+ "idNumber": 110102198501121231,
+ "nativePlace":"上海",
+ "remark": "nothing",
+ "phone": 13911623461,
+ "homePhone":"13911612346",
+ "commonPhone":"13911612346",
+ "reservePhone": "13911612346",
+ "postcode": "100037",
+ "homeAddress":"test address",
+ "mailbox": "111111@qq.com",
+ "business": 0 ,
+ "sex": "男",
+ "warehouseID": 1,
+ "operatorID" : 11,
+ "loginName":"bob",
+ "password":"1",
+ "resIDs":
+    [1,3,121]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/person/update
+input:
+{
+ "identifier":(*必选),
+ "name":"test",
+ "place":"上海",
+ "type":"1",
+ "departmentID": 26,
+ "entryTime": "2018-10-10",
+ "duties" : "经理",
+ "education": "本科",
+ "birthTime":"1990-10-10",
+ "quite": 0,
+ "idNumber": 110102198501121231,
+ "nativePlace":"上海",
+ "remark": "nothing",
+ "phone": 13911623461,
+ "homePhone":"13911612346",
+ "commonPhone":"13911612346",
+ "reservePhone": "13911612346",
+ "postcode": "100037",
+ "homeAddress":"test address",
+ "mailbox": "111111@qq.com",
+ "business": 0 ,
+ "sex": "男",
+ "warehouseID": 1,
+ "operatorID" : 11,
+ "loginName":"bob",
+ "password":"1",
+ "resIDs":
+    [1,3,121]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/person/select?[name=XXX][&placce=XXX][&deparmentID=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:  GET请求
+http://47.93.8.191:8041/api/basic/person/delete?identifier=XXX
+5.URL:  GET请求，直接将密码置成1
+http://47.93.8.191:8041/api/basic/person/updatePwdById?identifier=XXX
+
+六、basic相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/basic/insert
+input:
+{
+ "tableName" : enum,["warehouse","department","settlement_type","shipping_mode"]
+"name" : "test",
+"position" : "1-2-3",(当tableName="warehouse"时，*必选)
+"operatorIdentifier" :"PPL-2018-11-22-2"
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/basic/update
+input:
+{
+    "identifier":(*必选),
+    "tableName" : enum,["warehouse","department","settlement_type","shipping_mode"]
+    "name" : "test",
+    "position" : "1-2-3",(当tableName="warehouse"时，*必选)
+    "operatorIdentifier" :"PPL-2018-11-22-2"
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/basic/select?tableName=ENUM[&name=XXX][&operatorIdentifier=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/basic/delete?identifier=XXX
+
+七、classification相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/secondClassification/insert
+input:
+{
+ "parentID":2,
+ "keyWord" : "高压豆腐",
+ "name" : "高压鱼豆腐",
+ "operator" : "bob",
+ "type" : 1
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/firstClassification/insert
+input:
+{
+ "keyWord" : "高压豆腐",
+ "name" : "高压鱼豆腐",
+ "operator" : "bob",
+ "type" : 1
+}
+3.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/secondClassification/update
+input:
+{
+ "identifier":(*必选)
+ "parentID":2,
+ "keyWord" : "高压豆腐",
+ "name" : "高压鱼豆腐",
+ "operator" : "bob",
+ "type" : 1
+}
+4.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/firstClassification/update
+input:
+{
+ "identifier":(*必选)
+ "keyWord" : "高压豆腐",
+ "name" : "高压鱼豆腐",
+ "operator" : "bob",
+ "type" : 1
+}
+5 URL:  GET请求
+http://47.93.8.191:8041/api/basic/firstClassification/select?[type=XXX][&keyWord=XXX][&name=XXX][&operator=XXX][&identifier=XXX]
+6 URL:  GET请求
+http://47.93.8.191:8041/api/basic/secondClassification/select?[firstClassIdentifer=XXX][&type=XXX][&keyWord=XXX][&name=XXX][&operator=XXX][&identifier=XXX]
+7 URL:  GET请求
+http://47.93.8.191:8041/api/basic/firstClassification/delete?identifier=XXX
+8 URL:  GET请求
+http://47.93.8.191:8041/api/basic/secondClassification/delete?identifier=XXX
+
+八、allot相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/allot/insert
+input:
+{
+	"exportWarehouseID":1,
+	"importWarehouseID":2,
+	"shippingModeID":3,
+	"importBranch":"test",
+	"adjustSubject":"test",
+	"sendGoodsPlace":"test",
+	"personID":1,
+	"originator":"test",
+	"summary":"test",
+	"printNum":1,
+	"makePerson":"test",
+	"description":"test",
+	"exportName":"test",
+	"importName":"test",
+	"allotCommodities":[
+		{
+			"commoditySpecificationID":1,
+			"number":1,
+			"exportUnitPrice":1,
+			"importUnitPrice":1,
+			"importMoney":1
+		}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/allot/update
+input:
+{
+    "identifier":(*必选),
+	"exportWarehouseID":1,
+	"importWarehouseID":2,
+	"shippingModeID":3,
+	"importBranch":"test",
+	"adjustSubject":"test",
+	"sendGoodsPlace":"test",
+	"personID":1,
+	"originator":"test",
+	"summary":"test",
+	"printNum":1,
+	"makePerson":"test",
+	"description":"test",
+	"exportName":"test",
+	"importName":"test",
+	"allotCommodities":[
+		{
+		    "allotCommodityID":(*必选),
+			"commoditySpecificationID":1,
+			"number":1,
+			"exportUnitPrice":1,
+			"importUnitPrice":1,
+			"importMoney":1
+		}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/allot/select?[identifier=XXX][&name=XXX][&makePerson=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/allot/delete?identifier=XXX
+
+九、bill相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/bill/insert
+input:
+{
+	"customerSupplierID":1,
+	"billsType":"test",
+	"bank":"test",
+	"bankAccount":"test",
+	"payment":1,
+	"originator":"test",
+	"personID":1,
+	"summary":"test",
+	"remark":"test",
+	"money":1,
+	"ticketNo":"test",
+	"branch":"test",
+	"balance":1,
+	"account":"test",
+	"orderType":"test",
+	"billsSubs":[
+		{
+			"procureSalesID":1,
+			"clearingMoney":1,
+			"stayMoney":1,
+			"theMoeny":1,
+			"actualMoney":1,
+			"rebateMoney":1,
+			"isPayment":"Y",
+			"rebate":1,
+			"remark":"test",
+			"payMoney":1
+		}
+		]
+}
+2 URL:  GET请求
+http://47.93.8.191:8041/api/basic/bill/multiSelect?[billsType=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+3.URL:GET请求
+http://47.93.8.191:8041/api/basic/bill/singleSelect?billsCode=XXX
+
+十、breakage相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/breakage/insert
+input:
+{
+	"warehouseID":1,
+	"personID":1,
+	"originator":"test",
+	"reviewer":"test",
+	"summary":"test",
+	"state":1,
+	"printNum":1,
+	"breakageOrderCommodities":[
+			{
+				"commoditySpecificationID":1,
+				"number":1,
+				"unitPrice":1,
+				"money":1
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/breakage/update
+input:
+{
+	"identifier":(*必选),
+	"warehouseID":1,
+	"personID":1,
+	"originator":"test",
+	"reviewer":"test",
+	"summary":"test",
+	"state":1,
+	"printNum":1,
+	"breakageOrderCommodities":[
+			{
+				"breakageCommodityID":(*必选),
+				"commoditySpecificationID":1,
+				"number":1,
+				"unitPrice":1,
+				"money":1
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/breakage/select?[warehouseID=XXX][&personID=XXX][&state=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/breakage/delete?billsCode=XXX
+
+十一、writeoff相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/writeoff/insert
+input:
+{
+	"writeoffType":"test",
+	"companyOne":1,
+	"companyTwo":2,
+	"money":3,
+	"originator":"test",
+	"personID":1,
+	"summary":"test",
+	"remark":"test",
+	"voucherNo":"test",
+	"branch":"test",
+	"writeOffSubs":[
+			{
+				"procureSalesID":1,
+				"clearMoney":1,
+				"stayMoney":1,
+				"theMoney":1,
+				"isWriteoff":"Y",
+				"isProcureSales":1,
+				"remark":"test"
+			}
+		]
+}
+2 URL:  GET请求
+http://47.93.8.191:8041/api/basic/writeoff/multiSelect?[writeoffType=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+3.URL:GET请求
+http://47.93.8.191:8041/api/basic/writeoff/singleSelect?writeoffCode=XXX
+
+十二、package相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/package/insert
+input:
+{
+	"orderType":2,
+	"warehouseID":2,
+	"commoditySpecificationID":2,
+	"packageOrTeardownNum":2,
+	"unitPrice":2,
+	"totalMoney":2,
+	"personID":2,
+	"originator":"2test",
+	"reviewer":"2test",
+	"summary":"2test",
+	"state":2,
+	"printNum":2,
+	"packageCommodities":[
+			{
+				"packageOrTeardownOrderID": 3,
+				"commoditySpecificationID":2,
+				"number":2,
+				"unitPrice":2,
+				"money":2
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/package/update
+input:
+{
+	"identifier":(*必选),
+	"orderType":2,
+	"warehouseID":2,
+	"commoditySpecificationID":2,
+	"packageOrTeardownNum":2,
+	"unitPrice":2,
+	"totalMoney":2,
+	"personID":2,
+	"originator":"2test",
+	"reviewer":"2test",
+	"summary":"2test",
+	"state":2,
+	"printNum":2,
+	"packageCommodities":[
+			{
+				"packageCommodityID":(*必选),
+				"packageOrTeardownOrderID": 3,
+				"commoditySpecificationID":2,
+				"number":2,
+				"unitPrice":2,
+				"money":2
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/package/select?[identifier=XXX][&warehouseID=XXX][&personID=XXX][&orderType=XXX][&state=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/package/delete?identifier=XXX
+
+十三、stockCheck相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/stockCheck/insert
+input:
+{
+	"warehouseID":2,
+	"personID":2,
+	"originator":"test2",
+	"financeReviewer":"test2",
+	"managerReviewer":"test2",
+	"summary":"test2",
+	"state":1,
+	"printNum":2,
+	"stockCommodities":[
+			{
+				"stockCommodityID": 2,
+				"commoditySpecificationID":2,
+				"inventoryNum":2,
+				"realNum":2,
+				"profitOrLossNum":2,
+				"unitPrice":2,
+				"money":2
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/stockCheck/update
+input:
+{
+	"identifier":(*必选),
+	"warehouseID":2,
+	"personID":2,
+	"originator":"test2",
+	"financeReviewer":"test2",
+	"managerReviewer":"test2",
+	"summary":"test2",
+	"state":1,
+	"printNum":2,
+	"stockCommodities":[
+			{
+				"stockCommoditiyID":(*必选),
+				"stockCommodityID": 2,
+				"commoditySpecificationID":2,
+				"inventoryNum":2,
+				"realNum":2,
+				"profitOrLossNum":2,
+				"unitPrice":2,
+				"money":2
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/stockCheck/select?[identifier=XXX][&warehouseID=XXX][&personID=XXX][&state=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/stockCheck/delete?identifier=XXX
+
+十四、salesNormal相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/salesNormal/insert
+input:
+{
+	"parentID":2,
+	"breakCode":"1test",
+	"payment":1,
+	"orderType":1,
+	"endCalidityTime":"2018-12-20",
+	"deliverGoodsPlace":"1test",
+	"receiptGoodsPlace":"1test",
+	"consignee":"1test",
+	"phone":"1test",
+	"fax":"1test",
+	"orderer":"1test",
+	"advanceScale":1,
+	"originator":"1test",
+	"summary":"1test",
+	"branch":"1test",
+	"state":1,
+	"isSpecimen":1,
+	"supctoID":1,
+	"shippingModeID":1,
+	"personID":1,
+	"salesPlanOrderID":1,
+	"printNum":1,
+	"isShow":1,
+	"isVerification":1,
+	"missOrderID":1,
+	"activityID":1,
+	"isAppOrder":1,
+	"isReturnGoods":1,
+	"appOrderIdentifier":"test",
+	"appSendTime":"2018-10-23 12:00:00",
+	"isCreateStockOrder":1,
+	"salesOrderCommodities":[
+			{
+				"salesPlanOrderCommodityID": 3,
+				"commoditySpecificationID":2,
+				"deliverGoodsMoney":2,
+				"deliverGoodsNum":2,
+				"returnGoodsNum":2,
+				"receivingGoodsMoney":2,
+				"receivingGoodsnum":1,
+				"damagenum":1,
+				"damageMoney":1,
+				"discount":1,
+				"unitPrice":1,
+				"taxesMoney":1,
+				"taxes":1,
+				"batchNumber":"1",
+				"remark":"test",
+				"isSpecialOffer":1,
+				"warehouseID":1,
+				"appAmountMoney":1
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/salesNormal/update
+input:
+{
+	"identifier": (*必选),
+	"parentID":2,
+	"breakCode":"1test",
+	"payment":1,
+	"orderType":1,
+	"endCalidityTime":"2018-12-20",
+	"deliverGoodsPlace":"1test",
+	"receiptGoodsPlace":"1test",
+	"consignee":"1test",
+	"phone":"1test",
+	"fax":"1test",
+	"orderer":"1test",
+	"advanceScale":1,
+	"originator":"1test",
+	"summary":"1test",
+	"branch":"1test",
+	"state":1,
+	"isSpecimen":1,
+	"supctoID":1,
+	"shippingModeID":1,
+	"personID":1,
+	"salesPlanOrderID":1,
+	"printNum":1,
+	"isShow":1,
+	"isVerification":1,
+	"missOrderID":1,
+	"activityID":1,
+	"isAppOrder":1,
+	"isReturnGoods":1,
+	"appOrderIdentifier":"test",
+	"appSendTime":"2018-10-23 12:00:00",
+	"isCreateStockOrder":1,
+	"salesOrderCommodities":[
+			{
+				"salesOrderCommodityID":(*必选),
+				"salesPlanOrderCommodityID": 3,
+				"commoditySpecificationID":2,
+				"deliverGoodsMoney":2,
+				"deliverGoodsNum":2,
+				"returnGoodsNum":2,
+				"receivingGoodsMoney":2,
+				"receivingGoodsnum":1,
+				"damagenum":1,
+				"damageMoney":1,
+				"discount":1,
+				"unitPrice":1,
+				"taxesMoney":1,
+				"taxes":1,
+				"batchNumber":"1",
+				"remark":"test",
+				"isSpecialOffer":1,
+				"warehouseID":1,
+				"appAmountMoney":1
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/salesNormal/select?[identifier=XXX][&classificationID=XXX][&provinceCode=XXX][&cityCode=XXX][&area_code=XXX][&supctoName=XXX][&commodityID=XXX][&isSpecimen=XXX][&state=XXX][&isAppOrder=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/salesNormal/delete?identifier=XXX
+
+十五、salesPlan相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/salesPlan/insert
+input:
+{
+	"endTime":"2018-09-21",
+	"currency":1,
+	"branch":"1test1",
+	"originator":"1test1",
+	"summary":"1test1",
+	"supctoID":1,
+	"personID":1,
+	"state":1,
+	"isAppOrder":1,
+	"appConsigneeName":"1test1",
+	"appConsigneePhone":"1test1",
+	"appConsigneeAddress":"1test1",
+	"missOrderID":1,
+	"activityID":1,
+	"fax":"1test1",
+	"shippingModeID":1,
+	"phone":"1test1",
+	"deliverGoodsPlace":"1test1",
+	"orderer":"1test1",
+	"salesPlanOrderCommodities":[
+			{
+				"commoditySpecificationID":12,
+				"number":12,
+				"unitPrice":12,
+				"money":12,
+				"remark":"2test2"
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/salesPlan/update
+input:
+{
+	"identifier": (*必选),
+	"endTime":"2018-09-21",
+	"currency":1,
+	"branch":"1test1",
+	"originator":"1test1",
+	"summary":"1test1",
+	"supctoID":1,
+	"personID":1,
+	"state":1,
+	"isAppOrder":1,
+	"appConsigneeName":"1test1",
+	"appConsigneePhone":"1test1",
+	"appConsigneeAddress":"1test1",
+	"missOrderID":1,
+	"activityID":1,
+	"fax":"1test1",
+	"shippingModeID":1,
+	"phone":"1test1",
+	"deliverGoodsPlace":"1test1",
+	"orderer":"1test1",
+	"salesPlanOrderCommodities":[
+			{
+				"slesPlanOrderCommodityID": (*必选),
+				"commoditySpecificationID":12,
+				"number":12,
+				"unitPrice":12,
+				"money":12,
+				"remark":"2test2"
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/salesPlan/select?[identifier=XXX][&commodityID=XXX][&playOrOrder=XXX][&supctoID=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/salesPlan/delete?identifier=XXX
+
+十六、procurePlan相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/procurePlan/insert
+input:
+{
+	"supctoID":1,
+	"effectivePeriodEnd":"2018-11-23",
+	"goodsArrivalTime":"2018-11-28",
+	"goodsArrivalPlace":"test",
+	"transportation_mode":1,
+	"deliveryman":"test",
+	"fax":"test",
+	"phone":"test",
+	"orderer":"test",
+	"prepaidAmount":1.1,
+	"departmentID":1,
+	"originator":"test",
+	"reviewer":"test",
+	"terminator":"test",
+	"summary":"test",
+	"branch":"test",
+	"state":1,
+	"printNum":1,
+	"planType":1,
+	"payType":1,
+	"contractNumber":"test",
+	"planOrOrder":1,
+	"beforeIsPlan":1,
+	"parentID":1,
+	"orderType":1,
+	"postfix":1,
+	"isVerification":"Y",
+	"activityID":1,
+	"isAppOrder":1,
+	"financialReviewer":"test",
+	"isOtherReceipts":1,
+	"procureCommodities":[
+			{
+				"commodityID":1,
+				"taxRate":1,
+				"amountOfTax":1,
+				"totalTaxPrice":1,
+				"orderNum":1,
+				"lotNumber":"test",
+				"arrivalQuantity":1,
+				"suspendQuantity":1,
+				"suspendPrice":1,
+				"discount":1,
+				"isLargess":1,
+				"originalUnitPrice":1,
+				"businessUnitPrice":1,
+				"remarks":"test",
+				"containsTaxPrice":1,
+				"paymentForGoods":1,
+				"totalPrice":1
+			}
+		]
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/procurePlan/update
+input:
+{
+	"identifier":(*必选),
+	"supctoID":1,
+	"effectivePeriodEnd":"2018-11-23",
+	"goodsArrivalTime":"2018-11-28",
+	"goodsArrivalPlace":"test",
+	"transportation_mode":1,
+	"deliveryman":"test",
+	"fax":"test",
+	"phone":"test",
+	"orderer":"test",
+	"prepaidAmount":1.1,
+	"departmentID":1,
+	"originator":"test",
+	"reviewer":"test",
+	"terminator":"test",
+	"summary":"test",
+	"branch":"test",
+	"state":1,
+	"printNum":1,
+	"planType":1,
+	"payType":1,
+	"contractNumber":"test",
+	"planOrOrder":1,
+	"beforeIsPlan":1,
+	"parentID":1,
+	"orderType":1,
+	"postfix":1,
+	"isVerification":"Y",
+	"activityID":1,
+	"isAppOrder":1,
+	"financialReviewer":"test",
+	"isOtherReceipts":1,
+	"procureCommodities":[
+			{
+				"procureCommodityID":(*必选),
+				"commodityID":1,
+				"taxRate":1,
+				"amountOfTax":1,
+				"totalTaxPrice":1,
+				"orderNum":1,
+				"lotNumber":"test",
+				"arrivalQuantity":1,
+				"suspendQuantity":1,
+				"suspendPrice":1,
+				"discount":1,
+				"isLargess":1,
+				"originalUnitPrice":1,
+				"businessUnitPrice":1,
+				"remarks":"test",
+				"containsTaxPrice":1,
+				"paymentForGoods":1,
+				"totalPrice":1
+			}
+		]
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/procurePlan/select?[identifier=XXX][&supctoID=XXX][&commodityID=XXX][&playOrOrder=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/procurePlan/delete?identifier=XXX
+5. URL POST请求form-data格式
+http://47.93.8.191:8041/api/basic/procurePlan/upload
+input:
+{
+	"identifier":(*必选)
+	paymentEvidence1 : File Type
+	paymentEvidence2 : File Type
+	paymentEvidence3 : File Type
+	paymentEvidence4 : File Type
+	paymentEvidence5 : File Type
+	paymentEvidence6 : File Type
+}
+
+十七、department相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/department/insert
+input:
+{
+	"name": "dep-1"
+	"operatorIdentifier":"PPL-2018-12-01-4"
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/department/update
+input:
+{
+	"identifier":(*必选)
+	"name": "dep-1"
+	"operatorIdentifier":"PPL-2018-12-01-4"
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/department/select?[name=XXX][&operatorIdentifier=XXX][&timeFrom=YYYY-MM-DD&timeTo=YYYY-MM-DD]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/department/delete?identifier=XXX
+
+十八、goods相关API
+1.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/goods/insert
+input:
+{
+	"stock":1,
+	"purchase":1,
+	"brand":"test",
+	"state":1
+}
+2.URL:   POST请求json格式
+http://47.93.8.191:8041/api/basic/goods/update
+input:
+{
+	"goodsID":(*必选)
+	"stock":1,
+	"purchase":1,
+	"brand":"test",
+	"state":1
+}
+3 URL:  GET请求
+http://47.93.8.191:8041/api/basic/department/select?[goodsID=XXX][&stock=XXX][&purchase=XXX][&brand=XXX][&state=XXX]
+4.URL:GET请求
+http://47.93.8.191:8041/api/basic/department/delete?goodsID=XXX

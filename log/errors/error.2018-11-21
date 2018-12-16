@@ -1,0 +1,140 @@
+2018-11-21 06:13:02,888 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 217, in thirdPartyInsert
+    supCto.save()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 734, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 762, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 846, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 885, in _do_insert
+    using=using, raw=raw)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/compiler.py", line 973, in execute_sql
+    for sql, params in self.as_sql():
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/compiler.py", line 931, in as_sql
+    for obj in self.query.objs
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 710, in get_db_prep_save
+    prepared=False)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 702, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 1805, in get_prep_value
+    return float(value)
+UnicodeEncodeError: 'decimal' codec can't encode characters in position 0-1: invalid decimal Unicode string
+
+2018-11-21 06:24:36,421 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 201, in thirdPartyInsert
+    advance_money = atof(json2Dict['advance_money'])
+  File "/usr/lib/python2.7/string.py", line 388, in atof
+    return _float(s)
+UnicodeEncodeError: 'decimal' codec can't encode characters in position 0-1: invalid decimal Unicode string
+
+2018-11-21 06:25:24,735 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 213, in thirdPartyInsert
+    supCto.save()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 734, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 762, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 846, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/base.py", line 885, in _do_insert
+    using=using, raw=raw)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/compiler.py", line 974, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/utils.py", line 98, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python2.7/dist-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'full' in 'field list'")
+
+2018-11-21 06:27:53,138 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 212, in thirdPartyInsert
+    supCto = Supcto(None,classification_id,name,full,frade,from_type,settlement_type_id,phone,contact_people,postcode,fax,bank_account,bank,ratepaying,mailbox,invoice_type,delivery_address,credit_days,credit_money,identifier,information,other_information,department_id,person_id,currency,communication_address,taxes,member,shipping_mode_id,remark,common_phone,reserve_phone,state,province,city,area,customer_or_supplier,operator_identifier,operator_time,province_code,city_code,area_code,website,memory_code,useable,advance_money,is_show,parent_id)
+NameError: global name 'full' is not defined
+
+2018-11-21 06:29:55,242 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 224, in thirdPartyInsert
+    supCtoJSON = getSupCto(supCto)
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 688, in getSupCto
+    supCtoJSON['full_name'] = supCto.full
+AttributeError: 'Supcto' object has no attribute 'full'
+
+2018-11-21 06:42:25,032 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 509, in thirdPartyUpdate
+    supcto_commodity_id = commodity['supcto_commodity_id']
+KeyError: 'supcto_commodity_id'
+
+2018-11-21 06:46:49,977 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/supplier_customer.py", line 510, in thirdPartyUpdate
+    supctoCommodity = SupctoCommodity.objects.get(id=SupctoCommodity)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 325, in get
+    clone = self.filter(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 679, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/query.py", line 697, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1310, in add_q
+    clause, require_inner = self._add_q(where_part, self.used_aliases)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1338, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1209, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/sql/query.py", line 1102, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 105, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/lookups.py", line 143, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 727, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/usr/local/lib/python2.7/dist-packages/Django-1.8.13-py2.7.egg/django/db/models/fields/__init__.py", line 985, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string or a number, not 'SupctoCommodity'
+
+2018-11-21 09:26:31,604 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 163, in commodityInsert
+    specifiction = commoditySpecifiction(None,specification_identifier,specification_name,commodity_id,quality_period,quality_period_unit,mini_order_quantity,add_order_quantity,packaging_size,is_delete,warning_number,weight,operator_identifier,operator_time,state,temp_mini_order_quantity,temp_add_order_quantity,temp_warning_number,temp_warehouse_id,temp_max_inventory,temp_mini_inventory,temp_inventory,temp_state)
+TypeError: 'dict' object is not callable
+
+2018-11-21 10:33:19,571 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 176, in commodityInsert
+    inventory = int(specifiction['inventory'])
+TypeError: 'CommoditySpecification' object has no attribute '__getitem__'
+
+2018-11-21 10:35:10,315 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 179, in commodityInsert
+    if 'presell_inventory' in inventory:
+TypeError: argument of type 'int' is not iterable
+
+2018-11-21 10:37:21,380 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 179, in commodityInsert
+    if 'presell_inventory' in inventory:
+TypeError: argument of type 'int' is not iterable
+
+2018-11-21 10:38:56,327 - error - INFO - basic_log : 19 - Traceback (most recent call last):
+  File "/home/work/erp/erp_sites/views/commodity.py", line 267, in commodityInsert
+    commodityJSON = getCommodity(commodity)
+  File "/home/work/erp/erp_sites/views/commodity.py", line 375, in getCommodity
+    inventory['inventory_id'] = inventory.id
+TypeError: 'Inventory' object does not support item assignment
+

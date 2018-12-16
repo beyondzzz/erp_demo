@@ -10,6 +10,7 @@ import traceback
 from erp_sites.models import Commodity,CommoditySpecification,Inventory,Unit,Person,Classification,Supcto,Permission
 from django.db.models import Q
 
+logRecord = basic_log.Logger('record')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 ONE_PAGE_OF_DATA = 10
@@ -201,6 +202,25 @@ def commodityUpdate(request):
                     commodityUpdate = setStatus(200,commodityJSON)
                 else:
                     commodityUpdate = setStatus(302, {})
+            commoditys = Commodity.objects.filter(id=identifier)
+            if len(commoditys) > 0:
+                commodity = commoditys[0]
+                commodityJSON = getCommodity(commodity)
+                singleCommoditySelect = setStatus(200, commodityJSON)
+            else:
+                singleCommoditySelect = setStatus(300, {})
+            return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
+            '''
+            specifications = CommoditySpecification.objects.filter(id=commoditySpecicicationID)
+            if len(specifications) > 0:
+                specification = specifications[0]
+                specificationJSON = getSpecification(specification)
+                singleCommoditySelect = setStatus(200,specificationJSON)
+            else:
+                singleCommoditySelect = setStatus(300,{})
+                return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
+            '''
+
         else:
             return notTokenExpired()
     except Exception,e:
@@ -214,7 +234,7 @@ def commodityUpdate(request):
 def multiCommoditySelect(request):
     try:
         if isTokenExpired(request):
-            logRecord = basic_log.Logger('record')
+            #logRecord = basic_log.Logger('record')
             multiCommoditySelect = {}
             if len(request.GET) > 0:
                 condition = {}
@@ -253,9 +273,9 @@ def singleCommoditySelect(request):
     try:
         if isTokenExpired(request):
             singleCommoditySelect = {}
-            '''
             commoditySpecicicationID = request.GET['commoditySpecicicationID']
             specifications = CommoditySpecification.objects.filter(id=commoditySpecicicationID)
+            #logRecord.log("specification value: " + str(specifications))
             if len(specifications) > 0:
                 specification = specifications[0]
                 specificationJSON = getSpecification(specification)
@@ -273,6 +293,7 @@ def singleCommoditySelect(request):
             else:
                 singleCommoditySelect = setStatus(300, {})
                 return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
+           ''' 
         else:
             return notTokenExpired()
     except Exception,e:
@@ -834,7 +855,7 @@ def updateUnit(units):
 
 
 def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
-    logRecord = basic_log.Logger('record')
+    #logRecord = basic_log.Logger('record')
     pagingSelect = {}
     datasJSON = []
     if 'curPage' in request.GET:

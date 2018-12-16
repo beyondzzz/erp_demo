@@ -245,7 +245,7 @@ def multiCommoditySelect(request):
                 if 'state' in request.GET and isValid(request.GET['state']):
                         specificationDic['state'] = int(request.GET['state'])
                 if 'classificationID' in request.GET and isValid(request.GET['classificationID']):
-                        condition['classificationID'] = int(request.GET['classificationID'])
+                        condition['classification_id'] = int(request.GET['classificationID'])
                 if 'supctoID' in request.GET and isValid(request.GET['supctoID']):
                         condition['supcto_id'] = int(request.GET['supctoID'])
                 if 'name' in request.GET and isValid(request.GET['name']):
@@ -862,6 +862,8 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = CommoditySpecification.objects.all().count()

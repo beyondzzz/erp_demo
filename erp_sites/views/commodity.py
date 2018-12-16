@@ -135,10 +135,24 @@ def commodityUpdate(request):
         if isTokenExpired(request):
             commodityUpdate = {}
             json2Dict = json.loads(request.body)
-            identifier = json2Dict['commodityID']
-            commoditys = Commodity.objects.filter(id=identifier)
+            if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
+                identifier = json2Dict['commodityID']
+                commoditys = Commodity.objects.filter(id=identifier)
+            else:
+                commoditys = []
+            logRecord.log("commodity value: " + str(json2Dict))
             if len(commoditys) > 0:
                 commodity = commoditys[0]
+            elif 'commoditySpecifictions' in json2Dict and isValid(json2Dict['commoditySpecifictions']):
+                commoditySpecifictions = json2Dict['commoditySpecifictions']
+                if updateSpecification(commoditySpecifictions):
+                     
+                    commodityUpdate = setStatus(200, {"msg":"success"})
+                    #commodityJSON = getCommodity(commodity)
+                    #commodityUpdate = setStatus(200,commodityJSON)
+                else:
+                    commodityUpdate = setStatus(300, {})
+                return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
             else:
                 commodityUpdate = setStatus(301, {})
                 return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
@@ -202,6 +216,7 @@ def commodityUpdate(request):
                     commodityUpdate = setStatus(200,commodityJSON)
                 else:
                     commodityUpdate = setStatus(302, {})
+
             commoditys = Commodity.objects.filter(id=identifier)
             if len(commoditys) > 0:
                 commodity = commoditys[0]
@@ -243,14 +258,16 @@ def multiCommoditySelect(request):
                 if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         specificationDic['operator_identifier'] = request.GET['operatorIdentifier']
                 if 'state' in request.GET and isValid(request.GET['state']):
-                        specificationDic['state'] = int(request.GET['state'])
+                        specificationDic['state__in'] = request.GET['state'].split(",")
+                if 'isDelete' in request.GET and isValid(request.GET['isDelete']):
+                        specificationDic['is_delete'] = int(request.GET['isDelete'])
                 if 'classificationID' in request.GET and isValid(request.GET['classificationID']):
                         condition['classification_id'] = int(request.GET['classificationID'])
                 if 'supctoID' in request.GET and isValid(request.GET['supctoID']):
                         condition['supcto_id'] = int(request.GET['supctoID'])
                 if 'name' in request.GET and isValid(request.GET['name']):
                         condition['name'] = request.GET['name']
-                if 'queryTime' in request.GET:
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
                     timeFrom = queryTime.split('~')[0].strip()
                     timeTo = queryTime.split('~')[1].strip()

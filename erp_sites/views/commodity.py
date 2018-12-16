@@ -196,7 +196,7 @@ def commodityUpdate(request):
             commodity.save()
             if 'commoditySpecifictions' in json2Dict:
                 commoditySpecifictions = json2Dict['commoditySpecifictions']
-                if updateSpecification([commoditySpecifictions]):
+                if updateSpecification(commoditySpecifictions):
                     commodityJSON = getCommodity(commodity)
                     commodityUpdate = setStatus(200,commodityJSON)
                 else:
@@ -608,7 +608,7 @@ def updateSpecification(commoditySpecifictions):
         operator_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         if 'specificationIdentifier' in commoditySpecifiction:
             specificationIdentifier = commoditySpecifiction['specificationIdentifier']
-            specifications = CommoditySpecification.objects.filter(id=specificationIdentifier)
+            specifications = CommoditySpecification.objects.filter(specification_identifier=specificationIdentifier)
             if len(specifications) > 0:
                 specification = specifications[0]
             else:

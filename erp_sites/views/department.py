@@ -190,7 +190,7 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType):
             else:
                 basicObjs = Department.objects.filter(**condition)[0:ONE_PAGE_OF_DATA]
         for basicObj in basicObjs:
-            basicJSON = getProcure(basicObj)
+            basicJSON = getDepartment(basicObj)
             datasJSON.append(basicJSON)
     else:
         if curPage > allPage or curPage < 1:
@@ -212,7 +212,7 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType):
             else:
                 basicObjs = Department.objects.filter(**condition)[startPos:endPos]
         for basicObj in basicObjs:
-            basicJSON = getProcure(basicObj)
+            basicJSON = getDepartment(basicObj)
             datasJSON.append(basicJSON)
     pagingSelect['code'] = 200
     dataJSON = {}

@@ -736,6 +736,9 @@ def updateSpecification(commoditySpecifictions):
             specification.warning_number = specification.temp_warning_number
             specification.state = specification.temp_state
             specification.save()
+            commodity = Commodity.objects.get(id=specification.commodity_id)
+            commodity.taxes = commodity.temp_taxes
+            commodity.save()
             if 'inventories' in commoditySpecifiction:
                 inventories = commoditySpecifiction['inventories']
                 if updateInventory(inventories,specification):

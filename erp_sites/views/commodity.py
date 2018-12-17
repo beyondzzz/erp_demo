@@ -135,14 +135,13 @@ def commodityUpdate(request):
         if isTokenExpired(request):
             commodityUpdate = {}
             json2Dict = json.loads(request.body)
-            if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
+            if 'commodityID' in json2Dict and isValid(json2Dict['commodityID']):
                 identifier = json2Dict['commodityID']
                 commoditys = Commodity.objects.filter(id=identifier)
             else:
                 commoditys = []
             logRecord.log("commodity value: " + str(json2Dict))
-            if len(commoditys) > 0:
-                commodity = commoditys[0]
+            '''
             elif 'commoditySpecifictions' in json2Dict and isValid(json2Dict['commoditySpecifictions']):
                 commoditySpecifictions = json2Dict['commoditySpecifictions']
                 if updateSpecification(commoditySpecifictions):
@@ -153,6 +152,9 @@ def commodityUpdate(request):
                 else:
                     commodityUpdate = setStatus(300, {})
                 return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
+            '''
+            if len(commoditys) > 0:
+                commodity = commoditys[0]
             else:
                 commodityUpdate = setStatus(301, {})
                 return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
@@ -216,26 +218,6 @@ def commodityUpdate(request):
                     commodityUpdate = setStatus(200,commodityJSON)
                 else:
                     commodityUpdate = setStatus(302, {})
-
-            commoditys = Commodity.objects.filter(id=identifier)
-            if len(commoditys) > 0:
-                commodity = commoditys[0]
-                commodityJSON = getCommodity(commodity)
-                singleCommoditySelect = setStatus(200, commodityJSON)
-            else:
-                singleCommoditySelect = setStatus(300, {})
-            return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
-            '''
-            specifications = CommoditySpecification.objects.filter(id=commoditySpecicicationID)
-            if len(specifications) > 0:
-                specification = specifications[0]
-                specificationJSON = getSpecification(specification)
-                singleCommoditySelect = setStatus(200,specificationJSON)
-            else:
-                singleCommoditySelect = setStatus(300,{})
-                return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
-            '''
-
         else:
             return notTokenExpired()
     except Exception,e:
@@ -258,7 +240,9 @@ def multiCommoditySelect(request):
                 if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         specificationDic['operator_identifier'] = request.GET['operatorIdentifier']
                 if 'state' in request.GET and isValid(request.GET['state']):
-                        specificationDic['state__in'] = request.GET['state'].split(",")
+                    specificationDic['state__in'] = request.GET['state'].split(",")
+                if 'tempState' in request.GET and isValid(request.GET['tempState']):
+                    specificationDic['temp_state__in'] = request.GET['tempState'].split(",")
                 if 'isDelete' in request.GET and isValid(request.GET['isDelete']):
                         specificationDic['is_delete'] = int(request.GET['isDelete'])
                 if 'classificationID' in request.GET and isValid(request.GET['classificationID']):
@@ -745,6 +729,12 @@ def updateSpecification(commoditySpecifictions):
                     pass
                 else:
                     return False
+            if 'units' in commoditySpecifiction:
+                units = commoditySpecifiction['units']
+                if updateUnit(units,specification):
+                    pass
+                else:
+                    return False
         else:
             if 'inventories' in commoditySpecifiction:
                 inventories = commoditySpecifiction['inventories']
@@ -752,12 +742,12 @@ def updateSpecification(commoditySpecifictions):
                     pass
                 else:
                     return False
-        if 'units' in commoditySpecifiction:
-            units = commoditySpecifiction['units']
-            if updateUnit(units):
-                pass
-            else:
-                return False
+            if 'units' in commoditySpecifiction:
+                units = commoditySpecifiction['units']
+                if updateUnit(units,None):
+                    pass
+                else:
+                    return False
     return True
 
 
@@ -765,7 +755,7 @@ def updateInventory(inventories,specification):
     for inventoryDict in inventories:
         if 'inventoryID' in inventoryDict:
             inventory_id = inventoryDict['inventoryID']
-            inventories = Inventory.objects.filter(inventory_id=inventory_id)
+            inventories = Inventory.objects.filter(id=inventory_id)
             if len(inventories) > 0:
                 inventoryObj = inventories[0]
             else:
@@ -822,7 +812,7 @@ def updateInventory(inventories,specification):
     return True
 
 
-def updateUnit(units):
+def updateUnit(units,specification):
     for unit in units:
         if 'unitID' in unit:
             unit_id = unit['unitID']
@@ -888,6 +878,9 @@ def updateUnit(units):
                     temp_commonly_price = atof(unit['tempCommonlyPrice'])
                     unitObj.temp_commonly_price = temp_commonly_price
             unitObj.save()
+            if specification != None:
+                unitObj.commonly_price = unitObj.temp_commonly_price
+                unitObj.save()
         else:
             continue
     return True

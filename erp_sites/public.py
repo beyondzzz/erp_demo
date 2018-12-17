@@ -142,10 +142,10 @@ def getCommoditySpecification(commodity_specification_id):
     specifications = CommoditySpecification.objects.filter(id=commodity_specification_id)
     if len(specifications) > 0:
         specification = specifications[0]
-        specificationJSON['specificationId'] = specification.id
+        specificationJSON['specificationID'] = specification.id
         specificationJSON['specificationIdentifier'] = specification.specification_identifier
         specificationJSON['specificationName'] = specification.specification_name
-        specificationJSON['commodityId'] = specification.commodity_id
+        specificationJSON['commodityID'] = specification.commodity_id
         specificationJSON['qualityPeriod'] = specification.quality_period
         specificationJSON['qualityPeriod_unit'] = specification.quality_period_unit
         specificationJSON['miniOrderQuantity'] = specification.mini_order_quantity
@@ -160,7 +160,7 @@ def getCommoditySpecification(commodity_specification_id):
         specificationJSON['tempMiniOrderQuantity'] = specification.temp_mini_order_quantity
         specificationJSON['tempAddOrderQuantity'] = specification.temp_add_order_quantity
         specificationJSON['tempWarningNumber'] = specification.temp_warning_number
-        specificationJSON['tempWarehouseId'] = specification.temp_warehouse_id
+        specificationJSON['tempWarehouseID'] = specification.temp_warehouse_id
         specificationJSON['tempMaxInventory'] = specification.temp_max_inventory
         specificationJSON['tempMiniInventory'] = specification.temp_mini_inventory
         specificationJSON['tempInventory'] = specification.temp_inventory
@@ -177,8 +177,8 @@ def getCommoditySelect(commodity_id):
     commodities = Commodity.objects.filter(id=commodity_id)
     if len(commodities) > 0:
         commodity = commodities[0]
-        commodityJSON['commodityId'] = commodity.id
-        commodityJSON['classificationId'] = commodity.classification_id
+        commodityJSON['commodityID'] = commodity.id
+        commodityJSON['classificationID'] = commodity.classification_id
         commodityJSON['name'] = commodity.name
         commodityJSON['brand'] = commodity.brand
         commodityJSON['zeroStock'] = commodity.zero_stock
@@ -187,7 +187,7 @@ def getCommoditySelect(commodity_id):
         commodityJSON['basicsInformation'] = commodity.basics_information
         commodityJSON['attribute'] = commodity.attribute
         commodityJSON['identifier'] = commodity.identifier
-        commodityJSON['supctoId'] = commodity.supcto_id
+        commodityJSON['supctoID'] = commodity.supcto_id
         commodityJSON['taxes'] = commodity.taxes
         commodityJSON['isAssemble'] = commodity.is_assemble
         commodityJSON['isPresell'] = commodity.is_presell
@@ -205,7 +205,7 @@ def getClassification(classification_id):
         classificationJSON['id'] = classification.id
         classificationJSON['identifier'] = classification.identifier
         classificationJSON['name'] = classification.name
-        classificationJSON['parentId'] = classification.parent_id
+        classificationJSON['parentID'] = classification.parent_id
         classificationJSON['keyWord'] = classification.key_word
         classificationJSON['operatorIdentifier'] = classification.operator_identifier
         classificationJSON['operatorTime'] = str(classification.operator_time)
@@ -221,9 +221,9 @@ def getInventories(specification_id):
     inventories = Inventory.objects.filter(specification_id=specification_id)
     for inventory in inventories:
         inventoryJSON = {}
-        inventoryJSON['inventoryId'] = inventory.id
-        inventoryJSON['specificationId'] = inventory.specification_id
-        inventoryJSON['warehouseId'] = inventory.warehouse_id
+        inventoryJSON['inventoryID'] = inventory.id
+        inventoryJSON['specificationID'] = inventory.specification_id
+        inventoryJSON['warehouseID'] = inventory.warehouse_id
         inventoryJSON['inventory'] = inventory.inventory
         inventoryJSON['presellInventory'] = inventory.presell_inventory
         inventoryJSON['occupiedInventory'] = inventory.occupied_inventory
@@ -241,9 +241,9 @@ def getUnits(specification_id):
     units = Unit.objects.filter(specification_id=specification_id)
     for unit in units:
         unitJSON = {}
-        unitJSON['unitId'] = unit.id
+        unitJSON['unitID'] = unit.id
         unitJSON['name'] = unit.name
-        unitJSON['specificationId'] = unit.specification_id
+        unitJSON['specificationID'] = unit.specification_id
         unitJSON['ratioDenominator'] = unit.ratio_denominator
         unitJSON['ratioMolecular'] = unit.ratio_molecular
         unitJSON['purchasePrice'] = unit.purchase_price
@@ -265,10 +265,10 @@ def getPerson(operator_identifier):
     persons = Person.objects.filter(identifier=operator_identifier)
     if len(persons) > 0:
         person = persons[0]
-        personJSON['personId'] = person.id
+        personJSON['personID'] = person.id
         personJSON['name'] = person.name
         personJSON['type'] = person.type
-        personJSON['departmentId'] = person.department_id
+        personJSON['departmentID'] = person.department_id
         personJSON['entryTime'] = str(person.entry_time)
         personJSON['duties'] = person.duties
         personJSON['education'] = person.education
@@ -295,7 +295,7 @@ def getPerson(operator_identifier):
         personJSON['identifier'] = person.identifier
         personJSON['loginName'] = person.login_name
         personJSON['password'] = base64.b64decode(person.password)
-        personJSON['warehouseId'] = person.warehouse_id
+        personJSON['warehouseID'] = person.warehouse_id
         personJSON['place'] = person.place
         personJSON['isDelete'] = person.is_delete
         resIds = []
@@ -308,10 +308,10 @@ def getPerson(operator_identifier):
 
 def getPersonObj(person):
     personJSON = {}
-    personJSON['personId'] = person.id
+    personJSON['personID'] = person.id
     personJSON['name'] = person.name
     personJSON['type'] = person.type
-    personJSON['departmentId'] = person.department_id
+    personJSON['departmentID'] = person.department_id
     personJSON['entryTime'] = str(person.entry_time)
     personJSON['duties'] = person.duties
     personJSON['education'] = person.education
@@ -338,7 +338,7 @@ def getPersonObj(person):
     personJSON['identifier'] = person.identifier
     personJSON['loginName'] = person.login_name
     personJSON['password'] = base64.b64decode(person.password)
-    personJSON['warehouseId'] = person.warehouse_id
+    personJSON['warehouseID'] = person.warehouse_id
     personJSON['place'] = person.place
     personJSON['isDelete'] = person.is_delete
     resIds = []
@@ -355,12 +355,12 @@ def getSupcto(supcto_id):
     if len(supCtos) > 0:
         supCto = supCtos[0]
         supCtoJSON['id'] = supCto.id
-        supCtoJSON['classificationId'] = supCto.classification_id
+        supCtoJSON['classificationID'] = supCto.classification_id
         supCtoJSON['name'] = supCto.name
         supCtoJSON['fullName'] = supCto.full_name
         supCtoJSON['frade'] = supCto.frade
         supCtoJSON['fromType'] = supCto.from_type
-        supCtoJSON['settlementTypeId'] = supCto.settlement_type_id
+        supCtoJSON['settlementTypeID'] = supCto.settlement_type_id
         supCtoJSON['phone'] = supCto.phone
         supCtoJSON['contactPeople'] = supCto.contact_people
         supCtoJSON['postcode'] = supCto.postcode
@@ -376,13 +376,13 @@ def getSupcto(supcto_id):
         supCtoJSON['identifier'] = supCto.identifier
         supCtoJSON['information'] = supCto.information
         supCtoJSON['otherInformation'] = supCto.other_information
-        supCtoJSON['departmentId'] = supCto.department_id
-        supCtoJSON['personId'] = supCto.person_id
+        supCtoJSON['departmentID'] = supCto.department_id
+        supCtoJSON['personID'] = supCto.person_id
         supCtoJSON['currency'] = supCto.currency
         supCtoJSON['communicationAddress'] = supCto.communication_address
         supCtoJSON['taxes'] = supCto.taxes
         supCtoJSON['member'] = supCto.member
-        supCtoJSON['shippingModeId'] = supCto.shipping_mode_id
+        supCtoJSON['shippingModeID'] = supCto.shipping_mode_id
         supCtoJSON['remark'] = supCto.remark
         supCtoJSON['commonPhone'] = supCto.common_phone
         supCtoJSON['reservePhone'] = supCto.reserve_phone
@@ -401,12 +401,12 @@ def getSupcto(supcto_id):
         supCtoJSON['useable'] = supCto.useable
         supCtoJSON['advanceMoney'] = supCto.advance_money
         supCtoJSON['isShow'] = supCto.is_show
-        supCtoJSON['parentId'] = supCto.parent_id
+        supCtoJSON['parentID'] = supCto.parent_id
         commodity_list = []
         supctoCommodities = SupctoCommodity.objects.filter(supcto_id=supCto.id)
         for supctoCommodity in supctoCommodities:
             supctoCommodityJSON = {}
-            supctoCommodityJSON['commodityId'] = supctoCommodity.commodity_id
+            supctoCommodityJSON['commodityID'] = supctoCommodity.commodity_id
             supctoCommodityJSON['price'] = supctoCommodity.price
             commodity_list.append(supctoCommodityJSON)
         supCtoJSON['commodityList'] = commodity_list
@@ -417,7 +417,7 @@ def getProcure(procure):
     procureJSON = {}
     procureJSON['identifier'] = procure.identifier
     procureJSON['generateDate'] = str(procure.generate_date)
-    procureJSON['supctoId'] = procure.supcto_id
+    procureJSON['supctoID'] = procure.supcto_id
     if procure.effective_period_end != None:
         procureJSON['effectivePeriodEnd'] = str(procure.effective_period_end)
     else:

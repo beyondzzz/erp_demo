@@ -662,7 +662,7 @@ def salesNormalSelect(request):
                     if 'cityCode' in request.GET and isValid(request.GET['cityCode']):
                         supctoMessage['city_code'] = request.GET['cityCode']
                     if 'areaCode' in request.GET and isValid(request.GET['areaCode']):
-                        supctoMessage['areaCode'] = request.GET['areaCode']
+                        supctoMessage['area_code'] = request.GET['areaCode']
                     if 'supctoName' in request.GET and isValid(request.GET['supctoName']):
                         supctoMessage['name'] = request.GET['supctoName']
                     if 'commodityID' in request.GET and isValid(request.GET['commodityID']):

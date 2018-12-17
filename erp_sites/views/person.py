@@ -33,14 +33,14 @@ def personInsert(request):
             else:
                 type = None
             if 'departmentID' in json2Dict:
-                if isValid(json2Dict['']):
+                if isValid(json2Dict['departmentID']):
                     department_id = int(json2Dict['departmentID'])
                 else:
                     department_id = 0
             else:
                 department_id = 0
-            if 'entry_time' in json2Dict:
-                if isValid(json2Dict['entry_time']):
+            if 'entryTime' in json2Dict:
+                if isValid(json2Dict['entryTime']):
                     entryTimeStr = json2Dict['entryTime']
                     entry_time = time.strptime(entryTimeStr, '%Y-%m-%d')
                     entry_time = datetime.datetime(*entry_time[:3]).date()
@@ -49,14 +49,14 @@ def personInsert(request):
             else:
                 entry_time = time.strftime('%Y-%m-%d', time.localtime(time.time()))
             if 'duties' in json2Dict:
-                if isValid(json2Dict['']):
+                if isValid(json2Dict['duties']):
                     duties = json2Dict['duties']
                 else:
                     duties = None
             else:
                 duties = None
             if 'education' in json2Dict:
-                if isValid(json2Dict['']):
+                if isValid(json2Dict['education']):
                     education = json2Dict['education']
                 else:
                     education = None
@@ -69,8 +69,8 @@ def personInsert(request):
                     sex = None
             else:
                 sex = None
-            if 'birth_time' in json2Dict:
-                if isValid(json2Dict['birth_time']):
+            if 'birthTime' in json2Dict:
+                if isValid(json2Dict['birthTime']):
                     birthTimeStr = json2Dict['birthTime']
                     birth_time = time.strptime(birthTimeStr, '%Y-%m-%d')
                     birth_time = datetime.datetime(*birth_time[:3]).date()
@@ -286,8 +286,8 @@ def personUpdate(request):
                 if isValid(json2Dict['departmentID']):
                     department_id = int(json2Dict['departmentID'])
                     person.department_id = department_id
-            if 'entry_time' in json2Dict:
-                if isValid(json2Dict['entry_time']):
+            if 'entryTime' in json2Dict:
+                if isValid(json2Dict['entryTime']):
                     entryTimeStr = json2Dict['entryTime']
                     entry_time = time.strptime(entryTimeStr, '%Y-%m-%d')
                     person.entry_time = datetime.datetime(*entry_time[:3]).date()
@@ -303,8 +303,8 @@ def personUpdate(request):
                 if isValid(json2Dict['sex']):
                     sex = json2Dict['sex']
                     person.sex = sex
-            if 'birth_time' in json2Dict:
-                if isValid(json2Dict['birth_time']):
+            if 'birthTime' in json2Dict:
+                if isValid(json2Dict['birthTime']):
                     birthTimeStr = json2Dict['birthTime']
                     birth_time = time.strptime(birthTimeStr, '%Y-%m-%d')
                     birth_time = datetime.datetime(*birth_time[:3]).date()

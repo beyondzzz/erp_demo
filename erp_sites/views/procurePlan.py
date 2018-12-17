@@ -91,16 +91,16 @@ def procurePlanInsert(request):
                 if isValid(json2Dict['prepaidAmount']):
                     prepaid_amount = atof(json2Dict['prepaidAmount'])
                 else:
-                    supcto_id = 0
+                    prepaid_amount = 0
             else:
-                supcto_id = 0
+                prepaid_amount = 0
             if 'departmentID' in json2Dict:
                 if isValid(json2Dict['departmentID']):
                     department_id = int(json2Dict['departmentID'])
                 else:
-                    supcto_id = 0
+                    department_id = 0
             else:
-                supcto_id = 0
+                department_id = 0
             if 'originator' in json2Dict:
                 if isValid(json2Dict['originator']):
                     originator = json2Dict['originator']

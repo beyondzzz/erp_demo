@@ -730,12 +730,25 @@ def updateSpecification(commoditySpecifictions):
                 temp_state = int(commoditySpecifiction['tempState'])
                 specification.temp_state = temp_state
         specification.save()
-        if 'inventories' in commoditySpecifiction:
-            inventories = commoditySpecifiction['inventories']
-            if updateInventory(inventories):
-                pass
-            else:
-                return False
+        if specification.temp_state == 16:
+            specification.mini_order_quantity = specification.temp_mini_order_quantity
+            specification.add_order_quantity = specification.temp_add_order_quantity
+            specification.warning_number = specification.temp_warning_number
+            specification.state = specification.temp_state
+            specification.save()
+            if 'inventories' in commoditySpecifiction:
+                inventories = commoditySpecifiction['inventories']
+                if updateInventory(inventories,specification):
+                    pass
+                else:
+                    return False
+        else:
+            if 'inventories' in commoditySpecifiction:
+                inventories = commoditySpecifiction['inventories']
+                if updateInventory(inventories,None):
+                    pass
+                else:
+                    return False
         if 'units' in commoditySpecifiction:
             units = commoditySpecifiction['units']
             if updateUnit(units):
@@ -745,7 +758,7 @@ def updateSpecification(commoditySpecifictions):
     return True
 
 
-def updateInventory(inventories):
+def updateInventory(inventories,specification):
     for inventoryDict in inventories:
         if 'inventoryID' in inventoryDict:
             inventory_id = inventoryDict['inventoryID']
@@ -795,6 +808,12 @@ def updateInventory(inventories):
                     is_create_procure_plan = int(inventoryDict['isCreateProcurePlan'])
                     inventoryObj.is_create_procure_plan = is_create_procure_plan
             inventoryObj.save()
+            if specification != None:
+                inventoryObj.warehouse_id = specification.temp_warehouse_id
+                inventoryObj.max_inventory = specification.temp_max_inventory
+                inventoryObj.mini_inventory = specification.temp_mini_inventory
+                inventoryObj.inventory = specification.temp_inventory
+                inventoryObj.save()
         else:
             continue
     return True

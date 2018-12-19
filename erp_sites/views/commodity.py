@@ -79,9 +79,9 @@ def commodityInsert(request):
                 if isValid(json2Dict['supctoID']):
                     supcto_id = int(json2Dict['supctoID'])
                 else:
-                    attribute = 0
+                    supcto_id = 0
             else:
-                attribute = 0
+                supcto_id = 0
             if 'taxes' in json2Dict:
                 if isValid(json2Dict['taxes']):
                     taxes = atof(json2Dict['taxes'])
@@ -211,8 +211,8 @@ def commodityUpdate(request):
                     temp_taxes = atof(json2Dict['tempTaxes'])
                     commodity.temp_taxes = temp_taxes
             commodity.save()
-            if 'commoditySpecifictions' in json2Dict:
-                commoditySpecifictions = json2Dict['commoditySpecifictions']
+            if 'commoditySpecifications' in json2Dict:
+                commoditySpecifictions = json2Dict['commoditySpecifications']
                 if updateSpecification(commoditySpecifictions):
                     commodityJSON = getCommodity(commodity)
                     commodityUpdate = setStatus(200,commodityJSON)
@@ -257,6 +257,9 @@ def multiCommoditySelect(request):
                     timeTo = queryTime.split('~')[1].strip()
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
+
+                logRecord.log("condition here:" + str(condition))
+ 
                 multiCommoditySelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic)
             else:
                 multiCommoditySelect = paging(request, ONE_PAGE_OF_DATA, None, None, None)
@@ -709,10 +712,6 @@ def updateSpecification(commoditySpecifictions):
             if isValid(commoditySpecifiction['tempInventory']):
                 temp_inventory = int(commoditySpecifiction['tempInventory'])
                 specification.temp_inventory = temp_inventory
-        if 'tempState' in commoditySpecifiction:
-            if isValid(commoditySpecifiction['tempState']):
-                temp_state = int(commoditySpecifiction['tempState'])
-                specification.temp_state = temp_state
         specification.save()
         if specification.temp_state == 16:
             specification.mini_order_quantity = specification.temp_mini_order_quantity
@@ -897,6 +896,7 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
     if 'sizePage' in request.GET:
         ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
+    logRecord.log("condition111:" + str(condition))
     if condition == None:
         basicsCount = CommoditySpecification.objects.all().count()
     else:
@@ -913,27 +913,57 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
                 commodity_id_list.append(commodity.id)
             if specificationDic == None:
                 specificationDic = {}
-            if 'timeFrom' in selectType and 'timeTo' in selectType:
-                timeFrom = selectType['timeFrom']
-                timeTo = selectType['timeTo']
+            if 'state__in' in specificationDic and 'temp_state__in' in specificationDic:
+                stateCon = specificationDic['state__in']
+                tempstateCon = specificationDic['temp_state__in']
+                if 'timeFrom' in selectType and 'timeTo' in selectType:
+                    timeFrom = selectType['timeFrom']
+                    timeTo = selectType['timeTo']
                 if len(commodity_id_list) > 0:
                     basicsCount = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
                 else:
                     basicsCount = 0
             else:
-                if len(commodity_id_list) > 0:
-                    basicsCount = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(**specificationDic)).count()
+                if 'timeFrom' in selectType and 'timeTo' in selectType:
+                    timeFrom = selectType['timeFrom']
+                    timeTo = selectType['timeTo']
+                    if len(commodity_id_list) > 0:
+                        basicsCount = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(state__in=stateCon) | Q(temp_state__in=tempstateCon) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+                    else:
+                        basicsCount = 0
                 else:
-                    basicsCount = 0
+                    if len(commodity_id_list) > 0:
+                        basicsCount = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(state__in=stateCon) | Q(temp_state__in=tempstateCon)).count()
+                    else:
+                        basicsCount = 0
         else:
             if specificationDic == None:
                 specificationDic = {}
-            if 'timeFrom' in selectType and 'timeTo' in selectType:
-                timeFrom = selectType['timeFrom']
-                timeTo = selectType['timeTo']
+            '''
+            if 'state__in' in specificationDic and 'temp_state__in' in specificationDic:
+                logRecord.log("condition222:" + str(condition))
+                stateCon = specificationDic['state__in']
+                specificationDic.pop('state__in')
+                tempstateCon = specificationDic['state__in']
+                specificationDic.pop('temp_state__in')
                 basicsCount = CommoditySpecification.objects.filter(Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+            '''
+            if 'state__in' in specificationDic and 'temp_state__in' in specificationDic:
+                stateCon = specificationDic['state__in']
+                tempstateCon = specificationDic['temp_state__in']
+                if 'timeFrom' in selectType and 'timeTo' in selectType:
+                    timeFrom = selectType['timeFrom']
+                    timeTo = selectType['timeTo']
+                    basicsCount = CommoditySpecification.objects.filter(Q(state__in=stateCon) | Q(temp_state__in=tempstateCon) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+                else:
+                    basicsCount = CommoditySpecification.objects.filter(Q(state__in=stateCon) | Q(temp_state__in=tempstateCon)).count()
             else:
-                basicsCount = CommoditySpecification.objects.filter(**specificationDic).count()
+                if 'timeFrom' in selectType and 'timeTo' in selectType:
+                    timeFrom = selectType['timeFrom']
+                    timeTo = selectType['timeTo']
+                    basicsCount = CommoditySpecification.objects.filter(Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+                else:
+                    basicsCount = CommoditySpecification.objects.filter(**specificationDic).count()
     if basicsCount != 0:
         if basicsCount % ONE_PAGE_OF_DATA == 0:
             allPage = basicsCount / ONE_PAGE_OF_DATA
@@ -941,72 +971,47 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
             allPage = basicsCount / ONE_PAGE_OF_DATA + 1
     else:
         allPage = 1
-    if curPage == 1:
-        if condition == None:
-            basicObjs = CommoditySpecification.objects.all()[0:ONE_PAGE_OF_DATA]
-        else:
-            if len(condition) > 0:
-                if 'name' in condition:
-                    name = condition['name']
-                    condition.pop('name')
-                    commoditys = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
-                    condition['name'] = name
-                else:
-                    commoditys = Commodity.objects.filter(**condition)
-                commodity_id_list = []
-                for commodity in commoditys:
-                    commodity_id_list.append(commodity.id)
-                if specificationDic == None:
-                    specificationDic = {}
+    
+    if curPage > allPage or curPage < 1:
+        pagingSelect['code'] = 300
+        pagingSelect['curPage'] = curPage
+        pagingSelect['allPage'] = allPage
+        pagingSelect['data'] = 'curPage is invalid !'
+        return pagingSelect
+    startPos = (curPage - 1) * ONE_PAGE_OF_DATA
+    endPos = startPos + ONE_PAGE_OF_DATA
+    if condition == None:
+        basicObjs = CommoditySpecification.objects.all()[startPos:endPos]
+    else:
+        if len(condition) > 0:
+            if 'name' in condition:
+                name = condition['name']
+                condition.pop('name')
+                commoditys = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
+                condition['name'] = name
+            else:
+                commoditys = Commodity.objects.filter(**condition)
+            commodity_id_list = []
+            for commodity in commoditys:
+                commodity_id_list.append(commodity.id)
+            if specificationDic == None:
+                specificationDic = {}
+            if 'state__in' in specificationDic and 'temp_state__in' in specificationDic:
+                stateCon = specificationDic['state__in']
+                tempstateCon = specificationDic['temp_state__in']
                 if 'timeFrom' in selectType and 'timeTo' in selectType:
                     timeFrom = selectType['timeFrom']
                     timeTo = selectType['timeTo']
                     if len(commodity_id_list) > 0:
-                        basicObjs = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
+                        basicObjs = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(state__in=stateCon) | Q(temp_state__in=tempstateCon) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
                     else:
                         basicObjs = []
                 else:
                     if len(commodity_id_list) > 0:
-                        basicObjs = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(**specificationDic))[0:ONE_PAGE_OF_DATA]
+                        basicObjs = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(state__in=stateCon) | Q(temp_state__in=tempstateCon))[startPos:endPos]
                     else:
                         basicObjs = []
             else:
-                if specificationDic == None:
-                    specificationDic = {}
-                if 'timeFrom' in selectType and 'timeTo' in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    basicObjs = CommoditySpecification.objects.filter(Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                else:
-                    basicObjs = CommoditySpecification.objects.filter(**specificationDic)[0:ONE_PAGE_OF_DATA]
-        for basicObj in basicObjs:
-            basicJSON = getSpecification(basicObj)
-            datasJSON.append(basicJSON)
-    else:
-        if curPage > allPage or curPage < 1:
-            pagingSelect['code'] = 300
-            pagingSelect['curPage'] = curPage
-            pagingSelect['allPage'] = allPage
-            pagingSelect['data'] = 'curPage is invalid !'
-            return pagingSelect
-        startPos = (curPage - 1) * ONE_PAGE_OF_DATA
-        endPos = startPos + ONE_PAGE_OF_DATA
-        if condition == None:
-            basicObjs = CommoditySpecification.objects.all()[startPos:endPos]
-        else:
-            if len(condition) > 0:
-                if 'name' in condition:
-                    name = condition['name']
-                    condition.pop('name')
-                    commoditys = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
-                    condition['name'] = name
-                else:
-                    commoditys = Commodity.objects.filter(**condition)
-                commodity_id_list = []
-                for commodity in commoditys:
-                    commodity_id_list.append(commodity.id)
-                if specificationDic == None:
-                    specificationDic = {}
                 if 'timeFrom' in selectType and 'timeTo' in selectType:
                     timeFrom = selectType['timeFrom']
                     timeTo = selectType['timeTo']
@@ -1019,18 +1024,28 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
                         basicObjs = CommoditySpecification.objects.filter(Q(commodity_id__in=commodity_id_list) & Q(**specificationDic))[startPos:endPos]
                     else:
                         basicObjs = []
+        else:
+            if specificationDic == None:
+                specificationDic = {}
+            if 'state__in' in specificationDic and 'temp_state__in' in specificationDic:
+                stateCon = specificationDic['state__in']
+                tempstateCon = specificationDic['temp_state__in']
+                if 'timeFrom' in selectType and 'timeTo' in selectType:
+                    timeFrom = selectType['timeFrom']
+                    timeTo = selectType['timeTo']
+                    basicObjs = CommoditySpecification.objects.filter(Q(state__in=stateCon) | Q(temp_state__in=tempstateCon) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
+                else:
+                    basicObjs = CommoditySpecification.objects.filter(Q(state__in=stateCon) | Q(temp_state__in=tempstateCon))[startPos:endPos]
             else:
-                if specificationDic == None:
-                    specificationDic = {}
                 if 'timeFrom' in selectType and 'timeTo' in selectType:
                     timeFrom = selectType['timeFrom']
                     timeTo = selectType['timeTo']
                     basicObjs = CommoditySpecification.objects.filter(Q(**specificationDic) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
                 else:
                     basicObjs = CommoditySpecification.objects.filter(**specificationDic)[startPos:endPos]
-        for basicObj in basicObjs:
-            basicJSON = getSpecification(basicObj)
-            datasJSON.append(basicJSON)
+    for basicObj in basicObjs:
+        basicJSON = getSpecification(basicObj)
+        datasJSON.append(basicJSON)
     pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage

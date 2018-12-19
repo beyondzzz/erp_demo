@@ -477,57 +477,36 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
             allPage = basicsCount / ONE_PAGE_OF_DATA + 1
     else:
         allPage = 1
-    if curPage == 1:
-        if condition == None:
-            basicObjs = SalesPlanOrder.objects.all()[0:ONE_PAGE_OF_DATA]
-        else:
-            if 'timeFrom' in selectType and 'timeTo' in selectType:
-                timeFrom = selectType['timeFrom']
-                timeTo = selectType['timeTo']
-                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id=commodityID)
-                if len(spocs) > 0:
-                    spoc_id_list = []
-                    for spoc in spocs:
-                        spoc_id_list.append(spoc.sales_plan_order_id)
-                    basicObjs = SalesPlanOrder.objects.filter(
-                        Q(id__in=spoc_id_list) & Q(**condition) & Q(generate_date__gte=timeFrom) &Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                else:
-                    basicObjs = SalesPlanOrder.objects.filter(Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-            else:
-                basicObjs = SalesPlanOrder.objects.filter(**condition)[0:ONE_PAGE_OF_DATA]
-        for basicObj in basicObjs:
-            basicJSON = getSalesPlanOrder(basicObj)
-            datasJSON.append(basicJSON)
+    
+    if curPage > allPage or curPage < 1:
+        pagingSelect['code'] = 300
+        pagingSelect['curPage'] = curPage
+        pagingSelect['allPage'] = allPage
+        pagingSelect['data'] = 'curPage is invalid !'
+        return pagingSelect
+    startPos = (curPage - 1) * ONE_PAGE_OF_DATA
+    endPos = startPos + ONE_PAGE_OF_DATA
+    if condition == None:
+        basicObjs = SalesPlanOrder.objects.all()[startPos:endPos]
     else:
-        if curPage > allPage or curPage < 1:
-            pagingSelect['code'] = 300
-            pagingSelect['curPage'] = curPage
-            pagingSelect['allPage'] = allPage
-            pagingSelect['data'] = 'curPage is invalid !'
-            return pagingSelect
-        startPos = (curPage - 1) * ONE_PAGE_OF_DATA
-        endPos = startPos + ONE_PAGE_OF_DATA
-        if condition == None:
-            basicObjs = SalesPlanOrder.objects.all()[startPos:endPos]
-        else:
-            if 'timeFrom' in selectType and 'timeTo' in selectType:
-                timeFrom = selectType['timeFrom']
-                timeTo = selectType['timeTo']
-                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id=commodityID)
-                if len(spocs) > 0:
-                    spoc_id_list = []
-                    for spoc in spocs:
-                        spoc_id_list.append(spoc.sales_plan_order_id)
-                    basicObjs = SalesPlanOrder.objects.filter(
+        if 'timeFrom' in selectType and 'timeTo' in selectType:
+            timeFrom = selectType['timeFrom']
+            timeTo = selectType['timeTo']
+            spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id=commodityID)
+            if len(spocs) > 0:
+                spoc_id_list = []
+                for spoc in spocs:
+                    spoc_id_list.append(spoc.sales_plan_order_id)
+                basicObjs = SalesPlanOrder.objects.filter(
                         Q(id__in=spoc_id_list) & Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
-                else:
-                    basicObjs = SalesPlanOrder.objects.filter(
-                    Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
             else:
+                basicObjs = SalesPlanOrder.objects.filter(
+                    Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
+        else:
                 basicObjs = SalesPlanOrder.objects.filter(**condition)[startPos:endPos]
-        for basicObj in basicObjs:
-            basicJSON = getSalesPlanOrder(basicObj)
-            datasJSON.append(basicJSON)
+    for basicObj in basicObjs:
+        basicJSON = getSalesPlanOrder(basicObj)
+        datasJSON.append(basicJSON)
     pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage

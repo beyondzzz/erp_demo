@@ -448,92 +448,53 @@ def paging(request,ONE_PAGE_OF_DATA,condition,isFirst,selectType):
                 allPage = basicsCount / ONE_PAGE_OF_DATA + 1
         else:
             allPage = 1
-        if curPage == 1:
-            if condition == None:
-                basicObjs = Classification.objects.filter(is_delete=0,parent_id=0)[0:ONE_PAGE_OF_DATA]
-            else:
-                if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    basicObjs = Classification.objects.filter(
-                        Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(
-                        Q(operator_identifier__in=personIdentifierList) & Q(**condition) & Q(
-                            operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(
-                        Q(operator_identifier__in=personIdentifierList) & Q(**condition))[0:ONE_PAGE_OF_DATA]
-                else:
-                    basicObjs = Classification.objects.filter(**condition)[0:ONE_PAGE_OF_DATA]
-            for basicObj in basicObjs:
-                basicObjJSON = getClassification(basicObj)
-                childrenJSON = []
-                children = Classification.objects.filter(parent_id=basicObj.id,is_delete=0)
-                for child in children:
-                    childJSON = getClassification(child)
-                    childrenJSON.append(childJSON)
-                basicObjJSON['children'] = childrenJSON
-                datasJSON.append(basicObjJSON)
+        
+        if curPage > allPage or curPage < 1:
+            pagingSelect['code'] = 300
+            pagingSelect['curPage'] = curPage
+            pagingSelect['allPage'] = allPage
+            pagingSelect['data'] = 'curPage is invalid !'
+            return pagingSelect
+        startPos = (curPage - 1) * ONE_PAGE_OF_DATA
+        endPos = startPos + ONE_PAGE_OF_DATA
+        if condition == None:
+            basicObjs = Classification.objects.filter(is_delete=0,parent_id=0)[startPos:endPos]
         else:
-            if curPage > allPage or curPage < 1:
-                pagingSelect['code'] = 300
-                pagingSelect['curPage'] = curPage
-                pagingSelect['allPage'] = allPage
-                pagingSelect['data'] = 'curPage is invalid !'
-                return pagingSelect
-            startPos = (curPage - 1) * ONE_PAGE_OF_DATA
-            endPos = startPos + ONE_PAGE_OF_DATA
-            if condition == None:
-                basicObjs = Classification.objects.filter(is_delete=0,parent_id=0)[startPos:endPos]
-            else:
-                if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    basicObjs = Classification.objects.filter(
+            if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = Classification.objects.filter(
                         Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
-                elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(
+            elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                operator = selectType['operator']
+                persons = Person.objects.filter(name__icontains=operator)
+                personIdentifierList = []
+                for person in persons:
+                    personIdentifierList.append(person.identifier)
+                basicObjs = Classification.objects.filter(
                             Q(operator_identifier__in=personIdentifierList) & Q(**condition) & Q(
                                 operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
-                elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(
+            elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
+                operator = selectType['operator']
+                persons = Person.objects.filter(name__icontains=operator)
+                personIdentifierList = []
+                for person in persons:
+                    personIdentifierList.append(person.identifier)
+                basicObjs = Classification.objects.filter(
                             Q(operator_identifier__in=personIdentifierList) & Q(**condition))[startPos:endPos]
-                else:
-                    basicObjs = Classification.objects.filter(**condition)[startPos:endPos]
-            for basicObj in basicObjs:
-                basicObjJSON = getClassification(basicObj)
-                childrenJSON = []
-                children = Classification.objects.filter(parent_id=basicObj.id,is_delete=0)
-                for child in children:
-                    childJSON = getClassification(child)
-                    childrenJSON.append(childJSON)
-                basicObjJSON['children'] = childrenJSON
-                datasJSON.append(basicObjJSON)
+            else:
+                basicObjs = Classification.objects.filter(**condition)[startPos:endPos]
+        for basicObj in basicObjs:
+            basicObjJSON = getClassification(basicObj)
+            childrenJSON = []
+            children = Classification.objects.filter(parent_id=basicObj.id,is_delete=0)
+            for child in children:
+                childJSON = getClassification(child)
+                childrenJSON.append(childJSON)
+            basicObjJSON['children'] = childrenJSON
+            datasJSON.append(basicObjJSON)
     else:
         if condition == None:
             basicsCount = Classification.objects.filter(is_delete=0,parent_id__gt=0).count()
@@ -571,86 +532,50 @@ def paging(request,ONE_PAGE_OF_DATA,condition,isFirst,selectType):
                 allPage = basicsCount / ONE_PAGE_OF_DATA + 1
         else:
             allPage = 1
-        if curPage == 1:
-            if condition == None:
-                basicObjs = Classification.objects.filter(is_delete=0,parent_id__gt=0)[0:ONE_PAGE_OF_DATA]
-            else:
-                if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
-                                                                Q(**condition) & Q(operator_time__gte=timeFrom) & Q(
-                        operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
-                                                                Q(operator_identifier__in=personIdentifierList) & Q(
-                        **condition) & Q(
-                        operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[0:ONE_PAGE_OF_DATA]
-                elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
-                                                                Q(operator_identifier__in=personIdentifierList) & Q(
-                        **condition))[0:ONE_PAGE_OF_DATA]
-                else:
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) & Q(**condition))[0:ONE_PAGE_OF_DATA]
-            for basicObj in basicObjs:
-                basicObjJSON = getClassification(basicObj)
-                datasJSON.append(basicObjJSON)
-        else:
-            if curPage > allPage or curPage < 1:
+        
+        if curPage > allPage or curPage < 1:
                 pagingSelect['code'] = 300
                 pagingSelect['curPage'] = curPage
                 pagingSelect['allPage'] = allPage
                 pagingSelect['data'] = 'curPage is invalid !'
                 return pagingSelect
-            startPos = (curPage - 1) * ONE_PAGE_OF_DATA
-            endPos = startPos + ONE_PAGE_OF_DATA
-            if condition == None:
-                basicObjs = Classification.objects.filter(is_delete=0,parent_id__gt=0)[startPos:endPos]
-            else:
-                if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
+        startPos = (curPage - 1) * ONE_PAGE_OF_DATA
+        endPos = startPos + ONE_PAGE_OF_DATA
+        if condition == None:
+            basicObjs = Classification.objects.filter(is_delete=0,parent_id__gt=0)[startPos:endPos]
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' not in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
                                                               Q(**condition) & Q(operator_time__gte=timeFrom) & Q(
                         operator_time__lte=timeTo))[startPos:endPos]
-                elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
-                    timeFrom = selectType['timeFrom']
-                    timeTo = selectType['timeTo']
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
+            elif 'timeFrom' in selectType and 'timeTo' in selectType and 'operator' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                operator = selectType['operator']
+                persons = Person.objects.filter(name__icontains=operator)
+                personIdentifierList = []
+                for person in persons:
+                    personIdentifierList.append(person.identifier)
+                basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
                                                               Q(operator_identifier__in=personIdentifierList) & Q(
                         **condition) & Q(
                         operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))[startPos:endPos]
-                elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
-                    operator = selectType['operator']
-                    persons = Person.objects.filter(name__icontains=operator)
-                    personIdentifierList = []
-                    for person in persons:
-                        personIdentifierList.append(person.identifier)
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
+            elif 'timeFrom' not in selectType and 'timeTo' not in selectType and 'operator' in selectType:
+                operator = selectType['operator']
+                persons = Person.objects.filter(name__icontains=operator)
+                personIdentifierList = []
+                for person in persons:
+                    personIdentifierList.append(person.identifier)
+                basicObjs = Classification.objects.filter(Q(parent_id__gt=0) &
                                                               Q(operator_identifier__in=personIdentifierList) & Q(
                         **condition))[startPos:endPos]
-                else:
-                    basicObjs = Classification.objects.filter(Q(parent_id__gt=0) & Q(**condition))[startPos:endPos]
-            for basicObj in basicObjs:
-                basicObjJSON = getClassification(basicObj)
-                datasJSON.append(basicObjJSON)
+            else:
+                basicObjs = Classification.objects.filter(Q(parent_id__gt=0) & Q(**condition))[startPos:endPos]
+        for basicObj in basicObjs:
+            basicObjJSON = getClassification(basicObj)
+            datasJSON.append(basicObjJSON)
     pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage

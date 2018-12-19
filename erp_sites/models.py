@@ -636,7 +636,7 @@ class PersonToken(models.Model):
     token = models.CharField('token',max_length=255)
     
     def create(self,person_id,login_name,start_time,end_time,token):
-        obj = self.create(person_id,login_name,start_time,end_time,token)
+        obj = self.create(person_id=person_id,login_name=login_name,start_time=start_time,end_time=end_time,token=token)
         return obj
 
     def __unicode__(self):

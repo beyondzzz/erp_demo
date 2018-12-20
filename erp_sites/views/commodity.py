@@ -155,67 +155,63 @@ def commodityUpdate(request):
             '''
             if len(commoditys) > 0:
                 commodity = commoditys[0]
-            else:
-                commodityUpdate = setStatus(301, {})
-                return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
-            if 'classificationID' in json2Dict:
-                if isValid(json2Dict['classificationID']):
-                    classification_id = int(json2Dict['classificationID'])
-                    commodity.classification_id = classification_id
-            if 'name' in json2Dict:
-                if isValid(json2Dict['name']):
-                    name = json2Dict['name']
-                    commodity.name = name
-            if 'brand' in json2Dict:
-                if isValid(json2Dict['brand']):
-                    brand = json2Dict['brand']
-                    commodity.brand = brand
-            if 'zeroStock' in json2Dict:
-                if isValid(json2Dict['zeroStock']):
-                    zero_stock = int(json2Dict['zeroStock'])
-                    commodity.zero_stock = zero_stock
-            if 'shoutName' in json2Dict:
-                if isValid(json2Dict['shoutName']):
-                    shout_name = json2Dict['shoutName']
-                    commodity.shout_name = shout_name
-            if 'mnemonicCode' in json2Dict:
-                if isValid(json2Dict['mnemonicCode']):
-                    mnemonic_code = json2Dict['mnemonicCode']
-                    commodity.mnemonic_code = mnemonic_code
-            if 'basicsInformation' in json2Dict:
-                if isValid(json2Dict['basicsInformation']):
-                    basics_information = json2Dict['basicsInformation']
-                    commodity.basics_information = basics_information
-            if 'attribute' in json2Dict:
-                if isValid(json2Dict['attribute']):
-                    attribute = json2Dict['attribute']
-                    commodity.attribute = attribute
-            if 'supctoID' in json2Dict:
-                if isValid(json2Dict['supctoID']):
-                    supcto_id = int(json2Dict['supctoID'])
-                    commodity.supcto_id = supcto_id
-            if 'taxes' in json2Dict:
-                if isValid(json2Dict['taxes']):
-                    taxes = atof(json2Dict['taxes'])
-                    commodity.taxes = taxes
-            if 'isAssemble' in json2Dict:
-                if isValid(json2Dict['isAssemble']):
-                    is_assemble = int(json2Dict['isAssemble'])
-                    commodity.is_assemble = is_assemble
-            if 'isPresell' in json2Dict:
-                if isValid(json2Dict['isPresell']):
-                    is_presell = int(json2Dict['isPresell'])
-                    commodity.is_presell = is_presell
-            if 'tempTaxes' in json2Dict:
-                if isValid(json2Dict['tempTaxes']):
-                    temp_taxes = atof(json2Dict['tempTaxes'])
-                    commodity.temp_taxes = temp_taxes
-            commodity.save()
+                if 'classificationID' in json2Dict:
+                    if isValid(json2Dict['classificationID']):
+                        classification_id = int(json2Dict['classificationID'])
+                        commodity.classification_id = classification_id
+                if 'name' in json2Dict:
+                    if isValid(json2Dict['name']):
+                        name = json2Dict['name']
+                        commodity.name = name
+                if 'brand' in json2Dict:
+                    if isValid(json2Dict['brand']):
+                        brand = json2Dict['brand']
+                        commodity.brand = brand
+                if 'zeroStock' in json2Dict:
+                    if isValid(json2Dict['zeroStock']):
+                        zero_stock = int(json2Dict['zeroStock'])
+                        commodity.zero_stock = zero_stock
+                if 'shoutName' in json2Dict:
+                    if isValid(json2Dict['shoutName']):
+                        shout_name = json2Dict['shoutName']
+                        commodity.shout_name = shout_name
+                if 'mnemonicCode' in json2Dict:
+                    if isValid(json2Dict['mnemonicCode']):
+                        mnemonic_code = json2Dict['mnemonicCode']
+                        commodity.mnemonic_code = mnemonic_code
+                if 'basicsInformation' in json2Dict:
+                    if isValid(json2Dict['basicsInformation']):
+                        basics_information = json2Dict['basicsInformation']
+                        commodity.basics_information = basics_information
+                if 'attribute' in json2Dict:
+                    if isValid(json2Dict['attribute']):
+                        attribute = json2Dict['attribute']
+                        commodity.attribute = attribute
+                if 'supctoID' in json2Dict:
+                    if isValid(json2Dict['supctoID']):
+                        supcto_id = int(json2Dict['supctoID'])
+                        commodity.supcto_id = supcto_id
+                if 'taxes' in json2Dict:
+                    if isValid(json2Dict['taxes']):
+                        taxes = atof(json2Dict['taxes'])
+                        commodity.taxes = taxes
+                if 'isAssemble' in json2Dict:
+                    if isValid(json2Dict['isAssemble']):
+                        is_assemble = int(json2Dict['isAssemble'])
+                        commodity.is_assemble = is_assemble
+                if 'isPresell' in json2Dict:
+                    if isValid(json2Dict['isPresell']):
+                        is_presell = int(json2Dict['isPresell'])
+                        commodity.is_presell = is_presell
+                if 'tempTaxes' in json2Dict:
+                    if isValid(json2Dict['tempTaxes']):
+                        temp_taxes = atof(json2Dict['tempTaxes'])
+                        commodity.temp_taxes = temp_taxes
+                commodity.save()
             if 'commoditySpecifications' in json2Dict:
                 commoditySpecifictions = json2Dict['commoditySpecifications']
                 if updateSpecification(commoditySpecifictions):
-                    commodityJSON = getCommodity(commodity)
-                    commodityUpdate = setStatus(200,commodityJSON)
+                    commodityUpdate = setStatus(200,{})
                 else:
                     commodityUpdate = setStatus(302, {})
         else:
@@ -712,6 +708,10 @@ def updateSpecification(commoditySpecifictions):
             if isValid(commoditySpecifiction['tempInventory']):
                 temp_inventory = int(commoditySpecifiction['tempInventory'])
                 specification.temp_inventory = temp_inventory
+        if 'tempState' in commoditySpecifiction:
+            if isValid(commoditySpecifiction['tempState']):
+                temp_state = int(commoditySpecifiction['tempState'])
+                specification.temp_state = temp_state
         specification.save()
         if specification.temp_state == 16:
             specification.mini_order_quantity = specification.temp_mini_order_quantity

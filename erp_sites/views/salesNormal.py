@@ -642,46 +642,38 @@ def salesNormalSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
+                supctoMessage = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    salesOrders = SalesOrder.objects.filter(identifier=identifier)
-                    if len(salesOrders) > 0:
-                        salesOrder = salesOrders[0]
-                        salesNormalSelect = getSalesOrder(salesOrder)
-                    else:
-                        salesPlanSelect = setStatus(300,{} )
-                        return HttpResponse(json.dumps(salesPlanSelect), content_type='application/json')
+                    condition['identifier'] = request.GET['identifier']
+                if 'classificationID' in request.GET and isValid(request.GET['classificationID']):
+                    supctoMessage['classification_id'] = request.GET['classificationID']
+                if 'provinceCode' in request.GET and isValid(request.GET['provinceCode']):
+                    supctoMessage['province_code'] = request.GET['provinceCode']
+                if 'cityCode' in request.GET and isValid(request.GET['cityCode']):
+                    supctoMessage['city_code'] = request.GET['cityCode']
+                if 'areaCode' in request.GET and isValid(request.GET['areaCode']):
+                    supctoMessage['area_code'] = request.GET['areaCode']
+                if 'supctoName' in request.GET and isValid(request.GET['supctoName']):
+                    supctoMessage['name'] = request.GET['supctoName']
+                if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
+                    commodityID = int(request.GET['commodityID'])
                 else:
-                    condition = {}
-                    selectType = {}
-                    supctoMessage = {}
-                    if 'classificationID' in request.GET and isValid(request.GET['classificationID']):
-                        supctoMessage['classification_id'] = request.GET['classificationID']
-                    if 'provinceCode' in request.GET and isValid(request.GET['provinceCode']):
-                        supctoMessage['province_code'] = request.GET['provinceCode']
-                    if 'cityCode' in request.GET and isValid(request.GET['cityCode']):
-                        supctoMessage['city_code'] = request.GET['cityCode']
-                    if 'areaCode' in request.GET and isValid(request.GET['areaCode']):
-                        supctoMessage['area_code'] = request.GET['areaCode']
-                    if 'supctoName' in request.GET and isValid(request.GET['supctoName']):
-                        supctoMessage['name'] = request.GET['supctoName']
-                    if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
-                        commodityID = int(request.GET['commodityID'])
-                    else:
-                        commodityID = 0
-                    if 'isSpecimen' in request.GET and isValid(request.GET['isSpecimen']):
-                        condition['is_specimen'] = request.GET['isSpecimen']
-                    if 'state' in request.GET and isValid(request.GET['state']):
-                        condition['state'] = int(request.GET['state'])
-                    if 'isAppOrder' in request.GET and isValid(request.GET['isAppOrder']):
-                        condition['is_app_order'] = int(request.GET['isAppOrder'])
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    salesNormalSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType,supctoMessage, commodityID)
+                    commodityID = 0
+                if 'isSpecimen' in request.GET and isValid(request.GET['isSpecimen']):
+                    condition['is_specimen'] = request.GET['isSpecimen']
+                if 'state' in request.GET and isValid(request.GET['state']):
+                    condition['state'] = int(request.GET['state'])
+                if 'isAppOrder' in request.GET and isValid(request.GET['isAppOrder']):
+                    condition['is_app_order'] = int(request.GET['isAppOrder'])
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                salesNormalSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType,supctoMessage, commodityID)
             else:
                 salesNormalSelect = paging(request, ONE_PAGE_OF_DATA, None, None,None, 0)
         else:

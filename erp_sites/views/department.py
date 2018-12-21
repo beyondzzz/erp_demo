@@ -115,30 +115,22 @@ def departmentSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    departments = Department.objects.filter(identifier=identifier,is_delete=0)
-                    if len(departments) > 0:
-                        department = departments[0]
-                        departmentSelect = getDepartment(department)
-                    else:
-                        departmentSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(departmentSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
-                        condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    condition['is_delete'] = 0
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    departmentSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                condition['is_delete'] = 0
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                departmentSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 departmentSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

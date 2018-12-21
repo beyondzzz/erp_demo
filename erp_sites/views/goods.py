@@ -131,27 +131,19 @@ def goodsSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'goodsID' in request.GET and isValid(request.GET['goodsID']):
-                    goodsID = request.GET['goodsID']
-                    goodses = Goods.objects.filter(id=goodsID)
-                    if len(goodses) > 0:
-                        goods = goodses[0]
-                        goodsSelect = getGoods(goods)
-                    else:
-                        goodsSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(goodsSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'stock' in request.GET and isValid(request.GET['stock']):
-                        condition['stock'] = int(request.GET['stock'])
-                    if 'purchase' in request.GET and isValid(request.GET['purchase']):
-                        condition['purchase'] = atof(request.GET['purchase'])
-                    if 'brand' in request.GET and isValid(request.GET['brand']):
-                        condition['brand'] = request.GET['brand']
-                    if 'state' in request.GET and isValid(request.GET['state']):
-                        condition['state'] = int(request.GET['state'])
-                    goodsSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['id'] = int(request.GET['goodsID'])
+                if 'stock' in request.GET and isValid(request.GET['stock']):
+                    condition['stock'] = int(request.GET['stock'])
+                if 'purchase' in request.GET and isValid(request.GET['purchase']):
+                    condition['purchase'] = atof(request.GET['purchase'])
+                if 'brand' in request.GET and isValid(request.GET['brand']):
+                    condition['brand'] = request.GET['brand']
+                if 'state' in request.GET and isValid(request.GET['state']):
+                    condition['state'] = int(request.GET['state'])
+                goodsSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 goodsSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

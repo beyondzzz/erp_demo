@@ -156,42 +156,32 @@ def firstClassificationSelect(request):
             logRecord = basic_log.Logger('record')
             firstClassificationSelect = {}
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                        identifier = request.GET['identifier']
-                        classifications = Classification.objects.filter(identifier=identifier)
-                        if len(classifications) > 0:
-                            classification = classifications[0]
-                            classificationJSON = getClassification(classification)
-                            firstClassificationSelect = setStatus(200,classificationJSON)
-                        else:
-                            firstClassificationSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(firstClassificationSelect), content_type='application/json')
+                    condition['identifier'] = request.GET['identifier']
+                if 'type' in request.GET and isValid(request.GET['type']):
+                    condition['type'] = int(request.GET['type'])
+                if 'keyWord' in request.GET and isValid(request.GET['keyWord']):
+                    condition['key_word'] = request.GET['keyWord']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                        condition['name'] = request.GET['name']
+                if 'operator' in request.GET and isValid(request.GET['operator']):
+                        condition['operator'] = request.GET['operator']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                condition['parent_id'] = 0
+                logRecord.log("condition: " + str(condition))
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    firstClassificationSelect = conditionSelect(condition, True, selectType)
                 else:
-                    condition = {}
-                    selectType = {}
-                    if 'type' in request.GET and isValid(request.GET['type']):
-                            condition['type'] = int(request.GET['type'])
-                    if 'keyWord' in request.GET:
-                        if isValid(request.GET['keyWord']):
-                            condition['key_word'] = request.GET['keyWord']
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                            condition['name'] = request.GET['name']
-                    if 'operator' in request.GET and isValid(request.GET['operator']):
-                            condition['operator'] = request.GET['operator']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    condition['parent_id'] = 0
-                    logRecord.log("condition: " + str(condition))
-                    if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
-                        firstClassificationSelect = conditionSelect(condition, True, selectType)
-                    else:
-                        firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, condition, True, selectType)
-                    logRecord.log("return: " + str(firstClassificationSelect))
+                    firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, condition, True, selectType)
+                logRecord.log("return: " + str(firstClassificationSelect))
             else:
                 firstClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None, True, None)
         else:
@@ -349,23 +339,13 @@ def secondClassificationSelect(request):
             logRecord = basic_log.Logger('record')
             secondClassificationSelect = {}
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                        identifier = request.GET['identifier']
-                        classifications = Classification.objects.filter(identifier=identifier)
-                        if len(classifications) > 0:
-                            classification = classifications[0]
-                            classificationJSON = getClassification(classification)
-                            secondClassificationSelect = setStatus(200, classificationJSON)
-                        else:
-                            secondClassificationSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(secondClassificationSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'firstClassIdentifer' in request.GET and isValid(request.GET['firstClassIdentifer']):
-                            firstClassIdentifer = int(request.GET['firstClassIdentifer'])
-                            condition['parent_id'] = firstClassIdentifer
-                            '''
+                    condition['identifier'] = request.GET['identifier']
+                if 'firstClassIdentifer' in request.GET and isValid(request.GET['firstClassIdentifer']):
+                    condition['parent_id'] = int(request.GET['firstClassIdentifer'])
+                    '''
                         parents = Classification.objects.filter(identifier=firstClassIdentifer)
                         parents = Classification.objects.filter(parent_id=firstClassIdentifer)
                         if len(parents) > 0:
@@ -374,26 +354,26 @@ def secondClassificationSelect(request):
                         else:
                             secondClassificationSelect = setStatus(300, {})
                             return HttpResponse(json.dumps(secondClassificationSelect), content_type='application/json')
-                        '''
-                    if 'type' in request.GET and isValid(request.GET['type']):
-                            condition['type'] = int(request.GET['type'])
-                    if 'keyWord' in request.GET and isValid(request.GET['keyWord']):
-                            condition['key_word'] = request.GET['keyWord']
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                            condition['name'] = request.GET['name']
-                    if 'operator' in request.GET and isValid(request.GET['operator']):
-                            selectType['operator'] = request.GET['operator']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
-                        secondClassificationSelect = conditionSelect(condition, True, selectType)
-                    else:
-                        secondClassificationSelect = paging(request, ONE_PAGE_OF_DATA, condition,False,selectType)
+                    '''
+                if 'type' in request.GET and isValid(request.GET['type']):
+                    condition['type'] = int(request.GET['type'])
+                if 'keyWord' in request.GET and isValid(request.GET['keyWord']):
+                    condition['key_word'] = request.GET['keyWord']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operator' in request.GET and isValid(request.GET['operator']):
+                    selectType['operator'] = request.GET['operator']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    secondClassificationSelect = conditionSelect(condition, True, selectType)
+                else:
+                    secondClassificationSelect = paging(request, ONE_PAGE_OF_DATA, condition,False,selectType)
             else:
                 secondClassificationSelect = paging(request, ONE_PAGE_OF_DATA, None,False, None)
         else:

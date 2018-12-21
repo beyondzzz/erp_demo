@@ -308,27 +308,21 @@ def allotSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    allots = AllotOrder.objects.filter(identifier=identifier)
-                    if len(allots) > 0:
-                        allot = allots[0]
-                        allotSelect = getAllot(allot)
-                    else:
-                        allotSelect = setStatus(300,)
-                        return HttpResponse(json.dumps(allotSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'makePerson' in request.GET and isValid(request.GET['makePerson']):
-                        condition['make_person'] = request.GET['makePerson']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    allotSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
+                    condition['identifier'] = request.GET['identifier']
+                if 'makePerson' in request.GET and isValid(request.GET['makePerson']):
+                    condition['make_person'] = request.GET['makePerson']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                allotSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 allotSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

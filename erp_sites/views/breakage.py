@@ -228,32 +228,24 @@ def breakageSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    breakages = BreakageOrder.objects.filter(identifier=identifier)
-                    if len(breakages) > 0:
-                        breakage = breakages[0]
-                        breakageSelect = getBreakage(breakage)
-                    else:
-                        breakageSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(breakageSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'warehouseID' in request.GET and isValid(request.GET['warehouseID']):
-                        condition['warehouse_id'] = int(request.GET['warehouseID'])
-                    if 'personID' in request.GET and isValid(request.GET['personID']):
-                        condition['person_id'] = int(request.GET['personID'])
-                    if 'state' in request.GET and isValid(request.GET['state']):
-                        condition['state'] = int(request.GET['state'])
-                    condition['is_delete'] = 0
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    breakageSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'warehouseID' in request.GET and isValid(request.GET['warehouseID']):
+                    condition['warehouse_id'] = int(request.GET['warehouseID'])
+                if 'personID' in request.GET and isValid(request.GET['personID']):
+                    condition['person_id'] = int(request.GET['personID'])
+                if 'state' in request.GET and isValid(request.GET['state']):
+                    condition['state'] = int(request.GET['state'])
+                condition['is_delete'] = 0
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                breakageSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 breakageSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

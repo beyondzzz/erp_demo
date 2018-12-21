@@ -392,33 +392,25 @@ def salesPlanSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    salesPlanOrders = SalesPlanOrder.objects.filter(identifier=identifier)
-                    if len(salesPlanOrders) > 0:
-                        salesPlanOrder = salesPlanOrders[0]
-                        salesPlanSelect = getSalesPlanOrder(salesPlanOrder)
-                    else:
-                        salesPlanSelect = setStatus(300,{})
-                        return HttpResponse(json.dumps(salesPlanSelect), content_type='application/json')
+                    condition['identifier'] = request.GET['identifier']
+                if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
+                    commodityID = int(request.GET['commodityID'])
                 else:
-                    condition = {}
-                    selectType = {}
-                    if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
-                        commodityID = int(request.GET['commodityID'])
-                    else:
-                        commodityID = 0
-                    if 'personID' in request.GET and isValid(request.GET['personID']):
-                        condition['person_id'] = request.GET['personID']
-                    if 'state' in request.GET and isValid(request.GET['state']):
+                    commodityID = 0
+                if 'personID' in request.GET and isValid(request.GET['personID']):
+                    condition['person_id'] = request.GET['personID']
+                if 'state' in request.GET and isValid(request.GET['state']):
                         condition['state'] = int(request.GET['state'])
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, commodityID)
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, commodityID)
             else:
                 salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None, 0)
         else:

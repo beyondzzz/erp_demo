@@ -97,12 +97,6 @@ def setStatus(code,data):
         message = 'success'
     elif code == 300:
         message = 'invalid'
-    elif code == 201:
-        data = {"datas":[],"total":0,"curPage":1,"allPage":1}
-        setStatus['code'] = 200
-        setStatus['message'] = 'success'
-        setStatus['data'] = data
-        return setStatus
     else:
         message = 'failed'
     setStatus['code'] = code

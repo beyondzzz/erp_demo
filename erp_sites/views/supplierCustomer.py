@@ -633,6 +633,8 @@ def thirdPartySelect(request):
             condition = {}
             selectType = {}
             if len(request.GET) > 0:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
+                    condition['identifier'] = request.GET['identifier']
                 if 'name' in request.GET and isValid(request.GET['name']):
                     name = request.GET['name']
                     condition['name'] = name

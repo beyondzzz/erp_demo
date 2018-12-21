@@ -267,32 +267,24 @@ def stockCheckSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    stocks = TakeStockOrder.objects.filter(identifier=identifier,is_delete=0)
-                    if len(stocks) > 0:
-                        stock = stocks[0]
-                        stockCheckSelect = getStock(stock)
-                    else:
-                        stockCheckSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(stockCheckSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'warehouseID' in request.GET and isValid(request.GET['warehouseID']):
-                        condition['warehouse_id'] = int(request.GET['warehouseID'])
-                    if 'personID' in request.GET and isValid(request.GET['personID']):
-                        condition['person_id'] = int(request.GET['personID'])
-                    if 'state' in request.GET and isValid(request.GET['state']):
-                        condition['state'] = int(request.GET['state'])
-                    condition['is_delete'] = 0
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    stockCheckSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'warehouseID' in request.GET and isValid(request.GET['warehouseID']):
+                    condition['warehouse_id'] = int(request.GET['warehouseID'])
+                if 'personID' in request.GET and isValid(request.GET['personID']):
+                    condition['person_id'] = int(request.GET['personID'])
+                if 'state' in request.GET and isValid(request.GET['state']):
+                    condition['state'] = int(request.GET['state'])
+                condition['is_delete'] = 0
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                stockCheckSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 stockCheckSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

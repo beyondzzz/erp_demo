@@ -415,36 +415,24 @@ def personSelect(request):
         if isTokenExpired(request):
             personSelect = {}
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    persons = Person.objects.filter(identifier=identifier,is_delete=0)
-                    if len(persons) > 0:
-                        person = persons[0]
-                        personJSON = getPersonObj(person)
-                        personSelect = setStatus(200,personJSON)
-                    else:
-                        personSelect = setStatus(300,{})
-                        return HttpResponse(json.dumps(personSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        name = request.GET['name']
-                        condition['name'] = name
-                    if 'placce' in request.GET and isValid(request.GET['placce']):
-                        placce = request.GET['placce']
-                        condition['placce'] = placce
-                    if 'deparmentID' in request.GET and isValid(request.GET['deparmentID']):
-                        deparment_id = int(request.GET['deparmentID'])
-                        condition['deparment_id'] = deparment_id
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    personSelect = paging(request,ONE_PAGE_OF_DATA,condition,selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'placce' in request.GET and isValid(request.GET['placce']):
+                    condition['placce'] = request.GET['placce']
+                if 'deparmentID' in request.GET and isValid(request.GET['deparmentID']):
+                    condition['deparment_id'] = int(request.GET['deparmentID'])
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                personSelect = paging(request,ONE_PAGE_OF_DATA,condition,selectType)
             else:
                 personSelect = paging(request,ONE_PAGE_OF_DATA,None,None)
         else:

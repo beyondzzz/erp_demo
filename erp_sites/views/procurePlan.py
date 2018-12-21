@@ -716,32 +716,24 @@ def procurePlanSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    procures = ProcureTable.objects.filter(identifier=identifier,is_delete=0)
-                    if len(procures) > 0:
-                        procure = procures[0]
-                        procurePlanSelect = getProcure(procure)
-                    else:
-                        procurePlanSelect = setStatus(300, {})
-                        return HttpResponse(json.dumps(procurePlanSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'supctoID' in request.GET and isValid(request.GET['supctoID']):
-                        condition['supcto_id'] = int(request.GET['supctoID'])
-                    if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
-                        condition['commodity_id'] = int(request.GET['commodityID'])
-                    if 'playOrOrder' in request.GET and isValid(request.GET['playOrOrder']):
-                        condition['play_or_order'] = int(request.GET['playOrOrder'])
-                    condition['is_delete'] = 0
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'supctoID' in request.GET and isValid(request.GET['supctoID']):
+                    condition['supcto_id'] = int(request.GET['supctoID'])
+                if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
+                    condition['commodity_id'] = int(request.GET['commodityID'])
+                if 'playOrOrder' in request.GET and isValid(request.GET['playOrOrder']):
+                    condition['play_or_order'] = int(request.GET['playOrOrder'])
+                condition['is_delete'] = 0
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:

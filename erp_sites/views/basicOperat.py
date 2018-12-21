@@ -240,109 +240,73 @@ def basicSelect(request):
         if isTokenExpired(request):
             tableName = request.GET['tableName']
             if tableName == 'shippingMode':
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    shippingModes = ShippingMode.objects.filter(identifier=identifier,is_delete=0)
-                    if len(shippingModes) > 0:
-                        shippingMode = shippingModes[0]
-                        basicJSON = getBasicJSON(shippingMode,tableName)
-                        basicSelect = setStatus(200, basicJSON)
-                    else:
-                        basicSelect = setStatus(201, {})
-                    return HttpResponse(json.dumps(basicSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
-                        condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    basicSelect = paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                basicSelect = paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'settlementType':
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    settlementTypes = SettlementType.objects.filter(identifier=identifier,is_delete=0)
-                    if len(settlementTypes) > 0:
-                        settlementType = settlementTypes[0]
-                        basicJSON = getBasicJSON(settlementType,tableName)
-                        basicSelect = setStatus(200, basicJSON)
-                    else:
-                        basicSelect = setStatus(201, {})
-                    return HttpResponse(json.dumps(basicSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
-                        condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    basicSelect = paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                basicSelect = paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'department':
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    departments = Department.objects.filter(identifier=identifier,is_delete=0)
-                    if len(departments) > 0:
-                        department = departments[0]
-                        basicJSON = getBasicJSON(department,tableName)
-                        basicSelect = setStatus(200, basicJSON)
-                    else:
-                        basicSelect = setStatus(201, {})
-                    return HttpResponse(json.dumps(basicSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
-                        condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    basicSelect = paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                basicSelect = paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'warehouse':
+                condition = {}
+                selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
-                    identifier = request.GET['identifier']
-                    warehouses = Warehouse.objects.filter(identifier=identifier,is_delete=0)
-                    if len(warehouses) > 0:
-                        warehouse = warehouses[0]
-                        basicJSON = getBasicJSON(warehouse,tableName)
-                        basicSelect = setStatus(200, basicJSON)
-                    else:
-                        basicSelect = setStatus(201, {})
-                    return HttpResponse(json.dumps(basicSelect), content_type='application/json')
-                else:
-                    condition = {}
-                    selectType = {}
-                    if 'name' in request.GET and isValid(request.GET['name']):
-                        condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
-                        condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
-                        queryTime = request.GET['queryTime']
-                        timeFrom = queryTime.split('~')[0].strip()
-                        timeTo = queryTime.split('~')[1].strip()
-                        selectType['timeFrom'] = timeFrom + ' 00:00:00'
-                        selectType['timeTo'] = timeTo + ' 23:59:59'
-                    condition['is_delete'] = 0
-                    basicSelect = paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                    condition['identifier'] = request.GET['identifier']
+                if 'name' in request.GET and isValid(request.GET['name']):
+                    condition['name'] = request.GET['name']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
+                    queryTime = request.GET['queryTime']
+                    timeFrom = queryTime.split('~')[0].strip()
+                    timeTo = queryTime.split('~')[1].strip()
+                    selectType['timeFrom'] = timeFrom + ' 00:00:00'
+                    selectType['timeTo'] = timeTo + ' 23:59:59'
+                condition['is_delete'] = 0
+                basicSelect = paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             else:
                 basicSelect = setStatus(300, {})
             return HttpResponse(json.dumps(basicSelect), content_type='application/json')
@@ -440,7 +404,7 @@ def paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, select
         allPage = 1
     
     if curPage > allPage or curPage < 1:
-        pagingSelect['code'] = 2
+        pagingSelect['code'] = 300
         pagingSelect['curPage'] = curPage
         pagingSelect['allPage'] = allPage
         pagingSelect['data'] = 'curPage is invalid !'
@@ -460,7 +424,7 @@ def paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, select
     for basicObj in basicObjs:
         basicJSON = getBasicJSON(basicObj,tableName)
         datasJSON.append(basicJSON)
-    pagingSelect['code'] = 0
+    pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage
     dataJSON['allPage'] = allPage
@@ -497,7 +461,7 @@ def paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType
         allPage = 1
     
     if curPage > allPage or curPage < 1:
-        pagingSelect['code'] = 2
+        pagingSelect['code'] = 300
         pagingSelect['curPage'] = curPage
         pagingSelect['allPage'] = allPage
         pagingSelect['data'] = 'curPage is invalid !'
@@ -517,7 +481,7 @@ def paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType
     for basicObj in basicObjs:
         basicJSON = getBasicJSON(basicObj,tableName)
         datasJSON.append(basicJSON)
-    pagingSelect['code'] = 0
+    pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage
     dataJSON['allPage'] = allPage
@@ -554,7 +518,7 @@ def paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
         allPage = 1
     
     if curPage > allPage or curPage < 1:
-        pagingSelect['code'] = 2
+        pagingSelect['code'] = 300
         pagingSelect['curPage'] = curPage
         pagingSelect['allPage'] = allPage
         pagingSelect['data'] = 'curPage is invalid !'
@@ -574,7 +538,7 @@ def paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
     for basicObj in basicObjs:
         basicJSON = getBasicJSON(basicObj,tableName)
         datasJSON.append(basicJSON)
-    pagingSelect['code'] = 0
+    pagingSelect['code'] = 200
     dataJSON = {}
     dataJSON['curPage'] = curPage
     dataJSON['allPage'] = allPage

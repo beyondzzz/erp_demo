@@ -115,8 +115,8 @@ def commodityInsert(request):
             commodity.save()
             commodity.identifier = identifier + str(commodity.id)
             commodity.save()
-            if 'commoditySpecifictions' in json2Dict:
-                commoditySpecifictions = json2Dict['commoditySpecifictions']
+            if 'commoditySpecifications' in json2Dict:
+                commoditySpecifictions = json2Dict['commoditySpecifications']
                 insertSpecification(commoditySpecifictions,commodity.id)
             commodityJSON = getCommodity(commodity)
             commodityInsert = setStatus(200,commodityJSON)
@@ -664,9 +664,9 @@ def updateSpecification(commoditySpecifictions):
             if isValid(commoditySpecifiction['packagingSize']):
                 packaging_size = commoditySpecifiction['packagingSize']
                 specification.packaging_size = packaging_size
-        if 'warning_number' in commoditySpecifiction:
-            if isValid(commoditySpecifiction['warning_number']):
-                warning_number = int(commoditySpecifiction['warning_number'])
+        if 'warningNumber' in commoditySpecifiction:
+            if isValid(commoditySpecifiction['warningNumber']):
+                warning_number = int(commoditySpecifiction['warningNumber'])
                 specification.warning_number = warning_number
         if 'weight' in commoditySpecifiction:
             if isValid(commoditySpecifiction['weight']):
@@ -717,7 +717,7 @@ def updateSpecification(commoditySpecifictions):
             specification.mini_order_quantity = specification.temp_mini_order_quantity
             specification.add_order_quantity = specification.temp_add_order_quantity
             specification.warning_number = specification.temp_warning_number
-            specification.state = specification.temp_state
+            #specification.state = specification.temp_state
             specification.save()
             commodity = Commodity.objects.get(id=specification.commodity_id)
             commodity.taxes = commodity.temp_taxes
@@ -725,6 +725,19 @@ def updateSpecification(commoditySpecifictions):
             if 'inventories' in commoditySpecifiction:
                 inventories = commoditySpecifiction['inventories']
                 if updateInventory(inventories,specification):
+                    pass
+                else:
+                    return False
+            if 'units' in commoditySpecifiction:
+                units = commoditySpecifiction['units']
+                if updateUnit(units,specification):
+                    pass
+                else:
+                    return False
+        elif specification.temp_state == 17:
+            if 'inventories' in commoditySpecifiction:
+                inventories = commoditySpecifiction['inventories']
+                if updateInventory(inventories,None):
                     pass
                 else:
                     return False

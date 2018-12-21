@@ -137,9 +137,9 @@ def commodityUpdate(request):
             json2Dict = json.loads(request.body)
             if 'commodityID' in json2Dict and isValid(json2Dict['commodityID']):
                 identifier = json2Dict['commodityID']
-                commoditys = Commodity.objects.filter(id=identifier)
+                commodities = Commodity.objects.filter(id=identifier)
             else:
-                commoditys = []
+                commodities = []
             logRecord.log("commodity value: " + str(json2Dict))
             '''
             elif 'commoditySpecifictions' in json2Dict and isValid(json2Dict['commoditySpecifictions']):
@@ -153,8 +153,8 @@ def commodityUpdate(request):
                     commodityUpdate = setStatus(300, {})
                 return HttpResponse(json.dumps(commodityUpdate), content_type='application/json')
             '''
-            if len(commoditys) > 0:
-                commodity = commoditys[0]
+            if len(commodities) > 0:
+                commodity = commodities[0]
                 if 'classificationID' in json2Dict:
                     if isValid(json2Dict['classificationID']):
                         classification_id = int(json2Dict['classificationID'])
@@ -285,9 +285,9 @@ def singleCommoditySelect(request):
                 return HttpResponse(json.dumps(singleCommoditySelect), content_type='application/json')
             '''
             commodityID = int(request.GET['commodityID'])
-            commoditys = Commodity.objects.filter(id=commodityID)
-            if len(commoditys) > 0:
-                commodity = commoditys[0]
+            commodities = Commodity.objects.filter(id=commodityID)
+            if len(commodities) > 0:
+                commodity = commodities[0]
                 commodityJSON = getCommodity(commodity)
                 singleCommoditySelect = setStatus(200, commodityJSON)
             else:
@@ -917,12 +917,12 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
             if 'name' in condition:
                 name = condition['name']
                 condition.pop('name')
-                commoditys = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
+                commodities = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
                 condition['name'] = name
             else:
-                commoditys = Commodity.objects.filter(**condition)
+                commodities = Commodity.objects.filter(**condition)
             commodity_id_list = []
-            for commodity in commoditys:
+            for commodity in commodities:
                 commodity_id_list.append(commodity.id)
             if specificationDic == None:
                 specificationDic = {}
@@ -1000,12 +1000,12 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, specificationDic):
             if 'name' in condition:
                 name = condition['name']
                 condition.pop('name')
-                commoditys = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
+                commodities = Commodity.objects.filter(Q(**condition) & Q(name__icontains=name))
                 condition['name'] = name
             else:
-                commoditys = Commodity.objects.filter(**condition)
+                commodities = Commodity.objects.filter(**condition)
             commodity_id_list = []
-            for commodity in commoditys:
+            for commodity in commodities:
                 commodity_id_list.append(commodity.id)
             if specificationDic == None:
                 specificationDic = {}

@@ -56,6 +56,7 @@ def basicInsert(request):
                 basicInsert = setStatus(300, {})
                 return HttpResponse(json.dumps(basicInsert), content_type='application/json')
             basicInsert = setStatus(200,basicJSON)
+            return HttpResponse(json.dumps(basicInsert), content_type='application/json')
         else:
             return notTokenExpired()
     except Exception,e:
@@ -247,7 +248,7 @@ def basicSelect(request):
                         basicJSON = getBasicJSON(shippingMode,tableName)
                         basicSelect = setStatus(200, basicJSON)
                     else:
-                        basicSelect = setStatus(300, {})
+                        basicSelect = setStatus(201, {})
                     return HttpResponse(json.dumps(basicSelect), content_type='application/json')
                 else:
                     condition = {}
@@ -256,7 +257,7 @@ def basicSelect(request):
                         condition['name'] = request.GET['name']
                     if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()
@@ -273,7 +274,7 @@ def basicSelect(request):
                         basicJSON = getBasicJSON(settlementType,tableName)
                         basicSelect = setStatus(200, basicJSON)
                     else:
-                        basicSelect = setStatus(300, {})
+                        basicSelect = setStatus(201, {})
                     return HttpResponse(json.dumps(basicSelect), content_type='application/json')
                 else:
                     condition = {}
@@ -282,7 +283,7 @@ def basicSelect(request):
                         condition['name'] = request.GET['name']
                     if 'operatorIdentifier' in request.GET:
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()
@@ -299,7 +300,7 @@ def basicSelect(request):
                         basicJSON = getBasicJSON(department,tableName)
                         basicSelect = setStatus(200, basicJSON)
                     else:
-                        basicSelect = setStatus(300, {})
+                        basicSelect = setStatus(201, {})
                     return HttpResponse(json.dumps(basicSelect), content_type='application/json')
                 else:
                     condition = {}
@@ -308,7 +309,7 @@ def basicSelect(request):
                         condition['name'] = request.GET['name']
                     if 'operatorIdentifier' in request.GET:
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()
@@ -317,7 +318,7 @@ def basicSelect(request):
                     condition['is_delete'] = 0
                     basicSelect = paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'warehouse':
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     warehouses = Warehouse.objects.filter(identifier=identifier,is_delete=0)
                     if len(warehouses) > 0:
@@ -325,16 +326,16 @@ def basicSelect(request):
                         basicJSON = getBasicJSON(warehouse,tableName)
                         basicSelect = setStatus(200, basicJSON)
                     else:
-                        basicSelect = setStatus(300, {})
+                        basicSelect = setStatus(201, {})
                     return HttpResponse(json.dumps(basicSelect), content_type='application/json')
                 else:
                     condition = {}
                     selectType = {}
-                    if 'name' in request.GET:
+                    if 'name' in request.GET and isValid(request.GET['name']):
                         condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET:
+                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

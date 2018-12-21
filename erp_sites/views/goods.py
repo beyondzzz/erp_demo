@@ -131,7 +131,7 @@ def goodsSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'goodsID' in request.GET:
+                if 'goodsID' in request.GET and isValid(request.GET['goodsID']):
                     goodsID = request.GET['goodsID']
                     goodses = Goods.objects.filter(id=goodsID)
                     if len(goodses) > 0:

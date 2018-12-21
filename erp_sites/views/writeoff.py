@@ -190,7 +190,7 @@ def multiWriteoffSelect(request):
                 selectType = {}
                 if 'writeoffType' in request.GET and isValid(request.GET['writeoffType']):
                     condition['writeoff_type'] = int(request.GET['writeoffType'])
-                if 'queryTime' in request.GET:
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
                     timeFrom = queryTime.split('~')[0].strip()
                     timeTo = queryTime.split('~')[1].strip()

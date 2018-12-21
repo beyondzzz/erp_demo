@@ -716,7 +716,7 @@ def procurePlanSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     procures = ProcureTable.objects.filter(identifier=identifier,is_delete=0)
                     if len(procures) > 0:
@@ -735,7 +735,7 @@ def procurePlanSelect(request):
                     if 'playOrOrder' in request.GET and isValid(request.GET['playOrOrder']):
                         condition['play_or_order'] = int(request.GET['playOrOrder'])
                     condition['is_delete'] = 0
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

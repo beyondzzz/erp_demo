@@ -642,7 +642,7 @@ def salesNormalSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     salesOrders = SalesOrder.objects.filter(identifier=identifier)
                     if len(salesOrders) > 0:
@@ -675,7 +675,7 @@ def salesNormalSelect(request):
                         condition['state'] = int(request.GET['state'])
                     if 'isAppOrder' in request.GET and isValid(request.GET['isAppOrder']):
                         condition['is_app_order'] = int(request.GET['isAppOrder'])
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

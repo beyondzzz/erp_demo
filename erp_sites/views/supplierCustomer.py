@@ -639,7 +639,7 @@ def thirdPartySelect(request):
                 if 'fromType' in request.GET and isValid(request.GET['fromType']):
                     from_type = request.GET['fromType']
                     condition['from_type'] = from_type
-                if 'queryTime' in request.GET:
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
                     timeFrom = queryTime.split('~')[0].strip()
                     timeTo = queryTime.split('~')[1].strip()

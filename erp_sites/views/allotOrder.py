@@ -308,7 +308,7 @@ def allotSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     allots = AllotOrder.objects.filter(identifier=identifier)
                     if len(allots) > 0:
@@ -322,7 +322,7 @@ def allotSelect(request):
                     selectType = {}
                     if 'makePerson' in request.GET and isValid(request.GET['makePerson']):
                         condition['make_person'] = request.GET['makePerson']
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

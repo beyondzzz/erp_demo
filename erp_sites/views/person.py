@@ -415,7 +415,7 @@ def personSelect(request):
         if isTokenExpired(request):
             personSelect = {}
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     persons = Person.objects.filter(identifier=identifier,is_delete=0)
                     if len(persons) > 0:
@@ -437,7 +437,7 @@ def personSelect(request):
                     if 'deparmentID' in request.GET and isValid(request.GET['deparmentID']):
                         deparment_id = int(request.GET['deparmentID'])
                         condition['deparment_id'] = deparment_id
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

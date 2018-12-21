@@ -246,7 +246,7 @@ def multiBillSelect(request):
                 selectType = {}
                 if 'billsType' in request.GET and isValid(request.GET['billsType']):
                     condition['bills_type'] = int(request.GET['billsType'])
-                if 'queryTime' in request.GET:
+                if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
                     timeFrom = queryTime.split('~')[0].strip()
                     timeTo = queryTime.split('~')[1].strip()

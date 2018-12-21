@@ -115,7 +115,7 @@ def departmentSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     departments = Department.objects.filter(identifier=identifier,is_delete=0)
                     if len(departments) > 0:
@@ -132,7 +132,7 @@ def departmentSelect(request):
                     if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
                     condition['is_delete'] = 0
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

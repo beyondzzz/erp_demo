@@ -283,7 +283,7 @@ def packageOrTeardownSelect(request):
     try:
         if isTokenExpired(request):
             if len(request.GET) > 0:
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     packages = PackageOrTeardownOrder.objects.filter(identifier=identifier,is_delete=0)
                     if len(packages) > 0:
@@ -304,7 +304,7 @@ def packageOrTeardownSelect(request):
                     if 'state' in request.GET and isValid(request.GET['state']):
                         condition['state'] = int(request.GET['state'])
                     condition['is_delete'] = 0
-                    if 'queryTime' in request.GET:
+                    if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
                         timeFrom = queryTime.split('~')[0].strip()
                         timeTo = queryTime.split('~')[1].strip()

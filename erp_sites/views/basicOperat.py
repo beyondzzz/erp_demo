@@ -240,7 +240,7 @@ def basicSelect(request):
         if isTokenExpired(request):
             tableName = request.GET['tableName']
             if tableName == 'shippingMode':
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     shippingModes = ShippingMode.objects.filter(identifier=identifier,is_delete=0)
                     if len(shippingModes) > 0:
@@ -266,7 +266,7 @@ def basicSelect(request):
                     condition['is_delete'] = 0
                     basicSelect = paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'settlementType':
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     settlementTypes = SettlementType.objects.filter(identifier=identifier,is_delete=0)
                     if len(settlementTypes) > 0:
@@ -279,9 +279,9 @@ def basicSelect(request):
                 else:
                     condition = {}
                     selectType = {}
-                    if 'name' in request.GET:
+                    if 'name' in request.GET and isValid(request.GET['name']):
                         condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET:
+                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
                     if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']
@@ -292,7 +292,7 @@ def basicSelect(request):
                     condition['is_delete'] = 0
                     basicSelect = paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'department':
-                if 'identifier' in request.GET:
+                if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     identifier = request.GET['identifier']
                     departments = Department.objects.filter(identifier=identifier,is_delete=0)
                     if len(departments) > 0:
@@ -305,9 +305,9 @@ def basicSelect(request):
                 else:
                     condition = {}
                     selectType = {}
-                    if 'name' in request.GET:
+                    if 'name' in request.GET and isValid(request.GET['name']):
                         condition['name'] = request.GET['name']
-                    if 'operatorIdentifier' in request.GET:
+                    if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
                         condition['operator_identifier'] = request.GET['operatorIdentifier']
                     if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                         queryTime = request.GET['queryTime']

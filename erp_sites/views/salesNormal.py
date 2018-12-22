@@ -694,6 +694,8 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,supctoMessage, commo
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = SalesOrder.objects.all().count()

@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from erp_sites import basic_log
 from erp_sites.public import setStatus,isTokenExpired,notTokenExpired,getSalesPlanOrder,isValid
 import traceback
-from erp_sites.models import SalesPlanOrder,SalesPlanOrderCommodity
+from erp_sites.models import SalesPlanOrder,SalesPlanOrderCommodity,CommoditySpecification
 from django.db.models import Q
 
 reload(sys)
@@ -396,23 +396,25 @@ def salesPlanSelect(request):
                 selectType = {}
                 if 'identifier' in request.GET and isValid(request.GET['identifier']):
                     condition['identifier'] = request.GET['identifier']
-                if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
-                    commodityID = int(request.GET['commodityID'])
+                if 'commodityName' in request.GET and isValid(request.GET['commodityName']):
+                    commodityName = request.GET['commodityName']
                 else:
-                    commodityID = 0
+                    commodityName = None
+                if 'supctoID' in request.GET and isValid(request.GET['supctoID']):
+                    condition['supcto_id'] = int(request.GET['supctoID'])
                 if 'personID' in request.GET and isValid(request.GET['personID']):
                     condition['person_id'] = request.GET['personID']
                 if 'state' in request.GET and isValid(request.GET['state']):
-                        condition['state'] = int(request.GET['state'])
+                    condition['state'] = int(request.GET['state'])
                 if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
                     timeFrom = queryTime.split('~')[0].strip()
                     timeTo = queryTime.split('~')[1].strip()
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
-                salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, commodityID)
+                salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType, commodityName)
             else:
-                salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None, 0)
+                salesPlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None, None)
         else:
             return notTokenExpired()
     except Exception,e:
@@ -437,7 +439,7 @@ def orderPlanToNormal(request):
     return HttpResponse(json.dumps(orderPlanToNormal), content_type='application/json')
 
 
-def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
+def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityName):
     logRecord = basic_log.Logger('record')
     pagingSelect = {}
     datasJSON = []
@@ -445,6 +447,8 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = SalesPlanOrder.objects.all().count()
@@ -452,8 +456,12 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
         if 'timeFrom' in selectType and 'timeTo' in selectType:
             timeFrom = selectType['timeFrom']
             timeTo = selectType['timeTo']
-            spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id=commodityID)
-            if len(spocs) > 0:
+            if commodityName != None:
+                commoditySpecifications = CommoditySpecification.objects.filter(specification_name=commodityName)
+                commodityIDList = []
+                for commoditySpecification in commoditySpecifications:
+                    commodityIDList.append(commoditySpecification.id)
+                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id__in=commodityIDList)
                 spoc_id_list = []
                 for spoc in spocs:
                     spoc_id_list.append(spoc.sales_plan_order_id)
@@ -461,7 +469,18 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
             else:
                 basicsCount = SalesPlanOrder.objects.filter(Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo)).count()
         else:
-            basicsCount = SalesPlanOrder.objects.filter(**condition).count()
+            if commodityName != None:
+                commoditySpecifications = CommoditySpecification.objects.filter(specification_name=commodityName)
+                commodityIDList = []
+                for commoditySpecification in commoditySpecifications:
+                    commodityIDList.append(commoditySpecification.id)
+                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id__in=commodityIDList)
+                spoc_id_list = []
+                for spoc in spocs:
+                    spoc_id_list.append(spoc.sales_plan_order_id)
+                basicsCount = SalesPlanOrder.objects.filter(Q(id__in=spoc_id_list) & Q(**condition)).count()
+            else:
+                basicsCount = SalesPlanOrder.objects.filter(**condition).count()
     if basicsCount != 0:
         if basicsCount % ONE_PAGE_OF_DATA == 0:
             allPage = basicsCount / ONE_PAGE_OF_DATA
@@ -484,17 +503,31 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType,commodityID):
         if 'timeFrom' in selectType and 'timeTo' in selectType:
             timeFrom = selectType['timeFrom']
             timeTo = selectType['timeTo']
-            spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id=commodityID)
-            if len(spocs) > 0:
+            if commodityName != None:
+                commoditySpecifications = CommoditySpecification.objects.filter(specification_name=commodityName)
+                commodityIDList = []
+                for commoditySpecification in commoditySpecifications:
+                    commodityIDList.append(commoditySpecification.id)
+                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id__in=commodityIDList)
                 spoc_id_list = []
                 for spoc in spocs:
                     spoc_id_list.append(spoc.sales_plan_order_id)
                 basicObjs = SalesPlanOrder.objects.filter(
-                        Q(id__in=spoc_id_list) & Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
+                            Q(id__in=spoc_id_list) & Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
             else:
-                basicObjs = SalesPlanOrder.objects.filter(
-                    Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
+                basicObjs = SalesPlanOrder.objects.filter(Q(**condition) & Q(create_time__gte=timeFrom) & Q(create_time__lte=timeTo))[startPos:endPos]
         else:
+            if commodityName != None:
+                commoditySpecifications = CommoditySpecification.objects.filter(specification_name=commodityName)
+                commodityIDList = []
+                for commoditySpecification in commoditySpecifications:
+                    commodityIDList.append(commoditySpecification.id)
+                spocs = SalesPlanOrderCommodity.objects.filter(commodity_specification_id__in=commodityIDList)
+                spoc_id_list = []
+                for spoc in spocs:
+                    spoc_id_list.append(spoc.sales_plan_order_id)
+                basicObjs = SalesPlanOrder.objects.filter(Q(id__in=spoc_id_list) & Q(**condition))[startPos:endPos]
+            else:
                 basicObjs = SalesPlanOrder.objects.filter(**condition)[startPos:endPos]
     for basicObj in basicObjs:
         basicJSON = getSalesPlanOrder(basicObj)

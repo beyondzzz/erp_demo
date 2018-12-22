@@ -13,6 +13,7 @@ from django.db.models import Q
 reload(sys)
 sys.setdefaultencoding('utf-8')
 ONE_PAGE_OF_DATA = 10
+logRecord = basic_log.Logger('record')
 
 def personInsert(request):
     try:
@@ -421,8 +422,10 @@ def personSelect(request):
                     condition['identifier'] = request.GET['identifier']
                 if 'name' in request.GET and isValid(request.GET['name']):
                     condition['name'] = request.GET['name']
-                if 'placce' in request.GET and isValid(request.GET['placce']):
-                    condition['placce'] = request.GET['placce']
+                if 'operatorIdentifier' in request.GET and isValid(request.GET['operatorIdentifier']):
+                    condition['operator_identifier'] = request.GET['operatorIdentifier']
+                if 'place' in request.GET and isValid(request.GET['place']):
+                    condition['place'] = request.GET['place']
                 if 'deparmentID' in request.GET and isValid(request.GET['deparmentID']):
                     condition['deparment_id'] = int(request.GET['deparmentID'])
                 if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
@@ -452,8 +455,15 @@ def updatePwdByID(request):
             identifier = request.GET['identifier']
             person = Person.objects.filter(identifier=identifier)
             password = base64.b64encode('1')
-            person.password = password
-            person.save()
+
+            logRecord.log("person:" + str(len(person)))
+            logRecord.log("person:" + str(person))
+            if len(person) >0:
+                logRecord.log("person:  hehehe   " + str(person[0]))
+                person[0].password = password
+                person[0].save()
+                updatePwdByID = setStatus(200,{})
+                return HttpResponse(json.dumps(updatePwdByID), content_type='application/json')
         else:
             return notTokenExpired()
     except Exception,e:
@@ -473,6 +483,8 @@ def paging(request,ONE_PAGE_OF_DATA,condition,selectType):
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = Person.objects.filter(is_delete=0).count()

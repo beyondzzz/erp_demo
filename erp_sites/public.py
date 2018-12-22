@@ -341,6 +341,7 @@ def getPersonObj(person):
     personJSON['warehouseID'] = person.warehouse_id
     personJSON['place'] = person.place
     personJSON['isDelete'] = person.is_delete
+    personJSON['department'] = getDepartmentByID(person.department_id)
     resIds = []
     permissions = Permission.objects.filter(user_id=person.id)
     for permission in permissions:
@@ -944,6 +945,20 @@ def getDepartment(department):
     departmentJSON['operatorTime'] = str(department.operator_time)
     departmentJSON['identifier'] = department.identifier
     departmentJSON['isDelete'] = department.is_delete
+    return departmentJSON
+
+
+def getDepartmentByID(departmentID):
+    departments = Department.objects.filter(id=departmentID)
+    departmentJSON = {}
+    if len(departments) > 0:
+        department = departments[0]
+        departmentJSON['departmentID'] = department.id
+        departmentJSON['name'] = department.name
+        departmentJSON['operatorIdentifier'] = department.operator_identifier
+        departmentJSON['operatorTime'] = str(department.operator_time)
+        departmentJSON['identifier'] = department.identifier
+        departmentJSON['isDelete'] = department.is_delete
     return departmentJSON
 
 

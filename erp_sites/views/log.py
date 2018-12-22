@@ -55,6 +55,8 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType, departmentID):
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     personIDList = []
     if departmentID != None:

@@ -72,7 +72,7 @@ def basicDelete(request):
         if isTokenExpired(request):
             json2Dict = json.loads(request.body)
             tableName = json2Dict['tableName']
-            identifiers = json2Dict['identifiers']
+            identifiers = json2Dict['id']
             errorIDs = []
             if tableName == 'shippingMode':
                 for identifier in identifiers:
@@ -255,7 +255,10 @@ def basicSelect(request):
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
                 condition['is_delete'] = 0
-                basicSelect = paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    basicSelect = conditionSelect(tableName, condition, selectType)
+                else:
+                    basicSelect = paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'settlementType':
                 condition = {}
                 selectType = {}
@@ -272,7 +275,10 @@ def basicSelect(request):
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
                 condition['is_delete'] = 0
-                basicSelect = paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    basicSelect = conditionSelect(tableName, condition, selectType)
+                else:
+                    basicSelect = paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'department':
                 condition = {}
                 selectType = {}
@@ -289,7 +295,10 @@ def basicSelect(request):
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
                 condition['is_delete'] = 0
-                basicSelect = paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    basicSelect = conditionSelect(tableName, condition, selectType)
+                else:
+                    basicSelect = paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             elif tableName == 'warehouse':
                 condition = {}
                 selectType = {}
@@ -306,7 +315,10 @@ def basicSelect(request):
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
                 condition['is_delete'] = 0
-                basicSelect = paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    basicSelect = conditionSelect(tableName, condition, selectType)
+                else:
+                    basicSelect = paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
             else:
                 basicSelect = setStatus(300, {})
             return HttpResponse(json.dumps(basicSelect), content_type='application/json')
@@ -328,6 +340,8 @@ def paging4ShippingMode(request, ONE_PAGE_OF_DATA,tableName, condition, selectTy
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = ShippingMode.objects.filter(is_delete=0).count()
@@ -385,6 +399,8 @@ def paging4SettlementType(request, ONE_PAGE_OF_DATA,tableName, condition, select
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = SettlementType.objects.filter(is_delete=0).count()
@@ -442,6 +458,8 @@ def paging4Department(request, ONE_PAGE_OF_DATA,tableName, condition, selectType
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = Department.objects.filter(is_delete=0).count()
@@ -499,6 +517,8 @@ def paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = Warehouse.objects.filter(is_delete=0).count()
@@ -547,6 +567,163 @@ def paging4Warehouse(request, ONE_PAGE_OF_DATA,tableName, condition, selectType)
     pagingSelect['data'] = dataJSON
     return pagingSelect
 
+
+def conditionSelect(tableName, condition, selectType):
+    pagingSelect = {}
+    datasJSON = []
+    curPage = 1
+    allPage = 1
+    if tableName == 'shippingMode':
+        if condition == None:
+            basicsCount = ShippingMode.objects.filter(is_delete=0).count()
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicsCount = ShippingMode.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+            else:
+                basicsCount = ShippingMode.objects.filter(**condition).count()
+        if curPage > allPage or curPage < 1:
+            pagingSelect['code'] = 300
+            pagingSelect['curPage'] = curPage
+            pagingSelect['allPage'] = allPage
+            pagingSelect['data'] = 'curPage is invalid !'
+            return pagingSelect
+        if condition == None:
+            basicObjs = ShippingMode.objects.filter(is_delete=0)
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = ShippingMode.objects.filter(
+                        Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))
+            else:
+                basicObjs = ShippingMode.objects.filter(**condition)
+        for basicObj in basicObjs:
+            basicJSON = getBasicJSON(basicObj,tableName)
+            datasJSON.append(basicJSON)
+        pagingSelect['code'] = 200
+        dataJSON = {}
+        dataJSON['curPage'] = curPage
+        dataJSON['allPage'] = allPage
+        dataJSON['total'] = basicsCount
+        dataJSON['datas'] = datasJSON
+        pagingSelect['data'] = dataJSON
+    elif tableName == 'settlementType':
+        if condition == None:
+            basicsCount = SettlementType.objects.filter(is_delete=0).count()
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicsCount = SettlementType.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+            else:
+                basicsCount = SettlementType.objects.filter(**condition).count()
+        if curPage > allPage or curPage < 1:
+            pagingSelect['code'] = 300
+            pagingSelect['curPage'] = curPage
+            pagingSelect['allPage'] = allPage
+            pagingSelect['data'] = 'curPage is invalid !'
+            return pagingSelect
+        if condition == None:
+            basicObjs = SettlementType.objects.filter(is_delete=0)
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = SettlementType.objects.filter(
+                        Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))
+            else:
+                basicObjs = SettlementType.objects.filter(**condition)
+        for basicObj in basicObjs:
+            basicJSON = getBasicJSON(basicObj,tableName)
+            datasJSON.append(basicJSON)
+        pagingSelect['code'] = 200
+        dataJSON = {}
+        dataJSON['curPage'] = curPage
+        dataJSON['allPage'] = allPage
+        dataJSON['total'] = basicsCount
+        dataJSON['datas'] = datasJSON
+        pagingSelect['data'] = dataJSON
+    elif tableName == 'department':
+        if condition == None:
+            basicsCount = Department.objects.filter(is_delete=0).count()
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicsCount = Department.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+            else:
+                basicsCount = Department.objects.filter(**condition).count()
+        if curPage > allPage or curPage < 1:
+            pagingSelect['code'] = 300
+            pagingSelect['curPage'] = curPage
+            pagingSelect['allPage'] = allPage
+            pagingSelect['data'] = 'curPage is invalid !'
+            return pagingSelect
+        if condition == None:
+            basicObjs = Department.objects.filter(is_delete=0)
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = Department.objects.filter(
+                        Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))
+            else:
+                basicObjs = Department.objects.filter(**condition)
+        for basicObj in basicObjs:
+            basicJSON = getBasicJSON(basicObj,tableName)
+            datasJSON.append(basicJSON)
+        pagingSelect['code'] = 200
+        dataJSON = {}
+        dataJSON['curPage'] = curPage
+        dataJSON['allPage'] = allPage
+        dataJSON['total'] = basicsCount
+        dataJSON['datas'] = datasJSON
+        pagingSelect['data'] = dataJSON
+    elif tableName == 'warehouse':
+        if condition == None:
+            basicsCount = Warehouse.objects.filter(is_delete=0).count()
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicsCount = Warehouse.objects.filter(Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo)).count()
+            else:
+                basicsCount = Warehouse.objects.filter(**condition).count()
+        if curPage > allPage or curPage < 1:
+            pagingSelect['code'] = 300
+            pagingSelect['curPage'] = curPage
+            pagingSelect['allPage'] = allPage
+            pagingSelect['data'] = 'curPage is invalid !'
+            return pagingSelect
+        if condition == None:
+            basicObjs = Warehouse.objects.filter(is_delete=0)
+        else:
+            if 'timeFrom' in selectType and 'timeTo' in selectType:
+                timeFrom = selectType['timeFrom']
+                timeTo = selectType['timeTo']
+                basicObjs = Warehouse.objects.filter(
+                        Q(**condition) & Q(operator_time__gte=timeFrom) & Q(operator_time__lte=timeTo))
+            else:
+                basicObjs = Warehouse.objects.filter(**condition)
+        for basicObj in basicObjs:
+            basicJSON = getBasicJSON(basicObj,tableName)
+            datasJSON.append(basicJSON)
+        pagingSelect['code'] = 200
+        dataJSON = {}
+        dataJSON['curPage'] = curPage
+        dataJSON['allPage'] = allPage
+        dataJSON['total'] = basicsCount
+        dataJSON['datas'] = datasJSON
+        pagingSelect['data'] = dataJSON
+    else:
+        pagingSelect['code'] = 300
+        dataJSON['curPage'] = curPage
+        dataJSON['allPage'] = allPage
+        dataJSON['total'] = 0
+        dataJSON['datas'] = "invalid 'tableName'"
+    return pagingSelect
 
 def getBasicJSON(basicObj,tableName):
     basicJSON = {}

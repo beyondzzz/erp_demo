@@ -13,6 +13,7 @@ from django.db.models import Q
 reload(sys)
 sys.setdefaultencoding('utf-8')
 ONE_PAGE_OF_DATA = 10
+logRecord = basic_log.Logger('record')
 
 def procurePlanInsert(request):
     try:
@@ -289,11 +290,13 @@ def procurePlanInsert(request):
             procure.identifier = identifier + str(procure.id)
             procure.save()
             if 'procureCommodities' in json2Dict:
+
                 procure_commodities = json2Dict['procureCommodities']
+                logRecord.log("debug:" + str(procure_commodities))
                 for procure_commodity in procure_commodities:
-                    if 'commodityID' in procure_commodity:
-                        if isValid(procure_commodity['commodityID']):
-                            commodity_id = int(procure_commodity['commodityID'])
+                    if 'specificationID' in procure_commodity:
+                        if isValid(procure_commodity['specificationID']):
+                            commodity_id = int(procure_commodity['specificationID'])
                         else:
                             commodity_id = 0
                     else:
@@ -457,251 +460,253 @@ def procurePlanDelete(request):
 def procurePlanUpdate(request):
     try:
         if isTokenExpired(request):
-            json2Dict = json.loads(request.body)
-            identifier = json2Dict['identifier']
-            procures = ProcureTable.objects.filter(identifier=identifier)
-            if len(procures) > 0:
-                procure = procures[0]
-            else:
-                procurePlanUpdate = setStatus(300, {})
-                return HttpResponse(json.dumps(procurePlanUpdate), content_type='application/json')
-            if 'supctoID' in json2Dict:
-                if isValid(json2Dict['supctoID']):
-                    supcto_id = int(json2Dict['supctoID'])
-                    procure.supcto_id = supcto_id
-            if 'effectivePeriodEnd' in json2Dict:
-                if isValid(json2Dict['effectivePeriodEnd']):
-                    effective_period_end_str = json2Dict['effectivePeriodEnd']
-                    effective_period_end = time.strptime(effective_period_end_str, '%Y-%m-%d')
-                    effective_period_end = datetime.datetime(*effective_period_end[:3]).date()
-                    procure.effective_period_end = effective_period_end
-            if 'goodsArrivalTime' in json2Dict:
-                if isValid(json2Dict['goodsArrivalTime']):
-                    goods_arrival_time_str = json2Dict['goodsArrivalTime']
-                    goods_arrival_time = time.strptime(goods_arrival_time_str, '%Y-%m-%d')
-                    goods_arrival_time = datetime.datetime(*goods_arrival_time[:3]).date()
-                    procure.goods_arrival_time = goods_arrival_time
-            if 'goodsArrivalPlace' in json2Dict:
-                if isValid(json2Dict['goodsArrivalPlace']):
-                    goods_arrival_place = json2Dict['goodsArrivalPlace']
-                    procure.goods_arrival_place = goods_arrival_place
-            if 'transportationMode' in json2Dict:
-                if isValid(json2Dict['transportationMode']):
-                    transportation_mode = int(json2Dict['transportationMode'])
-                    procure.transportation_mode = transportation_mode
-            if 'deliveryman' in json2Dict:
-                if isValid(json2Dict['deliveryman']):
-                    deliveryman = json2Dict['deliveryman']
-                    procure.deliveryman = deliveryman
-            if 'fax' in json2Dict:
-                if isValid(json2Dict['fax']):
-                    fax = json2Dict['fax']
-                    procure.fax = fax
-            if 'phone' in json2Dict:
-                if isValid(json2Dict['phone']):
-                    phone = json2Dict['phone']
-                    procure.phone = phone
-            if 'orderer' in json2Dict:
-                if isValid(json2Dict['orderer']):
-                    orderer = json2Dict['orderer']
-                    procure.orderer = orderer
-            if 'prepaidAmount' in json2Dict:
-                if isValid(json2Dict['prepaidAmount']):
-                    prepaid_amount = atof(json2Dict['prepaidAmount'])
-                    procure.prepaid_amount = prepaid_amount
-            if 'departmentID' in json2Dict:
-                if isValid(json2Dict['departmentID']):
-                    department_id = int(json2Dict['departmentID'])
-                    procure.department_id = department_id
-            if 'originator' in json2Dict:
-                if isValid(json2Dict['originator']):
-                    originator = json2Dict['originator']
-                    procure.originator = originator
-            if 'reviewer' in json2Dict:
-                if isValid(json2Dict['reviewer']):
-                    reviewer = json2Dict['reviewer']
-                    procure.reviewer = reviewer
-            if 'terminator' in json2Dict:
-                if isValid(json2Dict['terminator']):
-                    terminator = json2Dict['terminator']
-                    procure.terminator = terminator
-            if 'summary' in json2Dict:
-                if isValid(json2Dict['summary']):
-                    summary = json2Dict['summary']
-                    procure.summary = summary
-            if 'branch' in json2Dict:
-                if isValid(json2Dict['branch']):
-                    branch = json2Dict['branch']
-                    procure.branch = branch
-            if 'state' in json2Dict:
-                if isValid(json2Dict['state']):
-                    state = int(json2Dict['state'])
-                    procure.state = state
-            if 'printNum' in json2Dict:
-                if isValid(json2Dict['printNum']):
-                    print_num = int(json2Dict['printNum'])
-                    procure.print_num = print_num
-            if 'planType' in json2Dict:
-                if isValid(json2Dict['planType']):
-                    plan_type = int(json2Dict['planType'])
-                    procure.plan_type = plan_type
-            if 'payType' in json2Dict:
-                if isValid(json2Dict['payType']):
-                    pay_type = int(json2Dict['payType'])
-                    procure.pay_type = pay_type
-            if 'contractNumber' in json2Dict:
-                if isValid(json2Dict['contractNumber']):
-                    contract_number = json2Dict['contractNumber']
-                    procure.contract_number = contract_number
-            if 'planOrOrder' in json2Dict:
-                if isValid(json2Dict['planOrOrder']):
-                    plan_or_order = int(json2Dict['planOrOrder'])
-                    procure.plan_or_order = plan_or_order
-            if 'beforeIsPlan' in json2Dict:
-                if isValid(json2Dict['beforeIsPlan']):
-                    before_is_plan = int(json2Dict['beforeIsPlan'])
-                    procure.before_is_plan = before_is_plan
-            if 'paymentEvidence1' in json2Dict:
-                if isValid(json2Dict['paymentEvidence1']):
-                    payment_evidence1 = json2Dict['paymentEvidence1']
-                    procure.payment_evidence1 = payment_evidence1
-            if 'paymentEvidence2' in json2Dict:
-                if isValid(json2Dict['paymentEvidence2']):
-                    payment_evidence2 = json2Dict['paymentEvidence2']
-                    procure.payment_evidence2 = payment_evidence2
-            if 'paymentEvidence3' in json2Dict:
-                if isValid(json2Dict['paymentEvidence3']):
-                    payment_evidence3 = json2Dict['paymentEvidence3']
-                    procure.payment_evidence3 = payment_evidence3
-            if 'paymentEvidence4' in json2Dict:
-                if isValid(json2Dict['paymentEvidence4']):
-                    payment_evidence4 = json2Dict['paymentEvidence4']
-                    procure.payment_evidence4 = payment_evidence4
-            if 'paymentEvidence5' in json2Dict:
-                if isValid(json2Dict['paymentEvidence5']):
-                    payment_evidence5 = json2Dict['paymentEvidence5']
-                    procure.payment_evidence5 = payment_evidence5
-            if 'paymentEvidence6' in json2Dict:
-                if isValid(json2Dict['paymentEvidence6']):
-                    payment_evidence6 = json2Dict['paymentEvidence6']
-                    procure.payment_evidence6 = payment_evidence6
-            if 'parentID' in json2Dict:
-                if isValid(json2Dict['parentID']):
-                    parent_id = int(json2Dict['parentID'])
-                    procure.parent_id = parent_id
-            if 'order_type' in json2Dict:
-                if isValid(json2Dict['order_type']):
-                    orderType = int(json2Dict['orderType'])
-                    procure.order_type = orderType
-            if 'postfix' in json2Dict:
-                if isValid(json2Dict['postfix']):
-                    postfix = int(json2Dict['postfix'])
-                    procure.postfix = postfix
-            if 'isVerification' in json2Dict:
-                if isValid(json2Dict['isVerification']):
-                    is_verification = json2Dict['isVerification']
-                    procure.is_verification = is_verification
-            if 'activityID' in json2Dict:
-                if isValid(json2Dict['activityID']):
-                    activity_id = int(json2Dict['activityID'])
-                    procure.activity_id = activity_id
-            if 'isAppOrder' in json2Dict:
-                if isValid(json2Dict['isAppOrder']):
-                    is_app_order = int(json2Dict['isAppOrder'])
-                    procure.is_app_order = is_app_order
-            if 'financialReviewer' in json2Dict:
-                if isValid(json2Dict['financialReviewer']):
-                    financial_reviewer = json2Dict['financialReviewer']
-                    procure.financial_reviewer = financial_reviewer
-            if 'isOtherReceipts' in json2Dict:
-                if isValid(json2Dict['isOtherReceipts']):
-                    is_other_receipts = int(json2Dict['isOtherReceipts'])
-                    procure.is_other_receipts = is_other_receipts
-            procure.save()
-            if 'procureCommodities' in json2Dict:
-                procure_commodities = json2Dict['procureCommodities']
-                for procure_commodity in procure_commodities:
-                    if 'procureCommodityID' in procure_commodity:
-                        procure_commodity_id = procure_commodity['procureCommodityID']
-                        procureCommodities = ProcureCommodity.objects.filter(id=procure_commodity_id)
-                        if len(procureCommodities) > 0:
-                            procureCommodity = procureCommodities[0]
+            jsonList = json.loads(request.body)
+            for json2Dict in jsonList:
+
+                identifier = json2Dict['identifier']
+                procures = ProcureTable.objects.filter(identifier=identifier)
+                if len(procures) > 0:
+                    procure = procures[0]
+                else:
+                    procurePlanUpdate = setStatus(300, {})
+                    return HttpResponse(json.dumps(procurePlanUpdate), content_type='application/json')
+                if 'supctoID' in json2Dict:
+                    if isValid(json2Dict['supctoID']):
+                        supcto_id = int(json2Dict['supctoID'])
+                        procure.supcto_id = supcto_id
+                if 'effectivePeriodEnd' in json2Dict:
+                    if isValid(json2Dict['effectivePeriodEnd']):
+                        effective_period_end_str = json2Dict['effectivePeriodEnd']
+                        effective_period_end = time.strptime(effective_period_end_str, '%Y-%m-%d')
+                        effective_period_end = datetime.datetime(*effective_period_end[:3]).date()
+                        procure.effective_period_end = effective_period_end
+                if 'goodsArrivalTime' in json2Dict:
+                     if isValid(json2Dict['goodsArrivalTime']):
+                         goods_arrival_time_str = json2Dict['goodsArrivalTime']
+                         goods_arrival_time = time.strptime(goods_arrival_time_str, '%Y-%m-%d')
+                         goods_arrival_time = datetime.datetime(*goods_arrival_time[:3]).date()
+                         procure.goods_arrival_time = goods_arrival_time
+                if 'goodsArrivalPlace' in json2Dict:
+                    if isValid(json2Dict['goodsArrivalPlace']):
+                        goods_arrival_place = json2Dict['goodsArrivalPlace']
+                        procure.goods_arrival_place = goods_arrival_place
+                if 'transportationMode' in json2Dict:
+                    if isValid(json2Dict['transportationMode']):
+                        transportation_mode = int(json2Dict['transportationMode'])
+                        procure.transportation_mode = transportation_mode
+                if 'deliveryman' in json2Dict:
+                    if isValid(json2Dict['deliveryman']):
+                        deliveryman = json2Dict['deliveryman']
+                        procure.deliveryman = deliveryman
+                if 'fax' in json2Dict:
+                    if isValid(json2Dict['fax']):
+                        fax = json2Dict['fax']
+                        procure.fax = fax
+                if 'phone' in json2Dict:
+                    if isValid(json2Dict['phone']):
+                        phone = json2Dict['phone']
+                        procure.phone = phone
+                if 'orderer' in json2Dict:
+                    if isValid(json2Dict['orderer']):
+                        orderer = json2Dict['orderer']
+                        procure.orderer = orderer
+                if 'prepaidAmount' in json2Dict:
+                    if isValid(json2Dict['prepaidAmount']):
+                        prepaid_amount = atof(json2Dict['prepaidAmount'])
+                        procure.prepaid_amount = prepaid_amount
+                if 'departmentID' in json2Dict:
+                    if isValid(json2Dict['departmentID']):
+                        department_id = int(json2Dict['departmentID'])
+                        procure.department_id = department_id
+                if 'originator' in json2Dict:
+                    if isValid(json2Dict['originator']):
+                        originator = json2Dict['originator']
+                        procure.originator = originator
+                if 'reviewer' in json2Dict:
+                    if isValid(json2Dict['reviewer']):
+                        reviewer = json2Dict['reviewer']
+                        procure.reviewer = reviewer
+                if 'terminator' in json2Dict:
+                    if isValid(json2Dict['terminator']):
+                        terminator = json2Dict['terminator']
+                        procure.terminator = terminator
+                if 'summary' in json2Dict:
+                    if isValid(json2Dict['summary']):
+                        summary = json2Dict['summary']
+                        procure.summary = summary
+                if 'branch' in json2Dict:
+                    if isValid(json2Dict['branch']):
+                        branch = json2Dict['branch']
+                        procure.branch = branch
+                if 'state' in json2Dict:
+                    if isValid(json2Dict['state']):
+                        state = int(json2Dict['state'])
+                        procure.state = state
+                if 'printNum' in json2Dict:
+                    if isValid(json2Dict['printNum']):
+                        print_num = int(json2Dict['printNum'])
+                        procure.print_num = print_num
+                if 'planType' in json2Dict:
+                    if isValid(json2Dict['planType']):
+                        plan_type = int(json2Dict['planType'])
+                        procure.plan_type = plan_type
+                if 'payType' in json2Dict:
+                    if isValid(json2Dict['payType']):
+                        pay_type = int(json2Dict['payType'])
+                        procure.pay_type = pay_type
+                if 'contractNumber' in json2Dict:
+                    if isValid(json2Dict['contractNumber']):
+                        contract_number = json2Dict['contractNumber']
+                        procure.contract_number = contract_number
+                if 'planOrOrder' in json2Dict:
+                    if isValid(json2Dict['planOrOrder']):
+                        plan_or_order = int(json2Dict['planOrOrder'])
+                        procure.plan_or_order = plan_or_order
+                if 'beforeIsPlan' in json2Dict:
+                    if isValid(json2Dict['beforeIsPlan']):
+                        before_is_plan = int(json2Dict['beforeIsPlan'])
+                        procure.before_is_plan = before_is_plan
+                if 'paymentEvidence1' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence1']):
+                        payment_evidence1 = json2Dict['paymentEvidence1']
+                        procure.payment_evidence1 = payment_evidence1
+                if 'paymentEvidence2' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence2']):
+                        payment_evidence2 = json2Dict['paymentEvidence2']
+                        procure.payment_evidence2 = payment_evidence2
+                if 'paymentEvidence3' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence3']):
+                        payment_evidence3 = json2Dict['paymentEvidence3']
+                        procure.payment_evidence3 = payment_evidence3
+                if 'paymentEvidence4' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence4']):
+                        payment_evidence4 = json2Dict['paymentEvidence4']
+                        procure.payment_evidence4 = payment_evidence4
+                if 'paymentEvidence5' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence5']):
+                        payment_evidence5 = json2Dict['paymentEvidence5']
+                        procure.payment_evidence5 = payment_evidence5
+                if 'paymentEvidence6' in json2Dict:
+                    if isValid(json2Dict['paymentEvidence6']):
+                        payment_evidence6 = json2Dict['paymentEvidence6']
+                        procure.payment_evidence6 = payment_evidence6
+                if 'parentID' in json2Dict:
+                    if isValid(json2Dict['parentID']):
+                        parent_id = int(json2Dict['parentID'])
+                        procure.parent_id = parent_id
+                if 'order_type' in json2Dict:
+                    if isValid(json2Dict['order_type']):
+                        orderType = int(json2Dict['orderType'])
+                        procure.order_type = orderType
+                if 'postfix' in json2Dict:
+                    if isValid(json2Dict['postfix']):
+                        postfix = int(json2Dict['postfix'])
+                        procure.postfix = postfix
+                if 'isVerification' in json2Dict:
+                    if isValid(json2Dict['isVerification']):
+                        is_verification = json2Dict['isVerification']
+                        procure.is_verification = is_verification
+                if 'activityID' in json2Dict:
+                    if isValid(json2Dict['activityID']):
+                        activity_id = int(json2Dict['activityID'])
+                        procure.activity_id = activity_id
+                if 'isAppOrder' in json2Dict:
+                    if isValid(json2Dict['isAppOrder']):
+                        is_app_order = int(json2Dict['isAppOrder'])
+                        procure.is_app_order = is_app_order
+                if 'financialReviewer' in json2Dict:
+                    if isValid(json2Dict['financialReviewer']):
+                        financial_reviewer = json2Dict['financialReviewer']
+                        procure.financial_reviewer = financial_reviewer
+                if 'isOtherReceipts' in json2Dict:
+                    if isValid(json2Dict['isOtherReceipts']):
+                        is_other_receipts = int(json2Dict['isOtherReceipts'])
+                        procure.is_other_receipts = is_other_receipts
+                procure.save()
+                if 'procureCommodities' in json2Dict:
+                    procure_commodities = json2Dict['procureCommodities']
+                    for procure_commodity in procure_commodities:
+                        if 'procureCommodityID' in procure_commodity:
+                            procure_commodity_id = procure_commodity['procureCommodityID']
+                            procureCommodities = ProcureCommodity.objects.filter(id=procure_commodity_id)
+                            if len(procureCommodities) > 0:
+                                procureCommodity = procureCommodities[0]
+                            else:
+                                procurePlanUpdate = setStatus(300, {})
+                                return HttpResponse(json.dumps(procurePlanUpdate), content_type='application/json')
                         else:
-                            procurePlanUpdate = setStatus(300, {})
-                            return HttpResponse(json.dumps(procurePlanUpdate), content_type='application/json')
-                    else:
-                        continue
-                    if 'commodityID' in procure_commodity:
-                        if isValid(procure_commodity['commodityID']):
-                            commodity_id = int(procure_commodity['commodityID'])
-                            procureCommodity.commodity_id = commodity_id
-                    if 'taxRate' in procure_commodity:
-                        if isValid(procure_commodity['taxRate']):
-                            tax_rate = atof(procure_commodity['taxRate'])
-                            procureCommodity.tax_rate = tax_rate
-                    if 'amountOfTax' in procure_commodity:
-                        if isValid(procure_commodity['amountOfTax']):
-                            amount_of_tax = atof(procure_commodity['amountOfTax'])
-                            procureCommodity.amount_of_tax = amount_of_tax
-                    if 'totalTaxPrice' in procure_commodity:
-                        if isValid(procure_commodity['totalTaxPrice']):
-                            total_tax_price = atof(procure_commodity['totalTaxPrice'])
-                            procureCommodity.total_tax_price = total_tax_price
-                    if 'orderNum' in procure_commodity:
-                        if isValid(procure_commodity['orderNum']):
-                            order_num = int(procure_commodity['orderNum'])
-                            procureCommodity.order_num = order_num
-                    if 'lotNumber' in procure_commodity:
-                        if isValid(procure_commodity['lotNumber']):
-                            lot_number = procure_commodity['lotNumber']
-                            procureCommodity.lot_number = lot_number
-                    if 'arrivalQuantity' in procure_commodity:
-                        if isValid(procure_commodity['arrivalQuantity']):
-                            arrival_quantity = int(procure_commodity['arrivalQuantity'])
-                            procureCommodity.arrival_quantity = arrival_quantity
-                    if 'suspendQuantity' in procure_commodity:
-                        if isValid(procure_commodity['suspendQuantity']):
-                            suspend_quantity = int(procure_commodity['suspendQuantity'])
-                            procureCommodity.suspend_quantity = suspend_quantity
-                    if 'suspendPrice' in procure_commodity:
-                        if isValid(procure_commodity['suspendPrice']):
-                            suspend_price = atof(procure_commodity['suspendPrice'])
-                            procureCommodity.suspend_price = suspend_price
-                    if 'discount' in procure_commodity:
-                        if isValid(procure_commodity['discount']):
-                            discount = int(procure_commodity['discount'])
-                            procureCommodity.discount = discount
-                    if 'isLargess' in procure_commodity:
-                        if isValid(procure_commodity['isLargess']):
-                            is_largess = int(procure_commodity['isLargess'])
-                            procureCommodity.is_largess = is_largess
-                    if 'originalUnitPrice' in procure_commodity:
-                        if isValid(procure_commodity['originalUnitPrice']):
-                            original_unit_price = atof(procure_commodity['originalUnitPrice'])
-                            procureCommodity.original_unit_price = original_unit_price
-                    if 'businessUnitPrice' in procure_commodity:
-                        if isValid(procure_commodity['businessUnitPrice']):
-                            business_unit_price = atof(procure_commodity['businessUnitPrice'])
-                            procureCommodity.business_unit_price = business_unit_price
-                    if 'remarks' in procure_commodity:
-                        if isValid(procure_commodity['remarks']):
-                            remarks = procure_commodity['remarks']
-                            procureCommodity.remarks = remarks
-                    if 'containsTaxPrice' in procure_commodity:
-                        if isValid(procure_commodity['containsTaxPrice']):
-                            contains_tax_price = atof(procure_commodity['containsTaxPrice'])
-                            procureCommodity.contains_tax_price = contains_tax_price
-                    if 'paymentForGoods' in procure_commodity:
-                        if isValid(procure_commodity['paymentForGoods']):
-                            payment_for_goods = atof(procure_commodity['paymentForGoods'])
-                            procureCommodity.payment_for_goods = payment_for_goods
-                    if 'totalPrice' in procure_commodity:
-                        if isValid(procure_commodity['totalPrice']):
-                            total_price = atof(procure_commodity['totalPrice'])
-                            procureCommodity.total_price = total_price
-                    procureCommodity.save()
-            procureJSON = getProcure(procure)
-            procurePlanUpdate = setStatus(200,procureJSON)
+                            continue
+                        if 'commodityID' in procure_commodity:
+                            if isValid(procure_commodity['commodityID']):
+                                commodity_id = int(procure_commodity['commodityID'])
+                                procureCommodity.commodity_id = commodity_id
+                        if 'taxRate' in procure_commodity:
+                            if isValid(procure_commodity['taxRate']):
+                                tax_rate = atof(procure_commodity['taxRate'])
+                                procureCommodity.tax_rate = tax_rate
+                        if 'amountOfTax' in procure_commodity:
+                            if isValid(procure_commodity['amountOfTax']):
+                                amount_of_tax = atof(procure_commodity['amountOfTax'])
+                                procureCommodity.amount_of_tax = amount_of_tax
+                        if 'totalTaxPrice' in procure_commodity:
+                            if isValid(procure_commodity['totalTaxPrice']):
+                                total_tax_price = atof(procure_commodity['totalTaxPrice'])
+                                procureCommodity.total_tax_price = total_tax_price
+                        if 'orderNum' in procure_commodity:
+                            if isValid(procure_commodity['orderNum']):
+                                order_num = int(procure_commodity['orderNum'])
+                                procureCommodity.order_num = order_num
+                        if 'lotNumber' in procure_commodity:
+                            if isValid(procure_commodity['lotNumber']):
+                                lot_number = procure_commodity['lotNumber']
+                                procureCommodity.lot_number = lot_number
+                        if 'arrivalQuantity' in procure_commodity:
+                            if isValid(procure_commodity['arrivalQuantity']):
+                                arrival_quantity = int(procure_commodity['arrivalQuantity'])
+                                procureCommodity.arrival_quantity = arrival_quantity
+                        if 'suspendQuantity' in procure_commodity:
+                            if isValid(procure_commodity['suspendQuantity']):
+                                suspend_quantity = int(procure_commodity['suspendQuantity'])
+                                procureCommodity.suspend_quantity = suspend_quantity
+                        if 'suspendPrice' in procure_commodity:
+                            if isValid(procure_commodity['suspendPrice']):
+                                suspend_price = atof(procure_commodity['suspendPrice'])
+                                procureCommodity.suspend_price = suspend_price
+                        if 'discount' in procure_commodity:
+                            if isValid(procure_commodity['discount']):
+                                discount = int(procure_commodity['discount'])
+                                procureCommodity.discount = discount
+                        if 'isLargess' in procure_commodity:
+                            if isValid(procure_commodity['isLargess']):
+                                is_largess = int(procure_commodity['isLargess'])
+                                procureCommodity.is_largess = is_largess
+                        if 'originalUnitPrice' in procure_commodity:
+                            if isValid(procure_commodity['originalUnitPrice']):
+                                original_unit_price = atof(procure_commodity['originalUnitPrice'])
+                                procureCommodity.original_unit_price = original_unit_price
+                        if 'businessUnitPrice' in procure_commodity:
+                            if isValid(procure_commodity['businessUnitPrice']):
+                                business_unit_price = atof(procure_commodity['businessUnitPrice'])
+                                procureCommodity.business_unit_price = business_unit_price
+                        if 'remarks' in procure_commodity:
+                            if isValid(procure_commodity['remarks']):
+                                remarks = procure_commodity['remarks']
+                                procureCommodity.remarks = remarks
+                        if 'containsTaxPrice' in procure_commodity:
+                            if isValid(procure_commodity['containsTaxPrice']):
+                                contains_tax_price = atof(procure_commodity['containsTaxPrice'])
+                                procureCommodity.contains_tax_price = contains_tax_price
+                        if 'paymentForGoods' in procure_commodity:
+                            if isValid(procure_commodity['paymentForGoods']):
+                                payment_for_goods = atof(procure_commodity['paymentForGoods'])
+                                procureCommodity.payment_for_goods = payment_for_goods
+                        if 'totalPrice' in procure_commodity:
+                            if isValid(procure_commodity['totalPrice']):
+                                total_price = atof(procure_commodity['totalPrice'])
+                                procureCommodity.total_price = total_price
+                        procureCommodity.save()
+                procureJSON = getProcure(procure)
+                procurePlanUpdate = setStatus(200,procureJSON)
         else:
             return notTokenExpired()
     except Exception,e:
@@ -724,8 +729,10 @@ def procurePlanSelect(request):
                     condition['supcto_id'] = int(request.GET['supctoID'])
                 if 'commodityID' in request.GET and isValid(request.GET['commodityID']):
                     condition['commodity_id'] = int(request.GET['commodityID'])
-                if 'playOrOrder' in request.GET and isValid(request.GET['playOrOrder']):
-                    condition['play_or_order'] = int(request.GET['playOrOrder'])
+                if 'planOrOrder' in request.GET and isValid(request.GET['planOrOrder']):
+                    condition['plan_or_order'] = int(request.GET['planOrOrder'])
+                if 'state' in request.GET and isValid(request.GET['state']):
+                    condition['state__in'] = request.GET['state'].split(",")
                 condition['is_delete'] = 0
                 if 'queryTime' in request.GET and isValid(request.GET['queryTime']):
                     queryTime = request.GET['queryTime']
@@ -733,7 +740,10 @@ def procurePlanSelect(request):
                     timeTo = queryTime.split('~')[1].strip()
                     selectType['timeFrom'] = timeFrom + ' 00:00:00'
                     selectType['timeTo'] = timeTo + ' 23:59:59'
-                procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                if 'noPaging' in request.GET and request.GET['noPaging'] == "true":
+                    procurePlanSelect = conditionSelect(condition, selectType)
+                else:
+                    procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
             else:
                 procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:
@@ -835,6 +845,8 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType):
         curPage = int(request.GET['curPage'])
     else:
         curPage = 1
+    if 'sizePage' in request.GET:
+        ONE_PAGE_OF_DATA = int(request.GET['sizePage'])
     allPage = 1
     if condition == None:
         basicsCount = ProcureTable.objects.filter(is_delete=0).count()
@@ -872,6 +884,51 @@ def paging(request, ONE_PAGE_OF_DATA, condition, selectType):
                     Q(**condition) & Q(generate_date__gte=timeFrom) & Q(generate_date__lte=timeTo))[startPos:endPos]
         else:
             basicObjs = ProcureTable.objects.filter(**condition)[startPos:endPos]
+    for basicObj in basicObjs:
+        basicJSON = getProcure(basicObj)
+        datasJSON.append(basicJSON)
+    pagingSelect['code'] = 200
+    dataJSON = {}
+    dataJSON['curPage'] = curPage
+    dataJSON['allPage'] = allPage
+    dataJSON['total'] = basicsCount
+    dataJSON['datas'] = datasJSON
+    pagingSelect['data'] = dataJSON
+    return pagingSelect
+
+
+def conditionSelect(condition, selectType):
+    pagingSelect = {}
+    datasJSON = []
+    curPage = 1
+    allPage = 1
+    if condition == None:
+        basicsCount = ProcureTable.objects.filter(is_delete=0).count()
+    else:
+        if 'timeFrom' in selectType and 'timeTo' in selectType:
+            timeFrom = selectType['timeFrom']
+            timeTo = selectType['timeTo']
+            basicsCount = ProcureTable.objects.filter(
+                Q(**condition) & Q(generate_date__gte=timeFrom) & Q(generate_date__lte=timeTo)).count()
+        else:
+            basicsCount = ProcureTable.objects.filter(**condition).count()
+    if curPage > allPage or curPage < 1:
+        pagingSelect['code'] = 300
+        pagingSelect['curPage'] = curPage
+        pagingSelect['allPage'] = allPage
+        pagingSelect['data'] = 'curPage is invalid !'
+        return pagingSelect
+    startPos = (curPage - 1) * ONE_PAGE_OF_DATA
+    endPos = startPos + ONE_PAGE_OF_DATA
+    if condition == None:
+        basicObjs = ProcureTable.objects.filter(is_delete=0)
+    else:
+        if 'timeFrom' in selectType and 'timeTo' in selectType:
+            timeFrom = selectType['timeFrom']
+            timeTo = selectType['timeTo']
+            basicObjs = ProcureTable.objects.filter(Q(**condition) & Q(generate_date__gte=timeFrom) & Q(generate_date__lte=timeTo))
+        else:
+            basicObjs = ProcureTable.objects.filter(**condition)
     for basicObj in basicObjs:
         basicJSON = getProcure(basicObj)
         datasJSON.append(basicJSON)

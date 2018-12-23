@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^api/basic/procurePlan/update$', procurePlan.procurePlanUpdate),
     url(r'^api/basic/procurePlan/select$', procurePlan.procurePlanSelect),
     url(r'^api/basic/procurePlan/upload$', procurePlan.procureUpload),
+    url(r'^api/basic/procurePlan/getPDF$', procurePlan.getProcurePDFByID),
     url(r'^api/basic/salesPlan/insert$', salesPlan.salesPlanInsert),
     url(r'^api/basic/salesPlan/delete$', salesPlan.salesPlanDelete),
     url(r'^api/basic/salesPlan/update$', salesPlan.salesPlanUpdate),

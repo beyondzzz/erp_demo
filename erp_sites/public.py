@@ -8,6 +8,26 @@ from erp_sites import basic_log
 from django.http import HttpResponse
 from erp_sites.models import Classification,ProcureTable,ProcureTable,ProcureCommodity,Supcto,SupctoCommodity,Commodity,CommoditySpecification,Person,Permission,Inventory,Unit,Classification,SalesPlanOrder,SalesPlanOrderCommodity,SalesOrder,SalesOrderCommodity,AllotOrder,AllotOrderCommodity,TakeStockOrder,TakeStockOrderCommodity,PackageOrTeardownOrder,PackageOrTeardownOrderCommodity,Bills,BillsSub,Writeoff,WriteoffSub,BreakageOrder,BreakageOrderCommodity,PersonToken,Department,Goods,Log
 from erp.settings import BASE_DIR
+from django.http.response import StreamingHttpResponse
+
+logErr = basic_log.Logger('error')
+
+
+def toStream(filePath,downloadName):
+    response = StreamingHttpResponse(__file_iterator(filePath))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(downloadName)
+    return response
+
+
+def __file_iterator(file_path, chunk_size=512):
+        with open(file_path) as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
 
 
 def writeLog(operateType,operateObject,operatorIdentifier):
@@ -87,7 +107,7 @@ def notTokenExpired():
     logErr = basic_log.Logger('error')
     #logErr.log('token is not valid')
     tokenErrors = {}
-    tokenErrors['code'] = 500
+    tokenErrors['code'] = 401
     tokenErrors['data'] = 'tokenValue is incorrect or please login again'
     return HttpResponse(json.dumps(tokenErrors), content_type='application/json')
 
@@ -95,7 +115,7 @@ def setStatus(code,data):
     setStatus = {}
     if code == 200:
         message = 'success'
-    elif code == 300:
+    elif code == 402:
         message = 'invalid'
     else:
         message = 'failed'
@@ -103,6 +123,32 @@ def setStatus(code,data):
     setStatus['message'] = message
     setStatus['data'] = data
     return setStatus
+
+def uploadFile(request):
+    try:
+        if isTokenExpired(request):
+            if request.method == 'POST':
+                #json2Dict = json.loads(request.body)
+                uploadDate = time.strftime("%Y-%m-%d",time.localtime(time.time()))
+                #uploadDate = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+                file = request.FILES['file']
+                fileName = file.name.split('.')[0] + str(int(time.time())) +'.'+ file.name.split('.')[1]
+                fileType = 'png'    #file.name.split('.')[1]
+                modeType = 'file'
+                filePath = touchFile(file,modeType,fileType,str(uploadDate),fileName)
+                statusReturn = setStatus(200, {"filePath":filePath})
+            else:
+                statusReturn = setStatus(402, {"msg": "need post request"})
+
+        else:
+            statusReturn = setStatus(401, {"msg": "invalid token"})
+        return HttpResponse(json.dumps(statusReturn), content_type='application/json')
+    except Exception,e:
+        logErr.log(traceback.format_exc())
+        transaction.rollback()
+        statusReturn = setStatus(500,traceback.format_exc())
+        return HttpResponse(json.dumps(statusReturn), content_type='application/json')
+
 
 
 def touchFile(docFile,modelType,fileType,uploadDate_str,fileName):
@@ -135,13 +181,6 @@ def isValid(param):
         return True
     else:
         return False
-    
-    
-def toStream(filePath,downloadName):
-    response = StreamingHttpResponse(__file_iterator(filePath))
-    response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(downloadName)
-    return response
         
         
 def getCommoditySpecification(commodity_specification_id):

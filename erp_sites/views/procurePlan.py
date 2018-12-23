@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from erp_sites import basic_log
 from erp_sites.public import setStatus,isTokenExpired,notTokenExpired,touchFile,getProcure,isValid,toStream
 import traceback
-from erp_sites.models import ProcureTable,ProcureCommodity
+from erp.settings import BASE_DIR
+from erp_sites.models import ProcureTable,ProcureCommodity,Supcto,CommoditySpecification,Department
 from django.db.models import Q
 from reportlab.pdfbase import pdfmetrics  
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont  
@@ -291,7 +292,7 @@ def procurePlanInsert(request):
                     is_other_receipts = 0
             else:
                 is_other_receipts = 0
-            procure = ProcureTable(None,identifier,generate_date,supcto_id,effective_period_end,goods_arrival_time,goods_arrival_place,transportation_mode,deliveryman,fax,phone,orderer,prepaid_amount,department_id,originator,reviewer,terminator,summary,branch,state,print_num,plan_type,pay_type,contract_number,plan_or_order,before_is_plan,payment_evidence1,payment_evidence2,payment_evidence3,payment_evidence4,payment_evidence5,payment_evidence6,is_delete,parent_id,order_type,postfix,is_verification,activity_id ,is_app_order,financial_reviewer,is_other_receipts)
+            procure = ProcureTable(None,identifier,generate_date,supcto_id,effective_period_end,goods_arrival_time,goods_arrival_place,transportation_mode,deliveryman,fax,phone,procurePlaner,prepaid_amount,department_id,originator,reviewer,terminator,summary,branch,state,print_num,plan_type,pay_type,contract_number,plan_or_procurePlan,before_is_plan,payment_evidence1,payment_evidence2,payment_evidence3,payment_evidence4,payment_evidence5,payment_evidence6,is_delete,parent_id,procurePlan_type,postfix,is_verification,activity_id ,is_app_procurePlan,financial_reviewer,is_other_receipts)
             procure.save()
             procure.identifier = identifier + str(procure.id)
             procure.save()
@@ -844,16 +845,24 @@ def procureUpload(request):
 
 def getProcurePDFByID(request):
     try:
-        if isTokenExpired(request):
+        #if isTokenExpired(request):
             getProcurePDF = {}
-            pdf  = order2PDF(orderBasic)
-            if pdf['status'] == 0:
-                pdfPath = pdf['data']
-                downloadName = 'export_procure.pdf'
-                response = toStream(pdfPath,downloadName)
-                return response
+            procurePlanID = int(request.GET['procurePlanID'])
+            procurePlans = ProcureTable.objects.filter(id=procurePlanID)
+            if len(procurePlans) > 0:
+                procurePlan = procurePlans[0]
+                pdf  = procure2PDF(procurePlan)
+                if pdf['status'] == 0:
+                    pdfPath = pdf['data']
+                    downloadName = 'export_procure.pdf'
+                    response = toStream(pdfPath,downloadName)
+                    return response
+                else:
+                    getProcurePDF = setStatus(402, 'change procurePlan status is successful.But, ' + pdf['data'])
             else:
-                getProcurePDF = setStatus(2, 'change order status is successful.But, ' + pdf['data'])
+                getProcurePDF = setStatus(402,{})
+        #else:
+            #return notTokenExpired()
     except Exception,e:
         logErr = basic_log.Logger('error')
         logErr.log(traceback.format_exc())
@@ -866,16 +875,16 @@ def procure2PDF(procurePlan):
     try:
         logRecord = basic_log.Logger('record')
         pdf = {}
-        orders = []
+        procurePlans = []
         stylesheet = getSampleStyleSheet()
         normalStyle = stylesheet['Normal']
-        orderTitle = '<para autoLeading="off" fontSize=20 align=center><b><font face="STSong-Light">Purchase Order</font></b><br/><br/>_______________________________________<br/><br/><br/><br/></para>'
-        orders.append(Paragraph(orderTitle,normalStyle))
-        supplier = Supplier.objects.get(id=orderBasic.providerID)
-        branch = Branch.objects.get(id=orderBasic.branchID)
-        leftText = '<para autoLeading="off">Purchase ID: <br/><br/>Date:  ' + str(orderBasic.orderGenerateTime) + '<br/><br/><br/><br/>Supplier:  ' + supplier.tradingName + '<br/><br/>Tel:  '+ supplier.contactNo +'<br/><br/>Mail:  ' + supplier.email + '<br/></para>'
+        procurePlanTitle = '<para autoLeading="off" fontSize=20 align=center><b><font face="STSong-Light">Procure Plan</font></b><br/><br/>_______________________________________<br/><br/><br/><br/></para>'
+        procurePlans.append(Paragraph(procurePlanTitle,normalStyle))
+        supcto = Supcto.objects.get(id=procurePlan.supcto_id)
+        department = Department.objects.get(id=procurePlan.department_id)
+        leftText = '<para autoLeading="off">Procure: <br/><br/>Date:  ' + str(procurePlan.generate_date) + '<br/><br/><br/><br/>Supplier:  ' + supcto.name + '<br/><br/>Tel:  '+ supcto.phone +'<br/><br/>Mail:  ' + supcto.mailbox + '<br/></para>'
         leftContents = Paragraph(leftText,normalStyle)
-        rightText = '<para autoLeading="off">Order: '+ str(orderBasic.id) + '<br/><br/>Branch: '+ branch.branchName +'<br/><br/>Company:  ' + '' + '<br/><br/>Address:  ' + branch.branchAddress + '<br/><br/>Tel:  '+ branch.contactNo +'<br/><br/>Mail: ' + branch.contactEmail + '<br/></para>'
+        rightText = '<para autoLeading="off">Procure ID: '+ str(procurePlan.id) + '<br/><br/>Department: '+ department.name +'<br/><br/>Company:  ' + '' + '<br/><br/>Identifier:  ' + department.identifier + '<br/><br/>Tel:  <br/><br/>Mail: <br/></para>'
         rightContents = Paragraph(rightText,normalStyle)
         emptyContents = Paragraph('<para autoLeading="off"></para>',normalStyle)
         topData = [[leftContents,emptyContents,rightContents]]
@@ -889,12 +898,12 @@ def procure2PDF(procurePlan):
         ('GRID',(0,0),(0,-1),0,colors.darkgreen),
         ('GRID',(2,0),(2,-1),0,colors.darkgreen),
         ]))
-        orders.append(topTable)
+        procurePlans.append(topTable)
         text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
-        orders.append(Paragraph(text,normalStyle))
-        orderContents = OrderContent.objects.filter(orderID=orderBasic.id)
-        middleHeadData = [['Image','Code','Name','Price','Qty','Amount']]
-        middleHeadTable = Table(middleHeadData, colWidths=[50,80,150,40,40,40])
+        procurePlans.append(Paragraph(text,normalStyle))
+        procureCommoditys = ProcureCommodity.objects.filter(procure_table_id=procurePlan.id)
+        middleHeadData = [['Identifier','Name','Price','Qty','Amount']]
+        middleHeadTable = Table(middleHeadData, colWidths=[150,80,150,40,40,40])
         middleHeadTable.setStyle(TableStyle([
         ('FONTNAME',(0,0),(-1,-1),'STSong-Light'),
         ('FONTSIZE',(0,0),(-1,-1),8),
@@ -902,30 +911,13 @@ def procure2PDF(procurePlan):
         ('VALIGN',(-1,0),(-2,0),'LEFT'),
         ('GRID',(0,0),(-1,-1),0,colors.black),
         ]))
-        orders.append(middleHeadTable)
-        for orderContent in orderContents:
-            productBasics = ProductBasicInfo.objects.filter(id=orderContent.productID)
-            if len(productBasics) > 0:
-                productBasic = productBasics[0]
-                productPictures = ProductPicture.objects.filter(productID=productBasic.id)
-                if len(productPictures) > 0:
-                    productPicture = productPictures[0]
-                    if productPicture.picPath != None:
-                        picPath = BASE_DIR + productPicture.picPath
-                    else:
-                        picPath = None
-                else:
-                    picPath = None
-                productName = productBasic.productName[0:30]
-                if picPath != None and os.path.exists(picPath):
-                    img = Image(picPath)
-                    img.drawHeight = 40
-                    img.drawWidth = 40
-                    middleEndDate = [[img,productBasic.productCode,productName,orderContent.finalPurchasePrice,orderContent.finalPurchaseQuantity,orderContent.amount]]
-                else:
-                    picPath = None
-                    middleEndDate = [[picPath,productBasic.productCode,productName,orderContent.finalPurchasePrice,orderContent.finalPurchaseQuantity,orderContent.amount]]
-                middleEndTable = Table(middleEndDate, colWidths=[50,80,150,40,40,40])
+        procurePlans.append(middleHeadTable)
+        for procureCommodity in procureCommoditys:
+            commoditySpecifications = CommoditySpecification.objects.filter(id=procureCommodity.commodity_id)
+            if len(commoditySpecifications) > 0:
+                commoditySpecification = commoditySpecifications[0]
+                middleEndDate = [[commoditySpecification.specification_identifier,commoditySpecification.specification_name,procureCommodity.business_unit_price,procureCommodity.arrival_quantity,procureCommodity.total_price]]
+                middleEndTable = Table(middleEndDate, colWidths=[150,80,150,40,40,40])
                 middleEndTable.setStyle(TableStyle([
                     ('FONTNAME', (0, 0), (-1, -1), 'STSong-Light'),
                     ('FONTSIZE', (0, 0), (-1, -1), 8),
@@ -933,31 +925,31 @@ def procure2PDF(procurePlan):
                     ('VALIGN', (-1, 0), (-2, 0), 'LEFT'),
                     ('GRID', (0, 0), (-1, -1), 0, colors.black),
                 ]))
-                orders.append(middleEndTable)
+                procurePlans.append(middleEndTable)
             else:
                 pdf['status'] = 2
-                pdf['data'] = 'the productID: ' + str(orderContent.productID) + 'is invalid'
+                pdf['data'] = 'the productID: ' + str(procurePlan.commodity_id) + 'is invalid'
                 return pdf
         text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
-        orders.append(Paragraph(text, normalStyle))
-        if orderBasic.note != None:
-            noteText = '<para autoLeading="off">Note: <br/>' + orderBasic.note + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
+        procurePlans.append(Paragraph(text, normalStyle))
+        if procurePlan.summary != None:
+            noteText = '<para autoLeading="off">Note: <br/>' + procurePlan.summary + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
         else:
             noteText = '<para autoLeading="off">Note: <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
         noteContents = Paragraph(noteText, normalStyle)
         SEtextL = '''<para align="left" autoLeading="off" fontSize=14>
-            <font face="STSong-Light">Sub Total: </font><br/><br/>
-            <font face="STSong-Light">Freight: </font><br/><br/>
-            <font face="STSong-Light">Tax: </font><br/><br/>
-            <font face="STSong-Light">Total: </font><br/><br/>
+            <font face="STSong-Light">Order Type: </font><br/><br/>
+            <font face="STSong-Light">Plan Type: </font><br/><br/>
+            <font face="STSong-Light">State: </font><br/><br/>
+            <font face="STSong-Light">Prepaid Amount: </font><br/><br/>
             </para>'''
         SEContentsL = Paragraph(SEtextL, normalStyle)
         
         SEtextR = '''<para align="right" autoLeading="off" fontSize=14>
-            <font face="STSong-Light">''' + str(orderBasic.subTotal) + '''</font><br/><br/>
-            <font face="STSong-Light">''' + str(orderBasic.Freight) + '''</font><br/><br/>
-            <font face="STSong-Light">''' + str(orderBasic.Tax) + '''</font><br/><br/>
-            <font face="STSong-Light">''' + str(orderBasic.amountTotal) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(procurePlan.order_type) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(procurePlan.plan_type) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(procurePlan.state) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(procurePlan.prepaid_amount) + '''</font><br/><br/>
             </para>'''
         SEContentsR = Paragraph(SEtextR, normalStyle)
         
@@ -971,15 +963,15 @@ def procure2PDF(procurePlan):
             ('TEXTCOLOR', (0, 1), (-2, -1), colors.royalblue),
             ('GRID', (0, 0), (0, -1), 0, colors.darkgreen),
         ]))
-        orders.append(endTable)
+        procurePlans.append(endTable)
         touchTime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-        fileName = 'PurchaseOrder_' + str(orderBasic.id) + '.pdf'
+        fileName = 'ProcurePlan_' + str(procurePlan.id) + '.pdf'
         filePath = BASE_DIR + '/static/pdf/'+ fileName
         doc = SimpleDocTemplate(filePath)
-        doc.build(orders)
+        doc.build(procurePlans)
         pdf['status'] = 0
         pdf['data'] = filePath
-        logRecord.log('order to PDF is successful')
+        logRecord.log('procurePlan to PDF is successful')
     except Exception, e:
         logErr = basic_log.Logger('error')
         logErr.log(traceback.format_exc())

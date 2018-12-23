@@ -9,7 +9,13 @@ from erp_sites.public import setStatus,isTokenExpired,notTokenExpired,touchFile,
 import traceback
 from erp_sites.models import ProcureTable,ProcureCommodity
 from django.db.models import Q
+from reportlab.pdfbase import pdfmetrics  
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont  
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+from reportlab.platypus import SimpleDocTemplate, Paragraph,Image,Table,TableStyle
 
+pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
 reload(sys)
 sys.setdefaultencoding('utf-8')
 ONE_PAGE_OF_DATA = 10
@@ -462,7 +468,6 @@ def procurePlanUpdate(request):
         if isTokenExpired(request):
             jsonList = json.loads(request.body)
             for json2Dict in jsonList:
-
                 identifier = json2Dict['identifier']
                 procures = ProcureTable.objects.filter(identifier=identifier)
                 if len(procures) > 0:
@@ -705,8 +710,8 @@ def procurePlanUpdate(request):
                                 total_price = atof(procure_commodity['totalPrice'])
                                 procureCommodity.total_price = total_price
                         procureCommodity.save()
-                procureJSON = getProcure(procure)
-                procurePlanUpdate = setStatus(200,procureJSON)
+                #procureJSON = getProcure(procure)
+            procurePlanUpdate = setStatus(200,{})
         else:
             return notTokenExpired()
     except Exception,e:
@@ -835,6 +840,132 @@ def procureUpload(request):
         transaction.rollback()
         procureUpload = setStatus(500,traceback.format_exc())
     return HttpResponse(json.dumps(procureUpload), content_type='application/json')
+
+
+def procure2PDF(procurePlan):
+    try:
+        logRecord = basic_log.Logger('record')
+        pdf = {}
+        orders = []
+        stylesheet = getSampleStyleSheet()
+        normalStyle = stylesheet['Normal']
+        orderTitle = '<para autoLeading="off" fontSize=20 align=center><b><font face="STSong-Light">Purchase Order</font></b><br/><br/>_______________________________________<br/><br/><br/><br/></para>'
+        orders.append(Paragraph(orderTitle,normalStyle))
+        supplier = Supplier.objects.get(id=orderBasic.providerID)
+        branch = Branch.objects.get(id=orderBasic.branchID)
+        leftText = '<para autoLeading="off">Purchase ID: <br/><br/>Date:  ' + str(orderBasic.orderGenerateTime) + '<br/><br/><br/><br/>Supplier:  ' + supplier.tradingName + '<br/><br/>Tel:  '+ supplier.contactNo +'<br/><br/>Mail:  ' + supplier.email + '<br/></para>'
+        leftContents = Paragraph(leftText,normalStyle)
+        rightText = '<para autoLeading="off">Order: '+ str(orderBasic.id) + '<br/><br/>Branch: '+ branch.branchName +'<br/><br/>Company:  ' + '' + '<br/><br/>Address:  ' + branch.branchAddress + '<br/><br/>Tel:  '+ branch.contactNo +'<br/><br/>Mail: ' + branch.contactEmail + '<br/></para>'
+        rightContents = Paragraph(rightText,normalStyle)
+        emptyContents = Paragraph('<para autoLeading="off"></para>',normalStyle)
+        topData = [[leftContents,emptyContents,rightContents]]
+        topTable = Table(topData, colWidths=[210,10,210],hAlign='CENTER')
+        topTable.setStyle(TableStyle([
+        ('FONTNAME',(0,0),(-1,-1),'STSong-Light'),
+        ('FONTSIZE',(0,0),(-1,-1),8),
+        ('ALIGN',(-1,0),(-2,0),'LEFT'),
+        ('VALIGN',(-1,0),(-2,0),'LEFT'),
+        ('TEXTCOLOR',(0,1),(-2,-1),colors.royalblue),
+        ('GRID',(0,0),(0,-1),0,colors.darkgreen),
+        ('GRID',(2,0),(2,-1),0,colors.darkgreen),
+        ]))
+        orders.append(topTable)
+        text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
+        orders.append(Paragraph(text,normalStyle))
+        orderContents = OrderContent.objects.filter(orderID=orderBasic.id)
+        middleHeadData = [['Image','Code','Name','Price','Qty','Amount']]
+        middleHeadTable = Table(middleHeadData, colWidths=[50,80,150,40,40,40])
+        middleHeadTable.setStyle(TableStyle([
+        ('FONTNAME',(0,0),(-1,-1),'STSong-Light'),
+        ('FONTSIZE',(0,0),(-1,-1),8),
+        ('ALIGN',(-1,0),(-2,0),'LEFT'),
+        ('VALIGN',(-1,0),(-2,0),'LEFT'),
+        ('GRID',(0,0),(-1,-1),0,colors.black),
+        ]))
+        orders.append(middleHeadTable)
+        for orderContent in orderContents:
+            productBasics = ProductBasicInfo.objects.filter(id=orderContent.productID)
+            if len(productBasics) > 0:
+                productBasic = productBasics[0]
+                productPictures = ProductPicture.objects.filter(productID=productBasic.id)
+                if len(productPictures) > 0:
+                    productPicture = productPictures[0]
+                    if productPicture.picPath != None:
+                        picPath = BASE_DIR + productPicture.picPath
+                    else:
+                        picPath = None
+                else:
+                    picPath = None
+                productName = productBasic.productName[0:30]
+                if picPath != None and os.path.exists(picPath):
+                    img = Image(picPath)
+                    img.drawHeight = 40
+                    img.drawWidth = 40
+                    middleEndDate = [[img,productBasic.productCode,productName,orderContent.finalPurchasePrice,orderContent.finalPurchaseQuantity,orderContent.amount]]
+                else:
+                    picPath = None
+                    middleEndDate = [[picPath,productBasic.productCode,productName,orderContent.finalPurchasePrice,orderContent.finalPurchaseQuantity,orderContent.amount]]
+                middleEndTable = Table(middleEndDate, colWidths=[50,80,150,40,40,40])
+                middleEndTable.setStyle(TableStyle([
+                    ('FONTNAME', (0, 0), (-1, -1), 'STSong-Light'),
+                    ('FONTSIZE', (0, 0), (-1, -1), 8),
+                    ('ALIGN', (-1, 0), (-2, 0), 'LEFT'),
+                    ('VALIGN', (-1, 0), (-2, 0), 'LEFT'),
+                    ('GRID', (0, 0), (-1, -1), 0, colors.black),
+                ]))
+                orders.append(middleEndTable)
+            else:
+                pdf['status'] = 2
+                pdf['data'] = 'the productID: ' + str(orderContent.productID) + 'is invalid'
+                return pdf
+        text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
+        orders.append(Paragraph(text, normalStyle))
+        if orderBasic.note != None:
+            noteText = '<para autoLeading="off">Note: <br/>' + orderBasic.note + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
+        else:
+            noteText = '<para autoLeading="off">Note: <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
+        noteContents = Paragraph(noteText, normalStyle)
+        SEtextL = '''<para align="left" autoLeading="off" fontSize=14>
+            <font face="STSong-Light">Sub Total: </font><br/><br/>
+            <font face="STSong-Light">Freight: </font><br/><br/>
+            <font face="STSong-Light">Tax: </font><br/><br/>
+            <font face="STSong-Light">Total: </font><br/><br/>
+            </para>'''
+        SEContentsL = Paragraph(SEtextL, normalStyle)
+        
+        SEtextR = '''<para align="right" autoLeading="off" fontSize=14>
+            <font face="STSong-Light">''' + str(orderBasic.subTotal) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(orderBasic.Freight) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(orderBasic.Tax) + '''</font><br/><br/>
+            <font face="STSong-Light">''' + str(orderBasic.amountTotal) + '''</font><br/><br/>
+            </para>'''
+        SEContentsR = Paragraph(SEtextR, normalStyle)
+        
+        endData = [[noteContents, emptyContents, SEContentsL,SEContentsR]]
+        endTable = Table(endData, colWidths=[210, 110, 90,50], hAlign='CENTER')
+        endTable.setStyle(TableStyle([
+            ('FONTNAME', (0, 0), (-1, -1), 'STSong-Light'),
+            ('FONTSIZE', (0, 0), (-1, -1), 8),
+            ('ALIGN', (-1, 0), (-2, 0), 'LEFT'),
+            ('VALIGN', (-1, 0), (-2, 0), 'LEFT'),
+            ('TEXTCOLOR', (0, 1), (-2, -1), colors.royalblue),
+            ('GRID', (0, 0), (0, -1), 0, colors.darkgreen),
+        ]))
+        orders.append(endTable)
+        touchTime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        fileName = 'PurchaseOrder_' + str(orderBasic.id) + '.pdf'
+        filePath = BASE_DIR + '/static/pdf/'+ fileName
+        doc = SimpleDocTemplate(filePath)
+        doc.build(orders)
+        pdf['status'] = 0
+        pdf['data'] = filePath
+        logRecord.log('order to PDF is successful')
+    except Exception, e:
+        logErr = basic_log.Logger('error')
+        logErr.log(traceback.format_exc())
+        pdf['status'] = 1
+        pdf['data'] = traceback.format_exc()
+    return pdf
 
 
 def paging(request, ONE_PAGE_OF_DATA, condition, selectType):

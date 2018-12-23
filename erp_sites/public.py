@@ -135,6 +135,13 @@ def isValid(param):
         return True
     else:
         return False
+    
+    
+def toStream(filePath,downloadName):
+    response = StreamingHttpResponse(__file_iterator(filePath))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(downloadName)
+    return response
         
         
 def getCommoditySpecification(commodity_specification_id):

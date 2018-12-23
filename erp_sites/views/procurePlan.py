@@ -5,7 +5,7 @@ from string import upper, atof
 from django.db import transaction,connection
 from django.http import HttpResponse
 from erp_sites import basic_log
-from erp_sites.public import setStatus,isTokenExpired,notTokenExpired,touchFile,getProcure,isValid
+from erp_sites.public import setStatus,isTokenExpired,notTokenExpired,touchFile,getProcure,isValid,toStream
 import traceback
 from erp_sites.models import ProcureTable,ProcureCommodity
 from django.db.models import Q
@@ -840,6 +840,26 @@ def procureUpload(request):
         transaction.rollback()
         procureUpload = setStatus(500,traceback.format_exc())
     return HttpResponse(json.dumps(procureUpload), content_type='application/json')
+
+
+def getProcurePDFByID(request):
+    try:
+        if isTokenExpired(request):
+            getProcurePDF = {}
+            pdf  = order2PDF(orderBasic)
+            if pdf['status'] == 0:
+                pdfPath = pdf['data']
+                downloadName = 'export_procure.pdf'
+                response = toStream(pdfPath,downloadName)
+                return response
+            else:
+                getProcurePDF = setStatus(2, 'change order status is successful.But, ' + pdf['data'])
+    except Exception,e:
+        logErr = basic_log.Logger('error')
+        logErr.log(traceback.format_exc())
+        transaction.rollback()
+        getProcurePDF = setStatus(500,traceback.format_exc())
+    return HttpResponse(json.dumps(getProcurePDF), content_type='application/json')
 
 
 def procure2PDF(procurePlan):

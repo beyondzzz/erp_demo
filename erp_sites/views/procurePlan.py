@@ -292,7 +292,7 @@ def procurePlanInsert(request):
                     is_other_receipts = 0
             else:
                 is_other_receipts = 0
-            procure = ProcureTable(None,identifier,generate_date,supcto_id,effective_period_end,goods_arrival_time,goods_arrival_place,transportation_mode,deliveryman,fax,phone,procurePlaner,prepaid_amount,department_id,originator,reviewer,terminator,summary,branch,state,print_num,plan_type,pay_type,contract_number,plan_or_procurePlan,before_is_plan,payment_evidence1,payment_evidence2,payment_evidence3,payment_evidence4,payment_evidence5,payment_evidence6,is_delete,parent_id,procurePlan_type,postfix,is_verification,activity_id ,is_app_procurePlan,financial_reviewer,is_other_receipts)
+            procure = ProcureTable(None,identifier,generate_date,supcto_id,effective_period_end,goods_arrival_time,goods_arrival_place,transportation_mode,deliveryman,fax,phone,orderer,prepaid_amount,department_id,originator,reviewer,terminator,summary,branch,state,print_num,plan_type,pay_type,contract_number,plan_or_order,before_is_plan,payment_evidence1,payment_evidence2,payment_evidence3,payment_evidence4,payment_evidence5,payment_evidence6,is_delete,parent_id,order_type,postfix,is_verification,activity_id ,is_app_order,financial_reviewer,is_other_receipts)
             procure.save()
             procure.identifier = identifier + str(procure.id)
             procure.save()
@@ -358,6 +358,9 @@ def procurePlanInsert(request):
                             suspend_quantity = 0
                     else:
                         suspend_quantity = 0
+
+                    logRecord.log("suspendQuantity:" + str(arrival_quantity))
+
                     if 'suspendPrice' in procure_commodity:
                         if isValid(procure_commodity['suspendPrice']):
                             suspend_price = atof(procure_commodity['suspendPrice'])
@@ -750,6 +753,9 @@ def procurePlanSelect(request):
                     procurePlanSelect = conditionSelect(condition, selectType)
                 else:
                     procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, condition, selectType)
+                logRecord.log("procureSelect: "  + str(procurePlanSelect))
+
+
             else:
                 procurePlanSelect = paging(request, ONE_PAGE_OF_DATA, None, None)
         else:
@@ -846,7 +852,6 @@ def procureUpload(request):
 def getProcurePDFByID(request):
     try:
         #if isTokenExpired(request):
-            getProcurePDF = {}
             procurePlanID = int(request.GET['procurePlanID'])
             procurePlans = ProcureTable.objects.filter(id=procurePlanID)
             if len(procurePlans) > 0:
@@ -878,13 +883,13 @@ def procure2PDF(procurePlan):
         procurePlans = []
         stylesheet = getSampleStyleSheet()
         normalStyle = stylesheet['Normal']
-        procurePlanTitle = '<para autoLeading="off" fontSize=20 align=center><b><font face="STSong-Light">Procure Plan</font></b><br/><br/>_______________________________________<br/><br/><br/><br/></para>'
+        procurePlanTitle = '<para autoLeading="off" fontSize=20 align=center><b><font face="STSong-Light">采购单</font></b><br/><br/>_______________________________________<br/><br/><br/><br/></para>'
         procurePlans.append(Paragraph(procurePlanTitle,normalStyle))
         supcto = Supcto.objects.get(id=procurePlan.supcto_id)
         department = Department.objects.get(id=procurePlan.department_id)
-        leftText = '<para autoLeading="off">Procure: <br/><br/>Date:  ' + str(procurePlan.generate_date) + '<br/><br/><br/><br/>Supplier:  ' + supcto.name + '<br/><br/>Tel:  '+ supcto.phone +'<br/><br/>Mail:  ' + supcto.mailbox + '<br/></para>'
+        leftText = '<para autoLeading="off"><font face="STSong-Light">采购信息: <br/><br/>时间:  ' + str(procurePlan.generate_date) + '<br/><br/><br/><br/>供应商:  ' + supcto.name + '<br/><br/>电话:  '+ supcto.phone +'<br/><br/>邮箱:  ' + supcto.mailbox + '<br/></font></para>'
         leftContents = Paragraph(leftText,normalStyle)
-        rightText = '<para autoLeading="off">Procure ID: '+ str(procurePlan.id) + '<br/><br/>Department: '+ department.name +'<br/><br/>Company:  ' + '' + '<br/><br/>Identifier:  ' + department.identifier + '<br/><br/>Tel:  <br/><br/>Mail: <br/></para>'
+        rightText = '<para autoLeading="off"><font face="STSong-Light">采购ID: '+ str(procurePlan.id) + '<br/><br/>部门: '+ department.name +'<br/><br/>公司:  ' + '' + '<br/><br/>部门编码:  ' + department.identifier + '<br/><br/>电话:  <br/><br/>邮箱: <br/></font></para>'
         rightContents = Paragraph(rightText,normalStyle)
         emptyContents = Paragraph('<para autoLeading="off"></para>',normalStyle)
         topData = [[leftContents,emptyContents,rightContents]]
@@ -902,7 +907,7 @@ def procure2PDF(procurePlan):
         text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
         procurePlans.append(Paragraph(text,normalStyle))
         procureCommoditys = ProcureCommodity.objects.filter(procure_table_id=procurePlan.id)
-        middleHeadData = [['Identifier','Name','Price','Qty','Amount']]
+        middleHeadData = [['采购单编码','名称','价格','数量','合计']]
         middleHeadTable = Table(middleHeadData, colWidths=[150,80,150,40,40,40])
         middleHeadTable.setStyle(TableStyle([
         ('FONTNAME',(0,0),(-1,-1),'STSong-Light'),
@@ -933,15 +938,15 @@ def procure2PDF(procurePlan):
         text = '<para align="right" autoLeading="off"><br/><br/><br/></para>'
         procurePlans.append(Paragraph(text, normalStyle))
         if procurePlan.summary != None:
-            noteText = '<para autoLeading="off">Note: <br/>' + procurePlan.summary + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
+            noteText = '<para autoLeading="off"><font face="STSong-Light">备注: <br/>' + procurePlan.summary + '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></font></para>'
         else:
-            noteText = '<para autoLeading="off">Note: <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></para>'
+            noteText = '<para autoLeading="off"><font face="STSong-Light">备注: <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></font></para>'
         noteContents = Paragraph(noteText, normalStyle)
         SEtextL = '''<para align="left" autoLeading="off" fontSize=14>
-            <font face="STSong-Light">Order Type: </font><br/><br/>
-            <font face="STSong-Light">Plan Type: </font><br/><br/>
-            <font face="STSong-Light">State: </font><br/><br/>
-            <font face="STSong-Light">Prepaid Amount: </font><br/><br/>
+            <font face="STSong-Light">订单类型: </font><br/><br/>
+            <font face="STSong-Light">计划类型: </font><br/><br/>
+            <font face="STSong-Light">状态: </font><br/><br/>
+            <font face="STSong-Light">预交金: </font><br/><br/>
             </para>'''
         SEContentsL = Paragraph(SEtextL, normalStyle)
         

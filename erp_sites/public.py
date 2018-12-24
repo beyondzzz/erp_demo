@@ -462,6 +462,7 @@ def getSupcto(supcto_id):
 
 def getProcure(procure):
     procureJSON = {}
+    procureJSON['id'] = procure.id
     procureJSON['identifier'] = procure.identifier
     procureJSON['generateDate'] = str(procure.generate_date)
     procureJSON['supctoID'] = procure.supcto_id
